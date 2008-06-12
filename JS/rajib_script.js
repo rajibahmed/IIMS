@@ -23,10 +23,10 @@
 			type:"GET",
 			url:uri,
 			success:function(){
-				$('#note').hide().slideDown(500);
+				/*$('#note').hide().slideDown(500);
 				setTimeout(function(){
 						$("#note").slideUp(500).html('');	
-				},3000);
+				},3000);*/
 			},
 		});	
 		return false;	

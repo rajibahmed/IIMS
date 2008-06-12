@@ -5,7 +5,7 @@ class MRR extends DbUtils
 {
 	public function CreateMRRDetails($getData)
  	{
- 		  $sql = "INSERT INTO  mrr_details VALUES(".$getData.")";
+ 		   $sql = "INSERT INTO  mrr_details VALUES(".$getData.")";
 		return parent::insertQuery($sql);
  	}
 	

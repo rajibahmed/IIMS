@@ -94,7 +94,7 @@ class Requisition extends DbUtils
 					ORDER BY requisition_number DESC";
 		 }
 
-		
+		//echo "$sql";
 		return parent::selectQuery($sql);
 	}
 	
