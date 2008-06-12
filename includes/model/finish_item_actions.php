@@ -10,9 +10,7 @@ $objStockItemInfo = new Stock();
 		$StockItemId = $finishItem->getNewFinishItemId();
 		/////////////////////////////
 		
-		//get stock code Id
-		
-		$getData = "'$StockItemId','$stkName','$stkGrp','$unitId','$altUnitId','$unitRel1','$unitRel2','$count','$txtStkcode','$desc','','','','$opQnty','$OpRate','$opValue','$opQnty','','',''";
+		$getData = "'$StockItemId','$stkName','$stkGrp','$unitId','$altUnitId','$unitRel1','$unitRel2','$count','$lot','$txtStkcode','$desc','','','','$opQnty','$OpRate','$opValue','$opQnty','','',''";
 		
 		
 		$finishItem->CreateFinishItem($getData);
@@ -20,7 +18,7 @@ $objStockItemInfo = new Stock();
 		
 		
 		echo "<b>Data Save Successsfull</b>";
-		require_once("../contents/create_raw_item.php");
+		require_once("../contents/create_finished_item.php");
 		
 	
 ?>	

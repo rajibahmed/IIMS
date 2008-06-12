@@ -5,9 +5,10 @@
 	$stock=new Stock;
 	$Consumption=new Consumption;
 	$stock_info =	$stock->retriveStockItem();
-	$output=options_for_select(	$stock->retriveStockItem(),
+	$output=options_for_select_stock_item(	$stock->retriveStockItem(),
 								'stock_item_id',
-								'stock_item_name'
+								'stock_item_name',
+								'stock_item_cl_balance'
 								);
 								
 	//echo $output;							
@@ -48,12 +49,12 @@
 			<input type="text" name="date_of_submit" value="" id="submit_date" class="date" />
 		</p>
 			
-		<p>
+		<!--<p>
 			<label>Location:</label>
 			<select name="locationId" >
-			<?php echo $locations ; ?>
+			<?php //echo $locations ; ?>
 			</select>
-		</p>
+		</p>-->
 	
 	</div >
 	
@@ -79,9 +80,13 @@
 				<?php echo $output; ?>
 			</select>
 			
-			<input type="text" 
+			<input type="hidden" 
 			name="item_code[]" value="" 
 			class="stock_item_code" />
+			
+			<input type="text" 
+			name="item_code_no[]" value="" 
+			class="stock_item_code_no" />
 			
 			<input type="text" 
 			name="stock_part_code[]" value="" 
@@ -122,8 +127,9 @@
 			{id:stock_item_number},
 			function(data){
 				parent.find('.item_description:first').attr('value',data.stock_item_desc);
-				parent.find('.stock_item_code:first').attr('value',data.stock_code_m_id);
-				parent.find('.stock_part_code:first').attr('value',data.stock_part_m_id);			
+				parent.find('.stock_item_code:first').attr('value',data.stock_item_id);
+				parent.find('.stock_item_code_no:first').attr('value',data.stock_code);
+				parent.find('.stock_part_code:first').attr('value',data.stock_part);			
 			}
 		);	
    	});  

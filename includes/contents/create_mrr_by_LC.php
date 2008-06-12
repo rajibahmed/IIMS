@@ -7,12 +7,12 @@
 	$MRR= new MRR;
 
 	$stock_info =	$stock->retriveStockItem();
-	$output=options_for_select(	$stock->retriveStockItem(),
+	$output=options_for_select(	$stock_info,
 								'stock_item_id',
 								'stock_item_name'
 								);
 	//echo $output;							
-	$part_number=options_for_select(	$stock->retriveStockItem(),
+	$part_number=options_for_select(	$stock_info,
 								'stock_item_part_id',
 								'stock_item_part_id'
 								);
@@ -29,13 +29,7 @@
 	$num = $MRR->getNewId();
 							
  ?>
-<link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
 
-<div class="rightcontent1">
-        <div class="bodybanner1"></div>
-        <div class="bodybanner2"> MRR-LC </div>
-        <div class="bodybanner3"></div>
-</div>
 <form id="consumptionForm" name="consumptionForm" method="post"   action="includes/model/mrr_by_lc_actions.php" >	
 
 		
@@ -87,24 +81,33 @@
 	
 	<div style="clear:both"> </div>
 	<div id="inline_form">
-		<div class="centerbody small_font">
+
+		<div class="mediumbody">
 			<div class="lowbanner1"> </div>
-            <div class="lowbanner2">
-			<ul>
-				<li>Item</li> 
-				<li>code #</li> 
-				<li>Part #</li> 
-			
-				<li>Quantity</li> 
-				<li>Rate</li> 
-				<li>Value</li> 
-			</ul>
+            <div class="lowbannertest">	
+				<ul>
+					<li style="width:250px">Items </li>
+					<li style='width:100px'>code #</li> 
+					<li style='width:80px'>Part #</li> 
+				
+					<li style='width:70px'>Quantity</li> 
+					<li style='width:70px'>Rate</li> 
+					<li style='width:70px'>Value</li> 
+				</ul>
 			</div>
             <div class="lowbanner3"> </div>	
-		</div>	 
+		</div> 
+		
+		
+		
+		 
 		<div class="small_row_elements">
-			<select class="stock_item_select" style="width:220px"  name="stock_item[]"><?php echo $output; ?></select>
+			<select class="stock_item_select" style="width:220px"  name="stock_item[]">
+				<?php echo $output; ?>
+			</select>
+			
 			<input type="text" name="stock_item_code[]" style="width:80px" value="" class="stock_item_code">
+			
 			<input type="text" name="stock_part_code[]" value="" style="width:80px" class="stock_part_code">	
 					<input type="text"  name="item_qty[]" value="" class="item_qty"/>
 			<input type="text"  name="item_rate[]" value="" class="item_rate" />
@@ -126,11 +129,6 @@
 		</div>
 
 </form>
-<div class="rightimg3">
-        <div class="downimg1"></div>
-        <div class="downimg2"></div>
-        <div class="downimg3"></div>
-    </div>
 	 
 <script type='text/javascript'>
 

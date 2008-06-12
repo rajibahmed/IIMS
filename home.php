@@ -53,8 +53,10 @@
 		$('#inventory').click(function(){
 			$('#ajax_content').load('includes/contents/ca_inventory_home.php');		
 		})
-		$('#create_mrr').click(function(){
-			$('#ajax_content').load('includes/contents/create_mrr.php');		
+		
+		$('#MRR').click(function(){
+			$('#ajax_content').load('includes/contents/mrr_home.php');
+			return false;		
 		})
 		
 		$('#create_stock_return').click(function(){
@@ -65,6 +67,12 @@
 			$('#ajax_content').load('includes/contents/create_getpass.php');		
 		})
 		
+		$('#gate_pass_home').click(function(){
+			$('#ajax_content').load('includes/contents/getpass_home.php');		
+		})
+		
+		
+		
 		$('#create_sample_sending').click(function(){
 			$('#ajax_content').load('includes/contents/create_sample_sending.php');		
 		})
@@ -74,9 +82,7 @@
 		})
 		
 		
-		$('#create_mrr_by_lc').click(function(){
-			$('#ajax_content').load('includes/contents/create_mrr_by_LC.php');		
-		})
+
 		
 		$('#pending_requisitions').click(function(){
 			$('#ajax_content').load('includes/contents/pending_requisitions.php');		
@@ -124,6 +130,10 @@
 		});
 		$('#consumption_home').click(function(){
 				$('#ajax_content').load('includes/contents/consumption_home.php');		
+		});
+		
+		$('#delivery_home').click(function(){
+				$('#ajax_content').load('includes/contents/delivery_home.php');		
 		});
 	})
 	

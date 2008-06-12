@@ -1,10 +1,8 @@
 <?php  
 	require_once ("../../../lib/quotation.class.php");
-	require_once ("../../../lib/stock.class.php");	
 	require_once ("../../../lib/helper_functions.php");
 	
 	$quotation =new Quotation();
-	$stock = new Stock;
 	
 	$quotations = $quotation->findQuotaionList();
 	//var_dump($quotations);

@@ -1,46 +1,79 @@
 <?php
 require_once('../../../lib/defination.class.php');
 require_once ('../../../lib/stock.class.php');
+require_once ("../../../lib/lot.class.php");
+require_once ("../../../lib/count.class.php");
 
-//// Retrive Stock Group Name
+//Object
 $objStockGroupInfo = new Stock();
 $stock=new Stock();
+
+
+@session_start();
+$user_level = $_SESSION[user_level];
+
+$stc_itm_id=$_GET['stc_itm_id'];
+$finishItemByID=$objStockGroupInfo->retriveFinishItemByid($stc_itm_id);
+$stock_item_id=$finishItemByID[0]['stock_item_id'];
+$StockGroupId = $finishItemByID[0]['stock_item_grp_id'];
+$StockUnitId = $finishItemByID[0]['stock_item_unit_id'];
+$StockAltUnitId = $finishItemByID[0]['stock_alt_unit'];
+$count = $finishItemByID[0]['count'];
+$lot = $finishItemByID[0]['lot'];
+
+
+//// Retrive Stock Group Name
 $StockGrpInfo=$objStockGroupInfo->retriveStockGroupUnderInfo();
 $StockGrpInfo_options = options_for_select(	$StockGrpInfo,
 											'stock_group_id',
 											'stock_group_name',
-											true	
+											true,	
+											$StockGroupId
 										);
 //// Retrive Stock Unit Name
 $unitName=options_for_select(	$stock->retriveStockUnit(),
 											'stock_item_unit_id',
 											'stock_item_unit_name',
-											true	
+											true,
+											$StockUnitId
 										);	
-/////////////////////////////////										
+										
+//Retrive Count 
+$Count= new Count();
+$countName=options_for_select($Count->retriveCountInfo(),
+											'count_id',
+											'count_name',
+											true,
+											$count	
+										);
 
-@session_start();
-	
-$user_level = $_SESSION[user_level];
+//Retrive Lot
+$Lot = new Lot;
+$outputLot=options_for_select($Lot->retriveLotInfo(),
+									'lot_id',
+									'lot_name',
+									true,
+									$lot
+									);								
+/////////////////////////////////						
 
-
-$stc_itm_id=$_GET['stc_itm_id'];
-$finishItemByID=$objStockGroupInfo->retriveFinishItemByid($stc_itm_id);
-
+$allStockItemUnit=$objStockGroupInfo->retriveStockUnit();
+$rowStockItemUnit=count($allStockItemUnit);
+		
 ?>
 
 
 
 <div id="test">
 
-<form  id="CreateStockItem" name="CreateStockItem" method="post"   action="includes/model/finish_item_actions.php"><table width="100%" border="0" cellspacing="2" cellpadding="2">
+<form  id="CreateStockItem" name="CreateStockItem" method="post"   action="includes/model/finish_item_update_actions.php"><table width="100%" border="0" cellspacing="2" cellpadding="2">
   <tr>
     <td>Name</td>
-    <td><input name="stkName" type="text" class="inventori_txtfield" id="stkName" value="<?php echo $finishItemByID[0]['stock_item_desc']; ?>"></td>
+    <td><input name="stkName" type="text" class="inventori_txtfield" id="stkName" value="<?php echo $finishItemByID[0]['stock_item_name']; ?>"></td>
   </tr>
   <tr>
     <td>Code</td>
-    <td><input name="txtStkcode" type="text" class="inventori_txtfield" id="txtStkcode" <?php if($user_level==0) { ?> disabled="disabled" <?php } ?>></td>
+    <td><input name="txtStkcode" type="text" class="inventori_txtfield" id="txtStkcode" <?php if($user_level==0) { ?> disabled="disabled" <?php } ?> value="<?php echo $finishItemByID[0]['stock_code_m_id']; ?>"></td>
   </tr>
   <tr>
     <td>Group</td>
@@ -57,14 +90,18 @@ $finishItemByID=$objStockGroupInfo->retriveFinishItemByid($stc_itm_id);
   <tr>
     <td>Alt. Unit </td>
     <td><select name="altUnitId" id="alt" class="unit" >
-      <?php echo $unitName; ?>
+      <option value="0">Primary</option>
+		<?php for($i=0; $i<$rowStockItemUnit; $i++)
+        {?>
+        <option <?php if($StockAltUnitId==$allStockItemUnit[$i]['stock_item_unit_id']) echo 'selected'  ?> value="<?php echo $allStockItemUnit[$i]['stock_item_unit_id']?>"><?php echo $allStockItemUnit[$i]['stock_item_unit_name']?></option>
+        <?php }?>
     </select></td>
   </tr>
   <tr>
     <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="14%" valign="top">Where</td>
-        <td width="26%" valign="middle"><input id="punit" type="text" name="unitRel1">
+        <td width="26%" valign="middle"><input id="punit" type="text" name="unitRel1" value="<?php echo $finishItemByID[0]['unit_relation1']; ?>">
           <p> </p> </td>
 
         <td width="24%" valign="top">
@@ -73,9 +110,13 @@ $finishItemByID=$objStockGroupInfo->retriveFinishItemByid($stc_itm_id);
           </select>
 </p></td>
 
-        <td width="25%" valign="top"><input id="altunit" type="text" name="unitRel2" /></td>
+        <td width="25%" valign="top"><input id="altunit" type="text" name="unitRel2" value="<?php echo $finishItemByID[0]['unit_relation2']; ?>" /></td>
         <td width="11%" valign="top"><select name="select3" id="select2" class="unit" >
-          <?php echo $unitName; ?>
+      <option value="0">Primary</option>
+			<?php for($i=0; $i<$rowStockItemUnit; $i++)
+            {?>
+            <option <?php if($StockAltUnitId==$allStockItemUnit[$i]['stock_item_unit_id']) echo 'selected'  ?> value="<?php echo $allStockItemUnit[$i]['stock_item_unit_id']?>"><?php echo $allStockItemUnit[$i]['stock_item_unit_name']?></option>
+            <?php }?>
         </select></td>
       </tr>
     </table></td>
@@ -86,7 +127,16 @@ $finishItemByID=$objStockGroupInfo->retriveFinishItemByid($stc_itm_id);
   </tr>
   <tr>
     <td>Count</td>
-    <td><input name="count" type="text" class="inventori_txtfield" id="count"></td>
+    <td><select name="count" id="count"  class="inventori_txtfield">
+      <?php echo $countName; ?>
+    </select></td>
+  </tr>
+  <tr>
+    <td>Lot</td>
+    <td><select name="lot" id="select3"  class="inventori_txtfield">
+      <?php echo $outputLot; ?>
+    </select></td>
+    </td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -103,9 +153,9 @@ $finishItemByID=$objStockGroupInfo->retriveFinishItemByid($stc_itm_id);
         <tr>
           <td align="right" valign="top">Opening Balance: &nbsp; </td>
           <!--onblur="createLocation();"-->
-          <td align="left" valign="top"><input name="opQnty" type="text" class="opQnty" size="10"></td>
-          <td align="left" valign="top"><input name="OpRate" type="text" class="OpRate" size="7" /></td>
-          <td align="left" valign="top"><input name="opValue" type="text" class="opValue" size="15" /></td>
+          <td align="left" valign="top"><input name="opQnty" type="text" class="opQnty" size="10" value="<?php echo $finishItemByID[0]['stock_item_op_balance']; ?>"></td>
+          <td align="left" valign="top"><input name="OpRate" type="text" class="OpRate" size="7" value="<?php echo $finishItemByID[0]['stock_item_op_rate']; ?>"/></td>
+          <td align="left" valign="top"><input name="opValue" type="text" class="opValue" size="15" value="<?php echo $finishItemByID[0]['stock_item_op_value']; ?>"/></td>
         </tr>
         <tr>
           <td align="right" valign="top">&nbsp;</td>
@@ -115,11 +165,9 @@ $finishItemByID=$objStockGroupInfo->retriveFinishItemByid($stc_itm_id);
         </tr>
         <tr>
           <td align="right" valign="top"><div align="center"></div></td>
-          <td align="right" valign="top">
-          <a href="includes/contents/list_all/list_all_finish_item.php?height=500&width=600" title="Finish Item" class="thickbox button2">List All </a>
-          </td>
-          <td align="left" valign="top"><input type="submit" name="btn_save" value="Save" /></td>
-          <td align="right" valign="top">&nbsp;</td>
+          <td align="right" valign="top"></td>
+          <td align="left" valign="top"><input type="submit" name="btn_save" value="Update" /></td>
+          <td align="right" valign="top"><input type="hidden" name="StockItemId" value="<?php echo $stock_item_id;?>" id="StockItemId" /></td>
         </tr>
     </table></td>
   </tr>

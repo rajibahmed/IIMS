@@ -18,7 +18,7 @@
 									'sup_id',
 									'sup_name',
 									true);
-   $Indent = new Indent;
+    $Indent = new Indent;
 	$outputIndentNo=options_for_select($Indent->retriveIndendInfo(),
 									'indent_id',
 									'indent_code',
@@ -30,14 +30,7 @@
 								
 	$num = $MRR->getNewId();														
  ?>
-<link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
 
- <div class="rightcontent1">
-        <div class="bodybanner1"></div>
-        <div class="bodybanner2"></div>
-        <div class="bodybanner3"></div>
-		<div id="note"> </div>
-<div id="ajax_content">
 <form id="mrrForm" name="mrrForm" method="post"  action="includes/model/mrr_order_actions.php" >
 	
 	<div class='morelabel'>
@@ -57,19 +50,14 @@
     	</p>
           
          <p>
-                <div align="left">
+                <div>
                     <label>Indent No:</label>
-                        <select name="indentNo" id="indentNo">
+                        <select name="indentNo" id="indentNo" style="width:150px;">
                 <?php echo $outputIndentNo;?>
               </select>
                 </div>
             </p>
-		<p>	
-			<label> Party Name:</label>
-        	<select name="selSupplier" id="selSupplier">
-            	<?php echo $outputSupplierItem; ?>
-          	</select>
-    	</p>         
+	       
 	</div>	
 
           
@@ -77,12 +65,15 @@
 	<div class='morelabel'>
 
 	  
-		<p>
-			<label>Location:</label>
-			<select name="locationId" >
-			<?php echo $locations ; ?>
-			</select>
-		</p>
+		
+		 <p>	
+		   <div>
+		  <label> Party Name:</label>
+        	<select name="selSupplier" id="selSupplier">
+            	<?php echo $outputSupplierItem; ?>
+          	</select>
+			</div>
+    	</p>   
 		
 	</div>	  
 
@@ -97,14 +88,10 @@
 	</div>
 	
 </form>
-</div>
-<div class="rightimg3">
-        <div class="downimg1"></div>
-        <div class="downimg2"></div>
-        <div class="downimg3"></div>
-    </div>
+
+
 <div class="clear"></div>
- </div>
+
 <script type='text/javascript'>
 
 	$("#indentNo").live("change", function(){

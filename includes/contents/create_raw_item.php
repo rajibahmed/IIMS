@@ -104,10 +104,13 @@ $unitName=options_for_select(	$stock->retriveStockUnit(),
           <td align="left" valign="top">&nbsp;</td>
         </tr>
         <tr>
-          <td colspan="4" align="right" valign="top"><div align="center">
-            <input type="submit" name="btn_save" value="Submit" />
-          </div></td>
-          </tr>
+          <td colspan="2" align="right" valign="top">
+          <a href="includes/contents/list_all/list_all_raw_item.php?height=500&width=600" title="Raw Item" class="thickbox button2">List All 
+          </a>
+          </td>
+          <td align="right" valign="top"><input type="submit" name="btn_save" value="Submit" /></td>
+          <td align="right" valign="top">&nbsp;</td>
+        </tr>
     </table></td>
   </tr>
   <tr>

@@ -1,4 +1,4 @@
-    <?php
+<?php
 require_once ("../../../lib/stock.class.php");
 $objFinishGoodsList = new Stock();
 $FinishListAll=$objFinishGoodsList->retriveFinishGoodsList();
@@ -20,7 +20,6 @@ $rowFinishListAll=count($FinishListAll);
     <td>&nbsp;</td>
   </tr>
 <?php 
-
 for ($i=0;$i<$rowFinishListAll;$i++)
 {
 if($i%2==0)

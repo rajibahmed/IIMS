@@ -23,7 +23,12 @@ $countName=options_for_select($Count->retriveCountInfo(),
 											'count_id',
 											'count_name',
 											true	
-										);											
+										);
+$Lot = new Lot;
+$outputLot=options_for_select($Lot->retriveLotInfo(),
+									'lot_id',
+									'lot_name',
+									true);																						
 /////////////////////////////////										
 
 @session_start();
@@ -87,15 +92,15 @@ $user_level = $_SESSION[user_level];
   </tr>
   <tr>
     <td>Count</td>
-    <td><select name="select4" id="select4"  class="inventori_txtfield">
+    <td><select name="count" id="count"  class="inventori_txtfield">
       <?php echo $countName; ?>
-    </select></td>
+        </select></td>
   </tr>
   <tr>
     <td>Lot</td>
-    <td><select name="select" id="select3"  class="inventori_txtfield">
-      <?php echo $StockGrpInfo_options; ?>
-    </select></td>
+    <td><select name="lot" id="select3"  class="inventori_txtfield">
+      <?php echo $outputLot; ?>
+        </select></td>
   </tr>
   <tr>
     <td>&nbsp;</td>

@@ -365,7 +365,7 @@ require_once("dbutils.class.php");
 	 }
 	 
 	 function retriveLocation(){
- 		$sql = "SELECT * FROM stock_locations";
+ 		$sql = "SELECT * FROM stock_locations order by stock_location_name ASC";
 		return parent::SELECTQuery($sql);
 	 }
 	

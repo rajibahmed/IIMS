@@ -14,7 +14,7 @@ require_once('../../lib/stock.class.php');
 		$num = $consumption->getNewId();	
 		
 		
-		$getData="'$num','$con_num','$locationId','$date_of_submit','$user_id'";
+		$getData="'$num','$con_num','','$date_of_submit','$user_id'";
 		
 		extract($consumption->CreateConsumptionMaster($getData));
 		$getData='';	
@@ -33,8 +33,8 @@ require_once('../../lib/stock.class.php');
 			#echo "<br />".$getData;						
 			$consumption->CreateConsumptionDetails($getData); 
 			$item_data=$stock->retriveStockItemByid($item_code[$i]);
-			$item_cl_balance=$item_cl_balance_data[0]["stock_item_cl_balance"];
-			$prev_item_issue_qty=$item_cl_balance_data[0]["stock_issue_qty"];
+			 $item_cl_balance=$item_data[0]["stock_item_cl_balance"];
+			 $prev_item_issue_qty=$item_data[0]["stock_issue_qty"];
 			 
 			 $stock->updateClBalance($item_code[$i],$item_cl_balance,$item_qty[$i]);
 			 

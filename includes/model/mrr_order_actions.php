@@ -12,7 +12,9 @@ require_once('../../lib/stock.class.php');
 	
 	$MRR=new MRR;
 	$stock= new Stock;
-	$getData="'','','$date_of_submit','$userId','$PurchaseorderId','$selSupplier','',0";
+	
+	$num=$MRR->getNewId();
+	$getData="'$num','$mrr_num','$locationId','$date_of_submit','$userId','$PurchaseorderId','$selSupplier','$indentNo','','',1";
 	
 	extract($MRR->CreateMRRMaster($getData));
 	

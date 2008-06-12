@@ -51,10 +51,18 @@ class Indent extends DbUtils
 	
 	public function RetriveIndentByMsId($indent_ms_id)
  	{
- 		$sql = "SELECT i_d.*,st.* 
+ 		$sql = "SELECT i_d.*,st.* ,GROUP_CONCAT(scd.stock_code,' ') stock_code,
+				GROUP_CONCAT(spd.stock_part,' ') stock_part 
  				FROM indent_details i_d,  stock_item st 
+				, stock_code_details scd, stock_part_details spd
  				WHERE i_d.indent_master_id='$indent_ms_id' 
- 				AND st.stock_item_id= i_d.stock_item_id ";
+ 				AND st.stock_item_id= i_d.stock_item_id
+				AND st.stock_code_m_id = scd.stock_code_m_id 
+				AND
+					st.stock_part_m_id= spd.stock_part_m_id 	
+				 GROUP BY st.stock_item_id
+				
+				 ";
  				
 		return parent::selectQuery($sql);
  	}

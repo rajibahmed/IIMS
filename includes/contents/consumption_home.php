@@ -22,7 +22,8 @@
 		title='Consumption List'	 	href="includes/contents/list_all/list_all_consumption.php?height=300&width=700"
 	 	class='thickbox' >Consumption List
  		</a>
- 	</li>	
+ 	</li>
+ 		
 </ul>
   <div class="rightimg3">
         <div class="downimg1"></div>
