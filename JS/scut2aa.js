@@ -1,0 +1,1 @@
+vbut2aan=xppr('images/b2.jpg');vbut2aao=xppr('images/b1.jpg');vbut2aac=xppr('images/b1.jpg');var btIdPref="vb";function xppr(im){var i=new Image;i.src=vbImgPath+"bt"+im;return i;}function xpe(id){x=id.substring(0,id.length-1);if(document[btIdPref+x]){document[btIdPref+x].src=eval(btIdPref+id+".src");}}

@@ -1,0 +1,218 @@
+
+.inputemailnewsAss {
+	BORDER-RIGHT: #006699 1px solid; BORDER-TOP: #006699 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #006699 1px solid; WIDTH: 120px; COLOR: #006699; BORDER-BOTTOM: #006699 1px solid; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #f0f0f0
+}
+A {
+	/*COLOR: #006699*/
+	COLOR: #006699;
+}
+FORM {
+	MARGIN: 0px
+}
+BODY {
+	FONT-SIZE: 11px; COLOR: #000000; LINE-HEIGHT: 17px; FONT-FAMILY: Verdana,Arial,Helvetica,sans-serif
+}
+TD {
+	FONT-SIZE: 11px; COLOR: #000000; LINE-HEIGHT: 17px; FONT-FAMILY: Verdana,Arial,Helvetica,sans-serif
+}
+INPUT {
+	FONT-SIZE: 11px; COLOR: #000000; LINE-HEIGHT: 17px; FONT-FAMILY: Verdana,Arial,Helvetica,sans-serif
+}
+.blackline {
+	FONT-SIZE: 12px; BACKGROUND: #ffffff; COLOR: #000000
+}
+SELECT {
+	FONT-SIZE: 11px; COLOR: #000000; LINE-HEIGHT: 17px; FONT-FAMILY: Verdana,Arial,Helvetica,sans-serif
+}
+.dashed {
+	BORDER-RIGHT: medium none; BORDER-TOP: #999999 1px dashed; BACKGROUND: #ffffff; BORDER-LEFT: medium none; COLOR: #ffffff; BORDER-BOTTOM: medium none; HEIGHT: 1px
+}
+.dashed5px {
+	BORDER-RIGHT: medium none; BORDER-TOP: #999999 1px dashed; BACKGROUND: #ffffff; MARGIN: 5px 0px; BORDER-LEFT: medium none; COLOR: #ffffff; BORDER-BOTTOM: medium none; HEIGHT: 1px
+}
+.dashed10px {
+	BORDER-RIGHT: medium none; BORDER-TOP: #999999 1px dashed; BACKGROUND: #ffffff; MARGIN: 10px 0px; BORDER-LEFT: medium none; COLOR: #ffffff; BORDER-BOTTOM: medium none; HEIGHT: 1px
+}
+.dashed15px {
+	BORDER-RIGHT: medium none; BORDER-TOP: #999999 1px dashed; BACKGROUND: #ffffff; MARGIN: 15px 0px; BORDER-LEFT: medium none; COLOR: #ffffff; BORDER-BOTTOM: medium none; HEIGHT: 1px
+}
+.redline {
+	BORDER-RIGHT: medium none; BORDER-TOP: 1px; BACKGROUND: #ffffff; MARGIN: 5px 0px; BORDER-LEFT: medium none; COLOR: #cc3300; BORDER-BOTTOM: medium none; HEIGHT: 1px
+}
+.greenline {
+	BORDER-RIGHT: medium none; BORDER-TOP: 1px; BACKGROUND: #ffffff; MARGIN: 5px 0px; BORDER-LEFT: medium none; COLOR: #669900; BORDER-BOTTOM: medium none; HEIGHT: 1px
+}
+.blueline {
+	BORDER-RIGHT: medium none; BORDER-TOP: 1px; BACKGROUND: #ffffff; MARGIN: 5px 0px; BORDER-LEFT: medium none; COLOR: #006699; BORDER-BOTTOM: medium none; HEIGHT: 1px
+}
+.grayline {
+	BORDER-RIGHT: medium none; BORDER-TOP: 1px; BACKGROUND: #ffffff; MARGIN: 5px 0px; BORDER-LEFT: medium none; COLOR: #999999; BORDER-BOTTOM: medium none; HEIGHT: 1px
+}
+.white15px {
+	BORDER-RIGHT: medium none; BORDER-TOP: #ffffff 1px; BACKGROUND: #999999; MARGIN: 15px 0px; BORDER-LEFT: medium none; COLOR: #ffffff; BORDER-BOTTOM: medium none; HEIGHT: 1px
+}
+.white5px {
+	BORDER-RIGHT: medium none; BORDER-TOP: #ffffff 1px; BACKGROUND: #999999; MARGIN: 5px 0px; BORDER-LEFT: medium none; COLOR: #ffffff; BORDER-BOTTOM: medium none; HEIGHT: 1px
+}
+.menucss {
+	BORDER-RIGHT: #666666 1px solid; BORDER-TOP: #666666 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #666666 1px solid; WIDTH: 188px; COLOR: #000000; FONT-FAMILY: Arial,Verdana,Helvetica; BACKGROUND-COLOR: #cccccc; TEXT-DECORATION: none
+}
+.menuovercss {
+	COLOR: #ffffff; BACKGROUND-COLOR: #666666
+}
+.leftbody {
+	FONT-SIZE: 11px; COLOR: #000000; LINE-HEIGHT: 15px; FONT-FAMILY: Arial,Verdana,Helvetica,sans-serif
+}
+.leftbold {
+	FONT-WEIGHT: bold; COLOR: #993300
+}
+.leftbox {
+	PADDING-RIGHT: 15px; PADDING-LEFT: 22px; FONT-SIZE: 11px; PADDING-BOTTOM: 18px; COLOR: #000000; LINE-HEIGHT: 15px; PADDING-TOP: 10px; FONT-FAMILY: Arial,Verdana,Helvetica,sans-serif
+}
+.largelink {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; LINE-HEIGHT: 20px
+}
+.headline {
+	FONT-WEIGHT: bold; FONT-SIZE: 16px; COLOR: #cc3300; LINE-HEIGHT: 20px; FONT-FAMILY: Arial,Verdana,Helvetica,sans-serif
+}
+.headwhite {
+	FONT-WEIGHT: bold; FONT-SIZE: 16px; COLOR: #ffffff; LINE-HEIGHT: 20px; FONT-FAMILY: Arial,Verdana,Helvetica,sans-serif
+}
+.headblue {
+	FONT-WEIGHT: bold; FONT-SIZE: 16px; COLOR: #006699; LINE-HEIGHT: 20px; FONT-FAMILY: Arial,Verdana,Helvetica,sans-serif
+}
+.headblack {
+	FONT-WEIGHT: bold; FONT-SIZE: 15px; COLOR: #000000; LINE-HEIGHT: 20px; FONT-FAMILY: Arial,Verdana,Helvetica,sans-serif
+}
+.headgreen {
+	FONT-WEIGHT: bold; FONT-SIZE: 16px; COLOR: #336600; LINE-HEIGHT: 20px; FONT-FAMILY: Arial,Verdana,Helvetica,sans-serif
+}
+.subheadwhite {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #ffffff; LINE-HEIGHT: 18px
+}
+.subheader {
+	FONT-SIZE: 15px; COLOR: #cc3300; LINE-HEIGHT: 30px
+}
+.subsubheader {
+	FONT-WEIGHT: bold; FONT-SIZE: 13px; COLOR: #cc3300; LINE-HEIGHT: 30px
+}
+.beghomelink {
+	FONT-WEIGHT: bold
+}
+.submit {
+	BORDER-RIGHT: #666666 2px solid; PADDING-RIGHT: 2px; BORDER-TOP: #cccccc 2px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; PADDING-BOTTOM: 2px; BORDER-LEFT: #cccccc 2px solid; WIDTH: 150px; CURSOR: hand; COLOR: #ffffff; PADDING-TOP: 2px; BORDER-BOTTOM: #666666 2px solid; BACKGROUND-COLOR: #999999
+}
+.submitsmall {
+	BORDER-RIGHT: #666666 2px solid; PADDING-RIGHT: 2px; BORDER-TOP: #cccccc 2px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; PADDING-BOTTOM: 2px; BORDER-LEFT: #cccccc 2px solid; WIDTH: 90px; CURSOR: hand; COLOR: #ffffff; PADDING-TOP: 2px; BORDER-BOTTOM: #666666 2px solid; BACKGROUND-COLOR: #999999
+}
+.submitlarge {
+	BORDER-RIGHT: #666666 2px solid; PADDING-RIGHT: 2px; BORDER-TOP: #cccccc 2px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; PADDING-BOTTOM: 2px; BORDER-LEFT: #cccccc 2px solid; WIDTH: 175px; CURSOR: hand; COLOR: #ffffff; PADDING-TOP: 2px; BORDER-BOTTOM: #666666 2px solid; BACKGROUND-COLOR: #999999
+}
+.submitextralarge {
+	BORDER-RIGHT: #666666 2px solid; PADDING-RIGHT: 2px; BORDER-TOP: #cccccc 2px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; PADDING-BOTTOM: 2px; BORDER-LEFT: #cccccc 2px solid; WIDTH: 200px; CURSOR: hand; COLOR: #ffffff; PADDING-TOP: 2px; BORDER-BOTTOM: #666666 2px solid; BACKGROUND-COLOR: #999999
+}
+.loginsubmit {
+	BORDER-RIGHT: #aaaaaa 2px solid; PADDING-RIGHT: 1px; BORDER-TOP: #eeeeee 2px solid; PADDING-LEFT: 1px; FONT-SIZE: 12px; PADDING-BOTTOM: 1px; BORDER-LEFT: #eeeeee 2px solid; WIDTH: 100px; CURSOR: hand; COLOR: #000000; PADDING-TOP: 1px; BORDER-BOTTOM: #aaaaaa 2px solid; FONT-FAMILY: Arial,Verdana,Helvetica,sans-serif; HEIGHT: 24px; BACKGROUND-COLOR: #cccccc
+}
+.leftinput {
+	WIDTH: 110px; HEIGHT: 24px
+}
+.forminput {
+	HEIGHT: 24px
+}
+.loginbox {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 22px; FONT-WEIGHT: bold; FONT-SIZE: 11px; PADDING-BOTTOM: 0px; COLOR: #993300; LINE-HEIGHT: 17px; PADDING-TOP: 5px; FONT-FAMILY: Arial,Verdana,Helvetica,sans-serif
+}
+.insetbodyblock {
+	PADDING-RIGHT: 15px; PADDING-LEFT: 25px; PADDING-BOTTOM: 0px; WIDTH: 480px; PADDING-TOP: 0px
+}
+.moreinsetbodyblock {
+	PADDING-RIGHT: 25px; PADDING-LEFT: 50px; PADDING-BOTTOM: 0px; WIDTH: 445px; PADDING-TOP: 0px
+}
+.formbody {
+	FONT-SIZE: 11px; COLOR: #000000; FONT-FAMILY: Arial,Verdana,Helvetica,sans-serif
+}
+.darkred {
+	COLOR: #993300
+}
+.smallredlink {
+	FONT-SIZE: 11px; COLOR: #cc3300; LINE-HEIGHT: 15px; FONT-FAMILY: Arial,Verdana,Helvetica,sans-serif
+}
+.fineprint {
+	FONT-SIZE: 10px; COLOR: #777777; LINE-HEIGHT: 14px
+}
+.redbold {
+	FONT-WEIGHT: bold; COLOR: #cc3300
+}
+.greenbold {
+	FONT-WEIGHT: bold; COLOR: #669900
+}
+.bluebold {
+	FONT-WEIGHT: bold; COLOR: #006699
+}
+.brownbold {
+	FONT-WEIGHT: bold; COLOR:#660000
+}
+.whitebold {
+	FONT-WEIGHT: bold; COLOR: #ffffff
+}
+.whitemenu {
+	FONT-WEIGHT:100 ; COLOR: #ffffff
+}
+.redsmall {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #cc3300
+}
+.navtoplink {
+	FONT-SIZE: 12px; COLOR: #cc3300; FONT-FAMILY: Arial Narrow,Arial; LETTER-SPACING: 1px; TEXT-DECORATION: none
+}
+.navbotlink {
+	FONT-SIZE: 12px; COLOR: #333333; FONT-FAMILY: Arial Narrow,Arial; LETTER-SPACING: 1px; TEXT-DECORATION: none
+}
+.copyright {
+	FONT-SIZE: 10px; COLOR: #333333; FONT-FAMILY: Arial Narrow, Arial, Tahoma, Verdana, Helvetica, san-serif; LETTER-SPACING: 1px; TEXT-DECORATION: none
+}
+.textinput_blue {
+	BORDER-RIGHT: #5F7EBB 1px solid; BORDER-TOP: #5F7EBB 1px solid; FONT-SIZE: 11px; BACKGROUND-IMAGE: none; BORDER-LEFT: #5F7EBB 1px solid; WIDTH: auto; LINE-HEIGHT: normal; BORDER-BOTTOM: #5F7EBB 1px solid; FONT-FAMILY: Verdana, Helvetica, san-serif; HEIGHT: 20px; width:120px; BACKGROUND-COLOR: #E7F2F8
+}
+
+.submitButtonWithImage {
+	BORDER-RIGHT: #375982 1px solid; BORDER-TOP: #375982 1px solid; FONT-SIZE: 12px; BACKGROUND-IMAGE: url(../imgs/login_r2_c3.gif); background-repeat:no-repeat; BORDER-LEFT: #375982 1px solid; WIDTH: auto; LINE-HEIGHT: normal; BORDER-BOTTOM: #375982 1px solid; FONT-FAMILY: Verdana, Helvetica, san-serif; color:#CCCCCC; background-position:right; HEIGHT: 21px; width:80px; BACKGROUND-COLOR: #375982;
+}
+
+.NewUserButtonWithImage {
+	BORDER-RIGHT: #375982 1px solid; BORDER-TOP: #375982 1px solid; FONT-SIZE: 12px; BACKGROUND-IMAGE:url(../imgs/login_r2_c2.gif); background-repeat:no-repeat; BORDER-LEFT: #375982 1px solid; WIDTH: auto; LINE-HEIGHT: normal; BORDER-BOTTOM: #375982 1px solid; FONT-FAMILY: Verdana, Helvetica, san-serif; color:#CCCCCC; background-position:left; HEIGHT: 21px; width:90px; BACKGROUND-COLOR: #375982; padding-left:20px;
+}
+.textinput_red {
+	BORDER-RIGHT: #ff0000 1px solid; BORDER-TOP: #ff0000 1px solid; FONT-SIZE: 11px; BACKGROUND-IMAGE: none; BORDER-LEFT: #ff0000 1px solid; WIDTH: auto; LINE-HEIGHT: normal; BORDER-BOTTOM: #ff0000 1px solid; FONT-FAMILY: Verdana, Helvetica, san-serif; HEIGHT: 20px; width:120px; BACKGROUND-COLOR: #FFDFDF
+}
+
+.textinput_green {
+	BORDER-RIGHT: #006600 1px solid; BORDER-TOP: #006600 1px solid; FONT-SIZE: 11px; BACKGROUND-IMAGE: none; BORDER-LEFT: #006600 1px solid; WIDTH: auto; LINE-HEIGHT: normal; BORDER-BOTTOM: #006600 1px solid; FONT-FAMILY: Verdana, Helvetica, san-serif; HEIGHT: 20px; width:120px; BACKGROUND-COLOR: #DDFFDD
+}
+
+.textinput {
+	BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; FONT-SIZE: 11px; BACKGROUND-IMAGE: none; BORDER-LEFT: #999999 1px solid; WIDTH: auto; LINE-HEIGHT: normal; BORDER-BOTTOM: #999999 1px solid; FONT-FAMILY: Verdana, Helvetica, san-serif; HEIGHT: auto; width:150px; BACKGROUND-COLOR: #eeeeee
+}
+
+.textinput_box {
+	BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; FONT-SIZE: 11px; BACKGROUND-IMAGE: none; BORDER-LEFT: #999999 1px solid; WIDTH: auto; LINE-HEIGHT: normal; BORDER-BOTTOM: #999999 1px solid; FONT-FAMILY: Verdana, Helvetica, san-serif; HEIGHT: auto;
+}
+
+.textinput2 {
+	BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; FONT-SIZE: 11px; BACKGROUND-IMAGE: none; BORDER-LEFT: #999999 1px solid; WIDTH: auto; LINE-HEIGHT: normal; BORDER-BOTTOM: #999999 1px solid; FONT-FAMILY: Verdana, Helvetica, san-serif; HEIGHT: auto; BACKGROUND-COLOR: #ffffff; text-transform:capitalize;
+}
+.wifiinput {
+	BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; FONT-SIZE: 11px; BACKGROUND-IMAGE: none; BORDER-LEFT: #999999 1px solid; WIDTH: auto; LINE-HEIGHT: normal; BORDER-BOTTOM: #999999 1px solid; FONT-FAMILY: Verdana, Helvetica, san-serif; HEIGHT: 20px; BACKGROUND-COLOR: #ffffff
+}
+.fineprint {
+	FONT-SIZE: 9px; COLOR: #666666; LINE-HEIGHT: 17px; FONT-FAMILY: Tahoma,Verdana,Arial,Helvetica,sans-serif
+}
+.button {
+BORDER-RIGHT: #999999 1px solid; BORDER-TOP: #999999 1px solid; FONT-SIZE: 11px; BACKGROUND-IMAGE: none; BORDER-LEFT: #999999 1px solid; WIDTH: auto; LINE-HEIGHT: normal; BORDER-BOTTOM: #999999 1px solid; FONT-FAMILY: Verdana, Helvetica, san-serif; HEIGHT: auto;width:120px; BACKGROUND-COLOR: #ffffff
+}
+
+.tableWidth{
+width:200px;
+}
+
+.fixedHead{width:100px;}

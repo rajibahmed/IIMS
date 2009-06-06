@@ -1,0 +1,80 @@
+/* CSS Document */
+
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	background-color:#FFFFFF;
+}
+hr{
+	border:1px #666666 solid;
+	text-align:center;
+
+}
+
+.report_item_name{
+	background-color:#CCCCCC;
+	font-size:12;
+	font-weight:bold;
+	height:40px;
+
+}
+
+.table1{
+	border-top:2px solid #000000;
+	border-left:2px solid #000000;
+	border-bottom:2px solid #000000;
+}
+.table2{
+	border-top:2px solid #000000;
+
+	border-bottom:2px solid #000000;
+}
+.table3{
+	border-top:2px solid #000000;
+	border-right:2px solid #000000;
+	border-bottom:2px solid #000000;
+}
+
+.table4{
+	border-top:1px solid #CCCCCC;
+	border-left:1px solid #CCCCCC;
+	border-bottom:1px solid #CCCCCC;
+	height:25px;
+}
+.table4_1{
+	border-left:1px solid #CCCCCC;
+	border-bottom:1px solid #CCCCCC;
+	height:25px;
+}
+.table4_1_right{
+	border-right:1px solid #CCCCCC;
+	border-left:1px solid #CCCCCC;
+	border-bottom:1px solid #CCCCCC;
+	height:25px;
+}
+.table4_2{
+	border-right:1px solid #CCCCCC;
+	border-bottom:1px solid #CCCCCC;
+	height:25px;
+}
+
+.table5{
+	border-top:1px solid #CCCCCC;
+	border-bottom:1px solid #CCCCCC;
+}
+.table6{
+	border-top:1px solid #CCCCCC;
+	border-right:1px solid #CCCCCC;
+	border-bottom:1px solid #CCCCCC;
+}
+.lastTable{
+	border: 1px solid #CCCCCC;
+	font-size:12px;
+	color:#000000;
+	font-weight:bold;
+	height:35px;
+}
+
+.table_border{
+border:1px solid #999999;
+}
