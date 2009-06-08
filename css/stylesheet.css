@@ -797,3 +797,8 @@ fieldwidth:focus {
 .saveButtonwidth{
 	width:100px;
 }
+
+#no_record_found{
+	margin:10px;
+	color:red;
+}

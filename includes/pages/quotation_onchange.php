@@ -1,6 +1,3 @@
-
-
-
 <?php  
 	require_once('../../lib/indent.class.php');
 	$indent_ms_id=(int) $_GET[indent_ms_id];
@@ -33,9 +30,9 @@
 	{		
 		$output.='
 		<div class="small_row_elements">
-   		<input type=hidden name=item_code[]  value='.$indent[$i]["stock_item_id"].'>
-	 <input style=width:100px type=text name=stock_item[]   value='.$indent[$i]["stock_item_name"].'>
-	 <input type=text style=width:70px name=qty[] value='.$indent[$i]["indent_qty"].'>
+   		<input type=hidden name=item_code[]  value="'.$indent[$i]["stock_item_id"].'">
+	 <input style=width:100px type=text name=stock_item[]   value="'.$indent[$i]["stock_item_name"].'">
+	 <input type=text style=width:70px name=qty[] value="'.$indent[$i]["indent_qty"].'">
 	  <input type=text  style=width:50px  name=origin[]>
 	   <input type=text  style=width:50px  name=band[]>
     <input type=text style=width:50px name=deliverytime[]>

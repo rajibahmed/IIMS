@@ -56,16 +56,15 @@ class Requisition extends DbUtils
 		 if(($user_level>0) && $user_dept && $user_office ){
 		 	// for pending requisitoins
 			$sql="	SELECT * 
-					FROM requisitions_master r_m, requisition_details r_d,stock_item s_i,users u 
-					WHERE r_m.rm_id=r_d.requisition_master_id 
-					AND r_m.user_id = u.user_id 
-					AND r_d.stock_item_id=s_i.stock_item_id 
+					FROM requisitions_master r_m,users u 
+					WHERE 
+					r_m.user_id = u.user_id 
 					AND r_m.office_id=".$user_office." 
 					AND r_m.status=".$user_level." 
 					AND r_m.user_id !=".$user_id." 
 					AND r_m.dept_id =".$user_dept ." 
-					ORDER BY required_within asc ";
-			echo $sql;
+					ORDER BY requisition_number DESC
+					";
 		}
 		
 		/*-------------------------------------------------------
@@ -92,7 +91,7 @@ class Requisition extends DbUtils
 			//for all my requisitions
 			$sql="	SELECT rm.*,u.* FROM requisitions_master rm ,users u
 					WHERE rm.user_id=".$user_id."  AND rm.user_id = u.user_id
-					ORDER BY required_within asc";
+					ORDER BY requisition_number DESC";
 		 }
 
 		
@@ -149,10 +148,10 @@ class Requisition extends DbUtils
 		$sql="	SELECT r_m.* ,r_d.*,s_i.*,pt.*,cd.*,unit.*, sum(required_stock_item_qty) total
 				FROM requisitions_master r_m, requisition_details r_d,stock_item s_i ,stock_part_details pt,stock_code_details cd , stock_item_units unit
 				WHERE r_m.rm_id=r_d.requisition_master_id 
-				and s_i.`stock_part_m_id`=pt.stock_part_m_id 
-				and s_i.`stock_code_m_id`=cd.stock_code_m_id
+				and s_i.stock_part_m_id=pt.stock_part_m_id 
+				and s_i.stock_code_m_id=cd.stock_code_m_id
 				and r_d.stock_item_id=s_i.stock_item_id
-				and s_i.`stock_item_unit_id`=unit.stock_item_unit_id 
+				and s_i.stock_item_unit_id=unit.stock_item_unit_id 
 				And r_m.status=2
 				group by r_d.stock_item_id ";	
 		

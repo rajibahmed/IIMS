@@ -112,7 +112,7 @@
 		<div class="clear">	</div>
 		<?php endforeach ?>
 	<?php else: ?>
-		<div id="no_record_found">	<p>No records Found</p>	 </div> 
+		<div id="no_record_found">	<h1>There is no pending requisitions for you</h1>	 </div> 
 	<?php endif ?>	
 	
 </table>
