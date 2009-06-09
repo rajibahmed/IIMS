@@ -765,6 +765,22 @@ require_once("dbutils.class.php");
 			$sql="UPDATE stock_part_details SET stock_part = '$txtStkPart' WHERE stock_part_m_id= '$stcItmId'";
 			return parent::updateQuery($sql);
 		}
+		
+		/*-------------------------------------------------------
+		| FINISH GOODS
+		|--------------------------------------------------------*/		
+	
+		function retriveFinishGoodsList()
+		{
+			$sql="SELECT * FROM finish_item";
+			return parent::SELECTQuery($sql);		
+		}
+		
+		function retriveFinishItemByid($stc_itm_id)
+		{
+			$sql="SELECT * FROM finish_item WHERE stock_item_id ='$stc_itm_id'";
+			return parent::SELECTQuery($sql);
+		}
 }
 
 ?>

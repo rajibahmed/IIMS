@@ -1,8 +1,7 @@
 <?php
-require_once('../../lib/defination.class.php');
-require_once ("../../lib/stock.class.php");
-require_once ("../../lib/lot.class.php");
-require_once ("../../lib/count.class.php");
+require_once('../../../lib/defination.class.php');
+require_once ('../../../lib/stock.class.php');
+
 //// Retrive Stock Group Name
 $objStockGroupInfo = new Stock();
 $stock=new Stock();
@@ -18,12 +17,6 @@ $unitName=options_for_select(	$stock->retriveStockUnit(),
 											'stock_item_unit_name',
 											true	
 										);	
-$Count= new Count();
-$countName=options_for_select($Count->retriveCountInfo(),
-											'count_id',
-											'count_name',
-											true	
-										);											
 /////////////////////////////////										
 
 @session_start();
@@ -31,13 +24,19 @@ $countName=options_for_select($Count->retriveCountInfo(),
 $user_level = $_SESSION[user_level];
 
 
+$stc_itm_id=$_GET['stc_itm_id'];
+$finishItemByID=$objStockGroupInfo->retriveFinishItemByid($stc_itm_id);
+
 ?>
 
+
+
 <div id="test">
+
 <form  id="CreateStockItem" name="CreateStockItem" method="post"   action="includes/model/finish_item_actions.php"><table width="100%" border="0" cellspacing="2" cellpadding="2">
   <tr>
     <td>Name</td>
-    <td><input name="stkName" type="text" class="inventori_txtfield" id="stkName"></td>
+    <td><input name="stkName" type="text" class="inventori_txtfield" id="stkName" value="<?php echo $finishItemByID[0]['stock_item_desc']; ?>"></td>
   </tr>
   <tr>
     <td>Code</td>
@@ -83,19 +82,11 @@ $user_level = $_SESSION[user_level];
     </tr>
   <tr>
     <td>Description</td>
-    <td><input name="desc" type="text" class="inventori_txtfield" id="desc"></td>
+    <td><input name="desc" type="text" class="inventori_txtfield" id="desc" value="<?php echo $finishItemByID[0]['stock_item_desc']; ?>"></td>
   </tr>
   <tr>
     <td>Count</td>
-    <td><select name="select4" id="select4"  class="inventori_txtfield">
-      <?php echo $countName; ?>
-    </select></td>
-  </tr>
-  <tr>
-    <td>Lot</td>
-    <td><select name="select" id="select3"  class="inventori_txtfield">
-      <?php echo $StockGrpInfo_options; ?>
-    </select></td>
+    <td><input name="count" type="text" class="inventori_txtfield" id="count"></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -125,7 +116,8 @@ $user_level = $_SESSION[user_level];
         <tr>
           <td align="right" valign="top"><div align="center"></div></td>
           <td align="right" valign="top">
-          <a href="includes/contents/list_all/list_all_finish_item.php?height=500&width=600" title="Finish Item" class="thickbox button2">List All </a>          </td>
+          <a href="includes/contents/list_all/list_all_finish_item.php?height=500&width=600" title="Finish Item" class="thickbox button2">List All </a>
+          </td>
           <td align="left" valign="top"><input type="submit" name="btn_save" value="Save" /></td>
           <td align="right" valign="top">&nbsp;</td>
         </tr>
@@ -137,18 +129,6 @@ $user_level = $_SESSION[user_level];
 </table>
 </form>
 </div>
-<script type="text/javascript" charset="utf-8">
-	$(".unit:first").change(function(){
-	 	var t = $(".unit:first :selected").text();
-	 	$("#punit p").html(t);
-	});
-	
-	$("#alt.unit").change(function(){
-	 	var t =$("#alt.unit :seleted").text();
- 	});
-</script>
-
-
 <script type='text/javascript'>
 	// For Item Code
 	function add_element() {
@@ -193,7 +173,8 @@ $user_level = $_SESSION[user_level];
 		console.log(parent);  
 		var qty  = parseFloat(parent.find('.opQnty:first').val());
 		
-		window.open('includes/contents/localtionFinishOpQty.php?qty='+qty,'mywindow',		'width=900,height=200,top=300,left=30')
+		window.open('includes/contents/localtionOpQtyEngItem.php?qty='+qty,'mywindow',		'width=600,height=200,top=300,left=300')
+		
 		
 	})
 	
@@ -206,6 +187,21 @@ $user_level = $_SESSION[user_level];
 		parent.find('.opValue:first').attr('value',total);
 		return false;
 	})
+	
+	
+	$('.safety_stock').blur(function(){
+		
+		var parent= $(this).parent().parent();
+		console.log(parent);
+		var rd  = parseFloat(parent.find('.rd:first').val());
+		
+		var lt = parseFloat(parent.find('.lt:first').val());
+		var safety_stock = parseFloat(parent.find('.safety_stock:first').val());
+		var total= rd*lt+safety_stock;
+		parent.find('.ReorderQty:first').attr('value',total);
+		return false;
+	})
+	
       
 	/////////////////////////////////////////
 </script>

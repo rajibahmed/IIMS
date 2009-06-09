@@ -41,12 +41,17 @@ class Consumption extends DbUtils
 	
 	public function find()
 	{
-		$sql='	SELECT * 
-				FROM consumptions_master cm , consumption_details cd,stock_item 				 si
-				WHERE cm.cm_id=cd.consumptions_master_id
-				AND si.stock_item_id = cd.stock_item_id 	
+		$sql="	SELECT cm.*,cd.* ,GROUP_CONCAT(si.stock_item_name,' ') stock_item_name
+				FROM consumptions_master cm , 
+					consumption_details cd,
+					stock_item si
+				WHERE 
+					cm.cm_id = cd.consumptions_master_id
+					AND si.stock_item_id = cd.stock_item_id 
+				
+				GROUP BY cd.consumptions_master_id
 				ORDER BY cm.created_at DESC
-				';
+				";
 				
 	 	return parent::selectQuery($sql);
 	}

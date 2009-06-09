@@ -2,7 +2,7 @@
 	require_once ("../../../lib/purchaseOrder.class.php");
 	require_once ("../../../lib/helper_functions.php");
 	
-	$purchase =new Purchaseorder();
+	$purchase =new Purchaseorder;
 	
 	$purchase_details = $purchase->FindDetailsOfPurchase( (int) $_GET[id]);
 

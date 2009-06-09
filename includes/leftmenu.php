@@ -13,9 +13,7 @@
     	<a href='#' >Create Master </a>    		
     </li>
 
-  <li class="left-menu-item" id='purchase_list' >
-    	<a class="thickbox" href='includes/contents/list_all/list_all_purchase.php?height=400&width=760'  title="Purchase List">Purchase List</a>    		
-    </li>
+
 
 <?php
 
@@ -78,8 +76,19 @@
 	<?php endif  ?>
 
     
-	<?php  if($user_level==4):?>
+	<?php
+	 /**
+	 * For users of planing dept
+	 * with user level of 4
+	 * 
+	 * 
+	 **/ ?>
 
+	<?php  if($user_level==4):?>
+    <li class="left-menu-item" id="create_purchase">  <a href='#' > Create Purchase Order</a> </li> 		
+  <li class="left-menu-item" id='purchase_list' >
+    	<a class="thickbox" href='includes/contents/list_all/list_all_purchase.php?height=400&width=760'  title="Purchase List">Purchase List</a>    		
+    </li>
 	<li class="left-menu-item" id="create_supplier_catagory">  <a href='#' >  Supplier Catagory					
 </a> </li> 
 	<li class="left-menu-item" id="create_supplier">  <a href='#' >   Supplier					
@@ -93,7 +102,7 @@
     </li>	    
 	
 
-    <li class="left-menu-item" id="create_purchase">  <a href='#' > Create Purchase Order</a> </li>  
+ 
     
 	<?php endif?>
 

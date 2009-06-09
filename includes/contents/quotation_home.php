@@ -11,7 +11,7 @@
         
     </li>	
 	<li > <a class='thickbox' href='includes/contents/quotation_comparizon_report.php?height=300&width=550' > Quotation Comparison </a></li>  
-		<li > <a class='thickbox' href='includes/contents/list_all/list_all_quotation.php?height=400&width=760' > Quotation ListT</a></li>  	
+		<li > <a class='thickbox' href='includes/contents/list_all/list_all_quotation.php?height=400&width=760' > Quotation List</a></li>  	
 </ul>
   <div class="rightimg3">
         <div class="downimg1"></div>

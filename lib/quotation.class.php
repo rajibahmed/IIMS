@@ -51,14 +51,38 @@ require_once("dbutils.class.php");
 	//////////////////////////////////////////////////////////////
 	
 	
-	function find()		
+	function findQuotaionList()		
 	{
-		$sql='	SELECT qm.*,qd.*,s.*  
-				FROM quotation_master qm,quotation_details qd,supplier s
+		$sql="	SELECT qm.* ,sup.sup_name,im.*, group_concat(si.stock_item_name,' ')  items 
+				FROM quotation_master qm,
+					quotation_details qd,
+					supplier sup,
+					indents_master im,
+					stock_item si 
 				WHERE 
-				qd.quot_master_id= qm.quot_master_id 	
-				AND qm.sup_id=s.sup_id
-				';
+					qd.quot_master_id= qm.quot_master_id 	
+					AND qm.sup_id=sup.sup_id
+					AND qm.indent_id = im.indent_id
+					AND qd.stock_item_id=si.stock_item_id 
+				GROUP BY qd.quot_master_id
+				";
+				
+		return parent::selectQuery($sql);
+	}
+	
+	
+	
+	function FindDetailsOfQoutation($id){
+		
+		$sql="SELECT qd.* , si.*   
+				FROM 
+					quotation_details qd,
+					stock_item si 
+				WHERE 
+					qd.stock_item_id=si.stock_item_id 
+					AND qd.quot_master_id = $id 
+					";
+		//echo $sql;			
 		return parent::selectQuery($sql);
 	}
 
