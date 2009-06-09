@@ -71,44 +71,31 @@
 	?>
    
 	
-	<? if($user_level==5)
-	{ 
-	
-	?>
-    
+	<?php if($user_level==5):?>
 	
 	<li class="left-menu-item" id="user_manage"><a href="#"> Manage User</a></li>
-	
-	
-	<? }   ?>
+		
+	<?php endif  ?>
 
     
-	<?  if($user_level==4)
-	{ 
-	
-	?>
+	<?php  if($user_level==4):?>
+
 	<li class="left-menu-item" id="create_supplier_catagory">  <a href='#' >  Supplier Catagory					
 </a> </li> 
 	<li class="left-menu-item" id="create_supplier">  <a href='#' >   Supplier					
 </a> </li> 
 	<li class="left-menu-item" id="import_goods">  <a href='#' > IMPORT GOODS PURCHASING  PROCEDURE					
 </a> </li>  
+
 	
-	<? }  if($user_level==4)
-	{  ?> 
-		<li>    
-        <a href='includes/contents/create_quotation.php?height=400&width=800' class='thickbox'>  Create Quotation </a> 
+	<li id='quotation_home'>    
+        <a href='#/quotation_home'>Quotation </a> 
     </li>	    
 	
-	<? }  if($user_level==4)
-	{  ?>
+
     <li class="left-menu-item" id="create_purchase">  <a href='#' > Create Purchase Order</a> </li>  
-	<? }  if($user_level==4)
-	{  ?>
-    <li class="left-menu-item" id="Quotation_Comparison"> <a href='#' > Quotation Comparison </a></li> 
-	<? 
-	 } 
-	?>
+    
+	<?php endif?>
 
 
 

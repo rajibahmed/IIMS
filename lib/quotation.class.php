@@ -50,8 +50,17 @@ require_once("dbutils.class.php");
 	}
 	//////////////////////////////////////////////////////////////
 	
-
-
+	
+	function find()		
+	{
+		$sql='	SELECT qm.*,qd.*,s.*  
+				FROM quotation_master qm,quotation_details qd,supplier s
+				WHERE 
+				qd.quot_master_id= qm.quot_master_id 	
+				AND qm.sup_id=s.sup_id
+				';
+		return parent::selectQuery($sql);
+	}
 
 }
 

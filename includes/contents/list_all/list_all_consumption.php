@@ -6,6 +6,7 @@
 	
 	$consumptions = $consumption->find();
 
+	//var_dump($consumptions);
 ?>
 	 <div id="inline_form">
 			
@@ -25,9 +26,11 @@
 	
 	<?php if(!empty($consumptions )): ?>
 
+		
 		<?php foreach( $consumptions  as $con): ?>
 		
 		
+
 		<div class="list" id="<?php echo  $con[cd_id]?>">
 
 			<p style="width:420px"><?php echo  $con[stock_item_name]; ?></p>
@@ -43,7 +46,7 @@
 	<?php else: ?>
 		<div id="no_record_found">	<p>No records Found</p>	 </div> 
 	<?php endif ?>	
-
+ 
 
 
 <script type="text/javascript" charset="utf-8">

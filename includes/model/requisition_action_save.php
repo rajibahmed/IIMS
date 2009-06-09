@@ -9,7 +9,7 @@
 	extract($_POST);
 	
 	
-	$getData="$user_id,$status,$dept_id,$office_id,'$required_within','$submit_date','$req_num'";
+		$getData="$user_id,$status,$dept_id,$office_id,'$required_within','$submit_date','$req_num'";
 	
 	extract($requisition->CreateRequisitionMaster($getData));
 	

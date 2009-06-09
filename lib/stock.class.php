@@ -710,6 +710,11 @@ require_once("dbutils.class.php");
 			return parent::insertQuery($sql);
 		}
 		
+		function CreateLocWiseRawStockDetails($getData){
+			$sql = "INSERT INTO  location_wise_raw_item VALUES(".$getData.")";
+			return parent::insertQuery($sql);
+		}
+		
 	  function retriveStockItemByMechine($stkMName){
  		$sql = "SELECT st.*,pt.*,cd.*,mt.*,ut.* FROM stock_item st,stock_part_details pt,stock_code_details cd,stock_machine mt,stock_item_units ut WHERE mt.m_id='$stkMName' and st.stock_machine_id=mt.m_id and st.stock_part_m_id=pt.stock_part_m_id and st.stock_code_m_id=cd.stock_code_m_id and st.stock_item_unit_id=ut.stock_item_unit_id order by cd.stock_code ASC";
 		return parent::SELECTQuery($sql);

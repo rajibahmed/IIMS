@@ -6,15 +6,15 @@
 	
 	$output='';
 	
-	$output='<div class="mediumbody small_fonts">
+	$output='<div class="mediumbody">
 			<div class="lowbanner1"> </div>
-            <div class="lowbannertest">
+            <div class="lowbannertest">	
 					<ul>
-					<li style=width:100px>Product Name</li>
-					<li>Required Qty.</li> 
+					<li style="width:180px">Product Name</li>
+					<li style="width:70px">Required Qty.</li> 
 					<li>Product Origin </li> 
-					<li>Brand/Non brand </li> 
-					<li >Delivery time </li> 
+					<li style="width:120px">Brand/Non brand </li> 
+					<li style="width:100px">Delivery time </li> 
 					<li >Price</li> 
 					<li >Warranty/Gurantee</li>
 					
@@ -29,15 +29,15 @@
 	for($i=0; $i< $counter; $i++)  
 	{		
 		$output.='
-		<div class="small_row_elements">
-   		<input type=hidden name=item_code[]  value="'.$indent[$i]["stock_item_id"].'">
-	 <input style=width:100px type=text name=stock_item[]   value="'.$indent[$i]["stock_item_name"].'">
-	 <input type=text style=width:70px name=qty[] value="'.$indent[$i]["indent_qty"].'">
-	  <input type=text  style=width:50px  name=origin[]>
-	   <input type=text  style=width:50px  name=band[]>
-    <input type=text style=width:50px name=deliverytime[]>
-    <input type=text style=width:50px  name=price[]>
-    <input type=text style=width:50px name=warranty[] >
+		<div class="row_elements">
+   		<input type="hidden" name="item_code[] " value="'.$indent[$i]["stock_item_id"].'">
+	 <input style="width:180px" type=text name="stock_item[]"   value="'.$indent[$i]["stock_item_name"].'">
+	 <input type="text" style="width:40px" name="qty[] "value="'.$indent[$i]["indent_qty"].'">
+	<input type="text"  name="origin[]">
+	<input type="text"  name="band[]">
+    <input type="text"  name="deliverytime[]">
+    <input type="text"  name="price[]">
+    <input type="text"  name="warranty[]" >
    
 	</div>';
 	}
@@ -45,33 +45,16 @@
 	
 	echo $output;
 ?>
-	<!--<div id="add_remove"> 
-		<a class='button' href="#" id="add_input" >Add Item </a>
-		<a class='button' href="#" id="remove_input" >Remove Item </a>
-	</div>-->
+
 			
 	<div class='clear'>	</div>
 <script type='text/javascript'>
-function add_element() {
-		var parent =$('#items tr:last');
-		var child = parent.clone(true).insertAfter(parent);
-	}
-
-	
-	$("#remove_input").click(function (){
-		$("#items tr:last").remove(); 
-		return false;
-	})
-	
-	
-	
 	$("#add_input").live("click", function(){
       	add_element();
       	return false;
     });
 	
-$('.item_rate').blur(function(){
-		//total_price();
+	$('.item_rate').blur(function(){
 		
 		var parent= $(this).parent();
 		var qty  = parseFloat(parent.find('.item_qty:first').val());
@@ -81,6 +64,5 @@ $('.item_rate').blur(function(){
 		parent.find('.item_amount:first').attr('value',total);
 		return false;
 	})
-	   		
-	
+
 </script>

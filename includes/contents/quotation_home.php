@@ -6,23 +6,12 @@
 <div id="inventory" class="column">
 
 <ul>
-	 <li><a 
-	 	title='Create Consumption'
-	 	href="includes/contents/create_consumption.php?height=300&width=700"
-	 	class='thickbox'>Create Consumption</a></li>
-	 <li>
-	 	<a 
-		title='Consumption Raw Material'	 	href="includes/contents/create_consumption_raw_item.php?height=300&width=700"
-	 	class='thickbox' >Consumption-Raw Material
- 		</a>
- 	</li>	
- 	
- 	<li>
-	 	<a 
-		title='Consumption List'	 	href="includes/contents/list_all/list_all_consumption.php?height=300&width=700"
-	 	class='thickbox' >Consumption List
- 		</a>
- 	</li>	
+		<li>    
+        <a href='includes/contents/create_quotation.php?height=400&width=760' class='thickbox'>  Create Quotation </a> 
+        
+    </li>	
+	<li > <a class='thickbox' href='includes/contents/quotation_comparizon_report.php?height=300&width=550' > Quotation Comparison </a></li>  
+		<li > <a class='thickbox' href='includes/contents/list_all/list_all_quotation.php?height=400&width=760' > Quotation ListT</a></li>  	
 </ul>
   <div class="rightimg3">
         <div class="downimg1"></div>

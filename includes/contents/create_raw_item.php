@@ -56,6 +56,21 @@ $unitName=options_for_select(	$stock->retriveStockUnit(),
   </tr>
  
   <tr>
+    <td colspan="2"><table width="100%" border="0">
+      <tr>
+        <td width="17%">where</td>
+        <td width="18%"><input name="unitRel1" type="text" id="unitRel1" /></td>
+        <td width="26%"><select name="select" id="select" class="unit" >
+          <?php echo $unitName; ?>
+        </select></td>
+        <td width="19%"><input name="unitRel2" type="text" id="unitRel2" /></td>
+        <td width="20%"><select name="select2" id="select2" class="unit" >
+          <?php echo $unitName; ?>
+        </select></td>
+      </tr>
+    </table></td>
+    </tr>
+  <tr>
     <td>Description</td>
     <td><input name="desc" type="text" class="inventori_txtfield" id="desc"></td>
   </tr>

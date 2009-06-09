@@ -38,10 +38,11 @@
 		$('#create_purchase').click(function(){
 			$('#ajax_content').load('includes/contents/create_purchase_order.php');			
 		})	
-		$('#Quotation_Comparison').click(function(){
-			$('#ajax_content').load('includes/contents/quotation_comparizon_report.php');	
-		})	
-		
+
+		$('#quotation_home').click(function(){
+			$('#ajax_content').load('includes/contents/quotation_home.php');			
+		});
+				
 		$('#create_indent').click(function(){
 			$('#ajax_content').load('includes/contents/create_indent.php');			
 		})	

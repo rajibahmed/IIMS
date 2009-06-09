@@ -25,12 +25,12 @@ $outputSupplierItem=options_for_select($Supplier->retriveSupplierInfo(),
 									true);	
 $LC = new LC;
 $outputLC=options_for_select($LC->retriveLcInfo(),
-									'lc_id',
+									'lc_name',
 									'lc_name',
 									true);	
 $Lot = new Lot;
 $outputLot=options_for_select($Lot->retriveLotInfo(),
-									'lot_id',
+									'lot_name',
 									'lot_name',
 									true);											
 
@@ -59,7 +59,7 @@ $outputLot=options_for_select($Lot->retriveLotInfo(),
 
 <script type="text/javascript" language="javascript" src="../../js/jquery.autocomplete.pack.js"></script>
 
-<form  id="CreateStockItem" name="CreateStockItem" method="post"   action="../model/localtionOpQty_actions.php">
+<form  id="CreateStockItem" name="CreateStockItem" method="post"   action="../model/localtionOpQty_raw_actions.php">
 
 <br>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -76,7 +76,7 @@ $outputLot=options_for_select($Lot->retriveLotInfo(),
   </tr>
   
   <tr class="small_row_elements">
-    <td><input type="text" name="date_of_submit" value="" id="submit_date" class="date" /></td>
+    <td><input type="text" name="date_of_submit[]" value="" id="date_of_submit[]" class="date" /></td>
     <td><select name="locationID[]" id="locationID[]" class="inventori_txtfield" >
             <option value="0">Primary </option>
             <?php
@@ -87,16 +87,16 @@ $outputLot=options_for_select($Lot->retriveLotInfo(),
             <option value="<?php echo $StockLocationInfo[$i]['stock_location_id']; ?>" > <?php echo $StockLocationInfo[$i]['stock_location_name']; ?></option>
             <?php } ?>
           </select></td>
-    <td><select name="select" id="select" class="inventori_txtfield" >
+    <td><select name="lot[]" id="lot[]" class="inventori_txtfield" >
       <?php echo $outputLot; ?>
     </select></td> 
-    <td><select name="select" id="select" class="inventori_txtfield" >
+    <td><select name="lc[]" id="lc[]" class="inventori_txtfield" >
       <?php echo $outputLC; ?>
     </select></td>
-    <td><select name="select" id="select" class="inventori_txtfield" >
+    <td><select name="suplier[]" id="suplier[]" class="inventori_txtfield" >
       <?php echo $outputSupplierItem; ?>
     </select></td>
-    <td><select name="stkMName" id="stkMName" class="inventori_txtfield" style="width:150px" >
+    <td><select name="stkMName[]" id="stkMName[]" class="inventori_txtfield" style="width:150px" >
       <?php echo $stockMachineName; ?>
     </select></td>
     <td><input type="text"  name="item_qty[]"  class="item_qty"/></td>
@@ -121,15 +121,7 @@ $outputLot=options_for_select($Lot->retriveLotInfo(),
 </form>
 		
 <script type='text/javascript'>
-
-
-  	
-   	
-   	
-
-  
-	
-		function add_element() {
+function add_element() {
 		var parent =$('.small_row_elements:last');
 		parent
 			.clone(true)

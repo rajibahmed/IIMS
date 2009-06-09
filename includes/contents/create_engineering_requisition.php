@@ -189,7 +189,7 @@
 <div id="submit_set"> 
 				<input class='button' id="btn_save"type="submit" 
 				name="submit" value="Save" />
-	  		<a href='includes/contents/create_requisition.php?height=400&width=800' class='thickbox button_b'> Reset</a>
+	  		<a href='includes/contents/create_engineering_requisition.php?height=400&width=760' class='thickbox button_b'> Reset</a>
 
   </div>
 
