@@ -1,21 +1,21 @@
 <div class="rightcontent1">
         <div class="bodybanner1"></div>
-        <div class="bodybanner2">Delivery Challan</div>
+        <div class="bodybanner2">Quality Certificate</div>
         <div class="bodybanner3"></div>
     </div>
 <div id="inventory" class="column">
 
 <ul>
 	 <li><a 
-	 	title='Create Delivery Challan'
-	 	href="includes/contents/create_delivery.php?height=300&width=700"
-	 	class='thickbox'>Create Delivery Challan</a></li>
+	 	title='Create Q.C'
+	 	href="includes/contents/create_qc.php?height=300&width=800"
+	 	class='thickbox'>Create Q.C</a></li>
 	 
  	
  	<li>
 	 	<a 
 		title='Consumption List' href="includes/contents/list_all/list_all_delivery.php?height=300&width=700"
-	 	class='thickbox' >Delivery List
+	 	class='thickbox' >Q.C List
  		</a>
  	</li>
  		

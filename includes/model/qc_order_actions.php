@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once('../../lib/mrr.class.php');
+require_once('../../lib/qc.class.php');
 require_once('../../lib/stock.class.php');
 
 
@@ -10,36 +10,18 @@ require_once('../../lib/stock.class.php');
 	//print_r($_POST);
 	$userId=$_SESSION[userid];
 	
-	$MRR=new MRR;
+	$QC=new QC;
 	$stock= new Stock;
 	
-	$num=$MRR->getNewId();
-	$getData="'$num','$mrr_num','$date_of_submit','$userId','$PurchaseorderId','$selSupplier','$indentNo','','',1";
+	$num=$QC->getNewId();
+	$getData="'$num','$qc_num','$date_of_submit','$userId','$mrrNo','$purchase_no','$indentNo','$supllier_no'";
 	
-	extract($MRR->CreateMRRMaster($getData));
+	extract($QC->CreateQCMaster($getData));
 	
 	$getData='';
 	$counter=$id;
 	
-	if($check==1)
-	{
-		for($i=0;$i<count($item_code);$i++)
-		{	
-			 $getData =	"'null',	'$counter',
-			 						'$locationId[$i]',
-									'$item_code[$i]',
-									'$item_qty[$i]',
-									'$item_rate[$i]',
-									'',
-									'$item_amount[$i]'";
-		
-			$MRR->CreateMRRDetails($getData);
-			
-		}
-	}
 	
-	else
-	{
 		for($i=0;$i<count($item_code);$i++)
 		{	
 			 $getData =	"'null',	'$counter',
@@ -49,7 +31,7 @@ require_once('../../lib/stock.class.php');
 									'',
 									'$item_amount[$i]'";
 		
-			$MRR->CreateMRRDetails($getData);
+			$QC->CreateQCDetails($getData);
 			$item_cl_balance_data=$stock->retriveStockItemByid($item_code[$i]);
 			$item_cl_balance=$item_cl_balance_data[0]["stock_item_cl_balance"];
 			$stock->updateAddClBalance($item_code[$i],$item_cl_balance,$item_qty[$i]);
@@ -58,7 +40,7 @@ require_once('../../lib/stock.class.php');
 			$stock->updateReceivedQty($stock_item[$i],	$current_recieved_qty);  
 		}
 	
-	}	
+	
 	echo "Save Successfully"	;
 	
 

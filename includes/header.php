@@ -1,7 +1,5 @@
 <?php
-function head($title="IIMS"){
-
-?>
+function head($title="IIMS"){?>
 <title><?php echo $title; ?></title>
 <link type="text/css" href="css/stylesheet.css" rel="stylesheet"  />
 <link type="text/css" href="css/south-street/jquery-ui-1.7.1.custom.css" rel="stylesheet"/>	
@@ -29,5 +27,4 @@ function head($title="IIMS"){
 
 <script type="text/javascript" language="javascript" src="js/jquery.autocomplete.pack.js"></script>
 
-		
 <?php }?>

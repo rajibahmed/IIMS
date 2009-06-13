@@ -21,7 +21,7 @@
     $Purchase = new Purchaseorder;
 	$outputPurchaseorder=options_for_select($Purchase->RetrivePurchaseOrder(),
 									'pm_id',
-									'pm_id',
+									'pm_no',
 									true);
 	$locations=options_for_select(	$stock->retriveLocation(),
 								'stock_location_id',
@@ -31,13 +31,7 @@
 	$num = $MRR->getNewId();														
  ?>
 <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-
- <div class="rightcontent1">
-        <div class="bodybanner1"></div>
-        <div class="bodybanner2"></div>
-        <div class="bodybanner3"></div>
-		<div id="note"> </div>
-<div id="ajax_content">
+<div id="note"> </div>
 <form id="mrrForm" name="mrrForm" method="post"  action="includes/model/mrr_order_actions.php" >
 	
 	<div class='morelabel'>
@@ -62,12 +56,7 @@
             	<?php echo $outputPurchaseorder;?>
             </select>		
         </p>
-		<p>	
-			<label> Party Name:</label>
-        	<select name="selSupplier" id="selSupplier">
-            	<?php echo $outputSupplierItem; ?>
-          	</select>
-    	</p>         
+		   
 	</div>	
 
           
@@ -82,6 +71,20 @@
 			</select>
 		</p>
 		
+		<p>	
+			<label> Party Name:</label>
+        	<select name="selSupplier" id="selSupplier">
+            	<?php echo $outputSupplierItem; ?>
+          	</select>
+    	</p>  
+		
+		 <p>	
+		   <div>
+		  <label> Send to Q.C</label>
+        	<input name="check" type="radio" value="1" /> Yes  <input name="check" type="radio" value="2" /> No
+			</div>
+    	</p>       
+		
 	</div>	  
 
     <div class="clear"> </div>
@@ -95,14 +98,7 @@
 	</div>
 	
 </form>
-</div>
-<div class="rightimg3">
-        <div class="downimg1"></div>
-        <div class="downimg2"></div>
-        <div class="downimg3"></div>
-    </div>
-<div class="clear"></div>
- </div>
+
 <script type='text/javascript'>
 
 	$("#PurchaseorderId").live("change", function(){
@@ -110,7 +106,7 @@
     	//var item_drop_down = $(this).
     	//parent().parent().find('.item_select:first');
         //item_drop_down.attr('disable',false);	
-		$.get(	'includes/pages/mrr_onchange.php',
+		$.get(	'includes/pages/for_purchase_no.php',
 				{purchase_ms_id:purchase_ms_id},
 				function(data){
 					$("#inline_form").html(data);

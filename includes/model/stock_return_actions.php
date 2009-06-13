@@ -12,7 +12,7 @@ require_once('../../lib/stock.class.php');
 	
 	$StockReturn=new StockReturn;
 	$stock= new Stock;
-	$getData="'','$date_of_submit','','$userId'";
+	$getData="'','$return_num','$date_of_submit','','$userId'";
 	
 	extract($StockReturn->CreateStockReturnMaster($getData));
 	

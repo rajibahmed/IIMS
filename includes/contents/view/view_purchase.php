@@ -10,7 +10,7 @@
 ?>
 <table width="200" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><a class="button" href="includes/contents/voucher_print/print_purchase_order.php?p_m_id=<?php echo $purchase_m_id;?>"  title="Purchase List">Print</a></td>
+    <td><a class="button" href="includes/contents/voucher_print/print_purchase_order.php?id=<?php echo $purchase_m_id;?>"  title="Purchase List">Print</a></td>
   </tr>
 </table>
 

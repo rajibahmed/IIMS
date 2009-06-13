@@ -2,10 +2,10 @@
  	require_once('../../lib/defination.class.php');
 	include('../../lib/supplier.class.php');
 	include('../../lib/stock.class.php');
-	include('../../lib/indent.class.php');
+	include('../../lib/qc.class.php');
 	include('../../lib/mrr.class.php');
 	$stock=new Stock;
-	$MRR= new MRR;
+	$QC= new QC;
 	
 	$output=options_for_select(	$stock->retriveStockItem(),
 								'stock_item_id',
@@ -18,30 +18,30 @@
 									'sup_id',
 									'sup_name',
 									true);
-    $Indent = new Indent;
-	$outputIndentNo=options_for_select($Indent->retriveIndendInfo(),
-									'indent_id',
-									'indent_code',
+    $MRR = new MRR;
+	$outputMRRtNo=options_for_select($MRR->retriveMRRInfo(),
+									'mrr_id',
+									'mrr_number',
 									true);	
 	$locations=options_for_select(	$stock->retriveLocation(),
 								'stock_location_id',
 								'stock_location_name'
 								);	
 								
-	$num = $MRR->getNewId();														
+	$num = $QC->getNewId();														
  ?>
 <div id="note"> </div>
-<form id="mrrForm" name="mrrForm" method="post"  action="includes/model/mrr_order_actions.php" >
+<form id="mrrForm" name="mrrForm" method="post"  action="includes/model/qc_order_actions.php" >
 	
 	<div class='morelabel'>
 		
 		<p>
 			
-				<label>MRR # </label>
-			<input type="text" disabled value="<?php echo generate_timestamp('MRR',$num); ?>"  />
-			<input type="hidden" name="mrr_num" 
-				value="<?php echo generate_timestamp('MRR',$num); ?>" 
-				id="req_num" />	
+				<label>QC # </label>
+			<input type="text" disabled value="<?php echo generate_timestamp('QC',$num); ?>"  />
+			<input type="hidden" name="qc_num" 
+				value="<?php echo generate_timestamp('QC',$num); ?>" 
+				id="qc_num" />	
 							
 		</p>
 		<p>
@@ -51,9 +51,9 @@
           
          <p>
                 <div>
-                    <label>Indent No:</label>
-                        <select name="indentNo" id="indentNo" style="width:150px;">
-                <?php echo $outputIndentNo;?>
+                    <label>MRR No:</label>
+                        <select name="mrrNo" id="mrrNo" style="width:150px;">
+                <?php echo $outputMRRtNo;?>
               </select>
                 </div>
             </p>
@@ -62,27 +62,7 @@
 
           
 	    
-	<div class='morelabel'>
-
-	  
-		
-		 <p>	
-		   <div>
-		  <label> Party Name:</label>
-        	<select name="selSupplier" id="selSupplier">
-            	<?php echo $outputSupplierItem; ?>
-          	</select>
-			</div>
-    	</p>   
-		
-		 <p>	
-		   <div>
-		  <label> Send to Q.C</label>
-        	<input name="check" type="radio" value="1" /> Yes  <input name="check" type="radio" value="2" /> No
-			</div>
-    	</p>   
-		
-	</div>	  
+	
 
     <div class="clear"> </div>
 	
@@ -101,12 +81,12 @@
 
 <script type='text/javascript'>
 
-	$("#indentNo").live("change", function(){
-  		var indent_ms_id=$(this).val();
+	$("#mrrNo").live("change", function(){
+  		var mrr_ms_id=$(this).val();
     	//var item_drop_down = $(this).parent().parent().find('.item_select:first');
         //item_drop_down.attr('disable',false);	
-    		$.get(	'includes/pages/mrr_onchange_for_indent.php',
-    				{indent_ms_id:indent_ms_id},
+    		$.get(	'includes/pages/qc_onchange_for_mrr.php',
+    				{mrr_ms_id:mrr_ms_id},
     				function(data){
     					$("#inline_form").html(data);
     		});

@@ -3,6 +3,7 @@
 	include('../../lib/supplier.class.php');
 	include('../../lib/stock.class.php');   
 	include('../../lib/indent.class.php');
+	include('../../lib/purchaseOrder.class.php');
 	$stock=new Stock;
 	
 	$output=options_for_select(	$stock->retriveStockItem(),
@@ -21,19 +22,16 @@
 	$outputIndentNo=options_for_select($Indent->retriveIndendInfo(),
 									'indent_id',
 									'indent_code',
-									true);								
-
+									true);	
+	$Purchaseorder = new Purchaseorder;
+	$num = $Purchaseorder->getNewId();	
  ?>
 <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
 
- <div class="rightcontent1">
-                	<div class="bodybanner1"></div>
-                    <div class="bodybanner2">Purcahse Order</div>
-                    <div class="bodybanner3"></div>
-                </div>
+ 
 <div id="note"> </div>
 <form id="requisitionForm" name="requisitionForm" method="post"   action="includes/model/purchase_order_actions.php" >
-	<table width="100%" border="0" class="small_tab">
+	
 		<div class="vertical_form">
         	<p>
                 <div align="left">
@@ -52,7 +50,23 @@
                 </div>
             </p>
         </div>
-  </table>
+		
+		    
+	<div class='morelabel'>
+
+	  
+		
+		 <p>	
+		   <div>
+		  <label> Purchase #:</label>
+        	<input type="text" disabled value="<?php echo generate_timestamp('Purchase',$num); ?>" style="width:150px;"  />
+	  <input type="hidden" name="Purchase_num" 
+				value="<?php echo generate_timestamp('Purchase',$num); ?>" 
+				id="Purchase_num" />
+			</div>
+    	</p>   
+	</div>	
+ 
   <table border="0" align="left" class="small_tab">
 		<div class="vertical_form">
         	<p>
@@ -86,25 +100,25 @@
             <p>
                 <div align="left">
                     <label>Delivery : </label>
-                <input type="text" name="delivery" id="delivery" />
+                <input type="text" name="delivery" id="delivery" style="width:350px;" />
                 </div>
             </p>
             <p>
                 <div align="left">
                     <label> Terms of payment :</label>
-                  <input type="text" name="termsofpayment" id="termsofpayment" />
+                  <input type="text" name="termsofpayment" id="termsofpayment" style="width:350px;" />
                 </div>
             </p>
             <p>
                 <div align="left">
                     <label> Support :</label>
-                   <input type="text" name="support" id="support" />
+                   <input type="text" name="support" id="support" style="width:350px;" />
                 </div>
             </p>
             <p>
                 <div align="left">
                     <label> Others :</label>
-                    <input type="text" name="others" id="others" />
+                    <input type="text" name="others" id="others" style="width:350px;" />
                      
                 </div>
                 <div id="submit_set">
@@ -154,7 +168,7 @@
   		var indent_ms_id=$(this).val();
     	//var item_drop_down = $(this).parent().parent().find('.item_select:first');
         //item_drop_down.attr('disable',false);	
-    		$.get(	'includes/pages/puchase_onchange.php',
+    		$.get(	'includes/pages/purchase_onchange_from_indent.php',
     				{indent_ms_id:indent_ms_id},
     				function(data){
     					$("#inline_form").html(data);
@@ -168,3 +182,4 @@
 							});	    
 </script> 
 <script src="js/rajib_script.js" type="text/javascript"></script>
+<script type="text/javascript" language="javascript" src="js/thickbox-compressed.js"></script>

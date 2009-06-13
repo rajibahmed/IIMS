@@ -39,7 +39,7 @@ class Delivery extends DbUtils
 	
 	public function FindDetailsOfDelivery($id)
 	{
-		echo $sql="	SELECT dcd.*,si.* ,siu.stock_item_unit_id, siu.stock_item_unit_name, gpm.gate_pass_id,gpm.gate_pass_no, GROUP_CONCAT(scd.stock_code,' ') stock_code
+		$sql="	SELECT dcd.*,si.* ,siu.stock_item_unit_id, siu.stock_item_unit_name, gpm.gate_pass_id,gpm.gate_pass_no, GROUP_CONCAT(scd.stock_code,' ') stock_code
 				FROM 
 					delivery_challan_details dcd, stock_item si, stock_code_details scd, 
 					gate_pass_master gpm, stock_item_units siu

@@ -1,21 +1,18 @@
 <?php
 // require_once('lib/defination.class.php');
 // include('lib/forms.class.php');
-	include('includes/header.php');
+	
 // require_once('lib/dbconnection.class.php');
 	include_once('lib/company.class.php');
 	//require_once('lib/defination.class.php');
 	include('lib/indent.class.php');
 	include('lib/requisition.class.php');
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<?php
-	head("IIMS");
-?>
+<?php include('includes/header.php');	head("IIMS");?>
 <script type="text/javascript">
 	$(function(){
 		// var myFile = document.location.toString();
@@ -35,8 +32,8 @@
 			$('#ajax_content').load('includes/contents/ca_create_stock_item.php');			
 		})	
 		
-		$('#create_purchase').click(function(){
-			$('#ajax_content').load('includes/contents/create_purchase_order.php');			
+		$('#purchase_home').click(function(){
+			$('#ajax_content').load('includes/contents/purchase_home.php');			
 		})	
 
 		$('#quotation_home').click(function(){
@@ -59,8 +56,8 @@
 			return false;		
 		})
 		
-		$('#create_stock_return').click(function(){
-			$('#ajax_content').load('includes/contents/create_stock_return.php');		
+		$('#stock_return_home').click(function(){
+			$('#ajax_content').load('includes/contents/stock_return_home.php');		
 		})	
 		
 		$('#create_gate_pass').click(function(){
@@ -125,15 +122,17 @@
 			$('#ajax_content').load('includes/contents/ca_user_home.php');		
 		})
 		
-		$("#purchase_list").click(function(){
-			$('#ajax_content').load('includes/contents/list_all/list_all_purchase.php');		
-		});
+
 		$('#consumption_home').click(function(){
 				$('#ajax_content').load('includes/contents/consumption_home.php');		
 		});
 		
 		$('#delivery_home').click(function(){
 				$('#ajax_content').load('includes/contents/delivery_home.php');		
+		}); 
+		
+		$('#qc_home').click(function(){
+				$('#ajax_content').load('includes/contents/qc_home.php');		
 		});
 	})
 	

@@ -8,7 +8,7 @@
 ?>
 <table width="200" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><a class="button" href="includes/contents/voucher_print/print_consumption.php?p_m_id=<?php echo $_GET[id];?>"  title="Print Mrr">Print</a></td>
+    <td><a class="button" href="includes/contents/voucher_print/print_mrr.php?id=<?php echo $_GET[id];?>"  title="Print Mrr">Print</a></td>
   </tr>
 </table>
 

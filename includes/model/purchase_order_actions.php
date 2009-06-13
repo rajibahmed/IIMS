@@ -7,9 +7,12 @@ require_once('../../lib/purchaseOrder.class.php');
 
 
 	extract($_POST);
+	
 	//print_r($_POST);
 	$Purchaseorder=new Purchaseorder;
-	$getData="'','$selSupplier','$date_of_submit','$naration','$delivery', '$termsofpayment','$support','$others'";
+	$num = $Purchaseorder->getNewId();	
+	
+	$getData="'$$num','$Purchase_num','$selSupplier','$date_of_submit','$indentNo','$naration','$delivery', '$termsofpayment','$support','$others'";
 	
 	extract($Purchaseorder->CreatePurchaseOrderMaster($getData));
 	
@@ -19,12 +22,12 @@ require_once('../../lib/purchaseOrder.class.php');
 
 	for($i=0;$i<count($item_code);$i++)
 	{	
-		$getData =	"'null',	$counter,
-								$item_code[$i],
-								$item_qty[$i],
-								$item_rate[$i],
+		$getData =	"'null',	'$counter',
+								'$item_code[$i]',
+								'$item_qty[$i]',
+								'$item_rate[$i]',
 								'',
-								$item_amount[$i]";
+								'$item_amount[$i]'";
 	
 		$Purchaseorder->CreatePurchaseOrderDetails($getData);
 	}

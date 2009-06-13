@@ -1,6 +1,7 @@
 <?php
  	require_once('../../lib/defination.class.php');
 	include('../../lib/stock.class.php');
+	include('../../lib/stkReturn.class.php');
 	$stock=new Stock;
 	$stock_info =	$stock->retriveStockItem();
 	$output=options_for_select(	$stock->retriveStockItem(),
@@ -16,13 +17,11 @@
 								'stock_location_id',
 								'stock_location_name'
 								);
+	$StockReturn = new StockReturn;								
+	$num = $StockReturn->getNewId();								
  ?>
 
-<div class="rightcontent1">
-        <div class="bodybanner1"></div>
-        <div class="bodybanner2"> Stock Return</div>
-        <div class="bodybanner3"></div>
-</div>
+
 <div id="note"> </div>
 <form id="consumptionForm" name="consumptionForm" method="post"   action="includes/model/stock_return_actions.php" >	
 
@@ -32,7 +31,7 @@
 
 	<div class='morelabel'>
 		<p>	
-			<label>Date of submit</label>
+			<label>Date </label>
 			<input type="text" name="date_of_submit" value="" id="submit_date" class="date" />
 		</p>
 			
@@ -42,34 +41,48 @@
 				<?php echo $locations ; ?>
 			</select>
 		</p>
+			
+		<p>
+			
+				<label>MRR # </label>
+			<input type="text" disabled value="<?php echo generate_timestamp('Return',$num); ?>"  />
+			<input type="hidden" name="return_num" 
+				value="<?php echo generate_timestamp('Return',$num); ?>" 
+				id="return_num" />	
+							
+		</p>
 	
 	</div >
 	
 	<div style="clear:both"> </div>
 	<div id="inline_form">
-		<div class="centerbody small_font">
+		<div class="mediumbody">
 			<div class="lowbanner1"> </div>
-            <div class="lowbanner2">
+            <div class="lowbannertest">	
 			<ul>
-				<li>Item</li> 
-				<li>code #</li> 
-				<li>Part #</li> 
-				<li> Desc </li> 
-				<li>Quantity</li> 
-				<li>Rate</li> 
-				<li>Value</li> 
+				<li style='width:240px' >Item</li> 
+				<li style='width:100px'>code #</li> 
+				<li style='width:80px'>Part #</li> 
+				<li style='width:160px'> Description </li> 
+				<li style='width:60px'>Quantity</li> 
+				<li style='width:50px'>Rate</li> 
+				<li style='width:50px'>Value</li> 
 			</ul>
 			</div>
             <div class="lowbanner3"> </div>	
 		</div>	 
-		<div class="small_row_elements">
-			<select class="stock_item_select" name="stock_item[]"><?php echo $output; ?></select>
+		<div class="row_elements">
+			<select style='width:200px'class="stock_item_select" name="stock_item[]">
+				<?php echo $output; ?>	
+			</select>
+			
 			<input type="text" name="stock_item_code[]" value="" class="stock_item_code">
 			<input type="text" name="stock_part_code[]" value="" class="stock_part_code">	
-			<input type="text"  class="item_description" name="item_description[]" value="" />		<input type="text"  name="item_qty[]" value="" class="item_qty"/>
-			<input type="text"  name="item_rate[]" value="" class="item_rate" />
+			<input type="text"  style='width:140px' class="item_description" name="item_description[]" value="" />		
+			<input type="text" style='width:50px' name="item_qty[]" value="" class="item_qty"/>
+			<input type="text" style='width:50px' name="item_rate[]" value="" class="item_rate" />
 			
-			<input type="text" name="item_total[]" value="" class="item_total"/>
+			<input type="text" style='width:60px'name="item_total[]" value="" class="item_total"/>
 			
 		</div>
 		<div id="add_remove"> 
@@ -85,12 +98,7 @@
 		</div>
 
 </form>
-<div class="rightimg3">
-        <div class="downimg1"></div>
-        <div class="downimg2"></div>
-        <div class="downimg3"></div>
-    </div>
-	 
+
 <script type='text/javascript'>
 
 
@@ -124,7 +132,7 @@
 	
 	
 		function add_element() {
-		var parent =$('.small_row_elements:last');
+		var parent =$('.row_elements:last');
 		parent
 			.clone(true)
 			.insertAfter(parent)
@@ -134,7 +142,7 @@
 
 	
 	$("#remove_input").click(function (){
-		$(".small_row_elements:last")
+		$(".row_elements:last")
 			.slideUp(function(){
 				$(this).remove();
 			}); 
@@ -171,4 +179,3 @@
 	
 		
 </script>
-

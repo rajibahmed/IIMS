@@ -1,24 +1,19 @@
 <div class="rightcontent1">
         <div class="bodybanner1"></div>
-        <div class="bodybanner2">Delivery Challan</div>
+        <div class="bodybanner2">Purchase Home</div>
         <div class="bodybanner3"></div>
     </div>
 <div id="inventory" class="column">
 
 <ul>
-	 <li><a 
-	 	title='Create Delivery Challan'
-	 	href="includes/contents/create_delivery.php?height=300&width=700"
-	 	class='thickbox'>Create Delivery Challan</a></li>
-	 
- 	
- 	<li>
-	 	<a 
-		title='Consumption List' href="includes/contents/list_all/list_all_delivery.php?height=300&width=700"
-	 	class='thickbox' >Delivery List
- 		</a>
- 	</li>
- 		
+	<li >
+    	<a class="thickbox" href='includes/contents/list_all/list_all_purchase.php?height=400&width=760'  title="Purchase List">Purchase List</a>    		
+    </li>
+    
+    <li >
+    	<a class="thickbox" href='includes/contents/create_purchase_order.php?height=400&width=700' > Create Purchase Order</a>
+	</li> 		
+	
 </ul>
   <div class="rightimg3">
         <div class="downimg1"></div>

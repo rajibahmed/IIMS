@@ -65,9 +65,13 @@ class Consumption extends DbUtils
 	
 	public function FindDetailsOfConsumption($id)
 	{
-		$sql="	SELECT cd.*,si.* ,GROUP_CONCAT(scd.stock_code,' ') stock_code,
-				GROUP_CONCAT(spd.stock_part,' ') stock_part 
-				FROM consumption_details cd, stock_item si, stock_code_details scd, stock_part_details spd
+		$sql="	SELECT cd.*, si.*, cm.*, siu.* ,
+					GROUP_CONCAT(scd.stock_code,' ') stock_code,
+					GROUP_CONCAT(spd.stock_part,' ') stock_part 
+						
+				FROM consumptions_master cm, consumption_details cd, stock_item si,stock_item_units siu,
+				 stock_code_details scd, stock_part_details spd
+				
 				WHERE 
 					cd.stock_item_id = si.stock_item_id
 				AND 
@@ -75,7 +79,12 @@ class Consumption extends DbUtils
 				AND
 					cd.consumptions_master_id=$id
 				AND
-					si.stock_part_m_id= spd.stock_part_m_id 	
+					si.stock_part_m_id= spd.stock_part_m_id 
+				AND 
+					cd.consumptions_master_id =cm.cm_id
+				AND
+					si.stock_item_unit_id =siu.stock_item_unit_id
+					
 				 GROUP BY si.stock_item_id";
 					
 		return parent::selectQuery($sql);

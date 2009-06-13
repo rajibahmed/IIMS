@@ -1,26 +1,26 @@
 <?php
 
 require_once("dbutils.class.php");
-class MRR extends DbUtils
+class QC extends DbUtils
 {
-	public function CreateMRRDetails($getData)
+	public function CreateQCDetails($getData)
  	{
- 		   $sql = "INSERT INTO  mrr_details VALUES(".$getData.")";
+ 		   $sql = "INSERT INTO  qc_details VALUES(".$getData.")";
 		return parent::insertQuery($sql);
  	}
 	
 
  	
  	 
- 	public function CreateMRRMaster($getData)
+ 	public function CreateQCMaster($getData)
 	{
- 		  $sql = "INSERT INTO mrr_master VALUES(".$getData.")";
+ 		   $sql = "INSERT INTO qc_master VALUES(".$getData.")";
 		return parent::insertQuery($sql);		
 	}	
 	
 	function getNewId(){
 		
-		$id = parent::getLastId("mrr_master","mrr_id");
+		$id = parent::getLastId("qc_master","qc_id");
 		return $id+1;
 	}
 	
@@ -77,14 +77,6 @@ class MRR extends DbUtils
 					
 		return parent::selectQuery($sql);
 	}		
-	
-	public function retriveMRRInfo(){
-		
-		$sql = "SELECT  mrr_id ,mrr_number   
-				FROM mrr_master";
-				
-		return parent::selectQuery($sql);
-	}
 	
 }
   ?>

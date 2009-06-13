@@ -45,5 +45,4 @@ class DbConnection{
     
 }  //end class
   
-?> 
-
+?>

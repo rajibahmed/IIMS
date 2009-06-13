@@ -22,11 +22,20 @@
 </head>
 
 <body>
+<table width="50%" height="67" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td height="26" align="center" valign="top"><h1>Square Textiles Ltd.</h1>
+          <p class="style1">Saradaganj, Kashimpur, Gazipur </p></td>
+        </tr>
+        <tr>
+        <td height="26" align="center" valign="top"><p><b>Delivery Challan</b></p></td>
+    </tr>
+</table>
+
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td width="33%" colspan="2">Challan No. &nbsp;<?php echo $delivery_details[0]["delivery_challan_no"]; ?></td>
-    <td width="48%">&nbsp;</td>
-    <td width="30%">Date:<?php echo formatted_date($delivery_details[0]["create_date"]); ?></td>
+    <td colspan="2" align="right">Date:<?php echo formatted_date($delivery_details[0]["create_date"]); ?></td>
   </tr>
   <tr>
     <td colspan="4">To Mr./Ms : &nbsp;<?php echo $delivery_details[0]["contact_name"] ?> </td>
@@ -43,15 +52,15 @@
     <td width="33%">Our Ref. No.<?php echo $delivery_details[0]["our_ref_no"] ?></td>
     <td width="33%">&nbsp;</td>
     <td width="48%">&nbsp;</td>
-    <td width="30%">&nbsp;</td>
+    <td width="40%">&nbsp;</td>
   </tr>
 </table>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="left" style="padding-top:8px; padding-bottom:20px;">
       <tr Class="report_item_name">
-        <td width="6%" align="center" class="table1">Serial #</td>
-        <td colspan="2" align="center" class="table2">Item Name</td>
-        <td width="6%" align="center" class="table2">Unit</td>
+        <td width="6%" align="center" class="table1" style="border-right:2px solid #000000;">Serial #</td>
+        <td colspan="2" align="center" class="table3">Item Name</td>
+        <td width="6%" align="center" class="table3">Unit</td>
         <td width="14%" align="center" class="table3">Code No.</td>
         <td width="6%" align="center" class="table3">Quantity</td>
         <td width="16%" align="center" class="table3">Gate Pass No.</td>
@@ -65,10 +74,10 @@
       <tr>
         <td valign="top" class="table6" style="border-left:1px solid #CCCCCC;"><?php echo $j+1;?></td>
         <td colspan="2" valign="top" class="table6"><?php echo $delivery_details[$j]["stock_item_name"]; ?></td>
-        <td valign="top" class="table6"><?php echo $delivery_details[$j]["stock_item_unit_name"]; ?></td>
-        <td valign="top" class="table6"><?php echo $delivery_details[$j]["stock_code"]; ?></td>
-        <td valign="top" class="table6"><?php echo $delivery_details[$j]["qunty"]; ?></td> 	
-        <td valign="top" class="table6"><?php echo $delivery_details[$j]["gate_pass_no"]; ?></td>
+        <td align="center" valign="top" class="table6"><?php echo $delivery_details[$j]["stock_item_unit_name"]; ?></td>
+        <td align="center" valign="top" class="table6"><?php echo $delivery_details[$j]["stock_code"]; ?></td>
+        <td align="center" valign="top" class="table6"><?php echo $delivery_details[$j]["qunty"]; ?></td> 	
+        <td align="center" valign="top" class="table6"><?php echo $delivery_details[$j]["gate_pass_no"]; ?></td>
         <td valign="top" class="table6"><?php echo $delivery_details[$j]["naration"]; ?></td>
       </tr>
       <?php } ?>

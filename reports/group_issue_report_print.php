@@ -1,5 +1,6 @@
 <?php 
 require_once("../lib/report.class.php");
+require_once("../lib/helper_functions.php");
 
 	$REPORT = new Reports();
 	
@@ -15,7 +16,7 @@ require_once("../lib/report.class.php");
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Untitled Document</title>
+<title>Group Issue Report</title>
 <link href="../css/report.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 <!--
@@ -56,12 +57,11 @@ require_once("../lib/report.class.php");
 		 
             for ($i=0; $i<count($Data);$i++)
             {
-			
-				//$DataItemUnit = $REPORT->retriveDailyRecivedItemUnitReports($Data[$i]['stock_item_unit_id']);
+
 			?>
   <tr >
     <td align="center" valign="middle" class="table4"><?php echo $Data[$i]['cm_id']; ?></td>
-    <td align="center" valign="middle" class="table5"><?php echo $Data[$i]['created_at']; ?></td>
+    <td align="center" valign="middle" class="table5"><?php echo formatted_date($Data[$i]['created_at']); ?></td>
     <td align="center" valign="middle" class="table5"><?php echo $Data[$i]['m_id']; ?></td>
     <td align="center" valign="middle" class="table5"><?php echo $Data[$i]['m_name']; ?></td>
     <td align="center" valign="middle" class="table5"><?php echo $Data[$i]['stock_item_id']; ?></td>

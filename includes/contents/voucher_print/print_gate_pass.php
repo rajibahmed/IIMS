@@ -21,6 +21,16 @@
 </head>
 
 <body>
+<table width="50%" height="67" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td height="26" align="center" valign="top"><h1>Square Textiles Ltd.</h1>
+          <p class="style1">Saradaganj, Kashimpur, Gazipur </p></td>
+        </tr>
+        <tr>
+        <td height="26" align="center" valign="top"><p><b>Gate Pass</b></p></td>
+    </tr>
+</table>
+
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td width="33%">Gate Pass No. <?php echo $getPassDetails[0][gate_pass_no]; ?></td>

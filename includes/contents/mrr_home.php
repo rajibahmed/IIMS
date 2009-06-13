@@ -12,11 +12,11 @@
 	</li>
 	
 	<li>
-		<a class="thickbox" href="includes/contents/create_mrr.php?height=400&width=500" title="Funished Goods"  >MRR-With PO </a>		
+		<a class="thickbox" href="includes/contents/create_mrr_with_po.php?height=400&width=800" title="MRR-With PO"  >MRR-With PO </a>		
 	</li>
 	
 	<li>
-		<a class="thickbox" href="includes/contents/create_mrr.php?width=700&height=400" title="MRR-Direct" >MRR-Direct </a>
+		<a class="thickbox" href="includes/contents/create_mrr.php?width=800&height=400" title="MRR-Direct" >MRR-Direct </a>
 	</li>
 	
 	<li>

@@ -2,11 +2,9 @@
 	include_once 'lib/company.class.php';
 	$company= new Company;
 	@session_start();
-	
-	$user_level = $_SESSION[user_level];
+	//$user_level=0;
+	$user_level = (int) $_SESSION["user_level"];
 ?>
-
-
 <ul>
 
   	<li class="left-menu-item" id='inventory' >
@@ -93,14 +91,11 @@
 
 	<?php  if($user_level==4):?>
 		
-    <li class="left-menu-item" id="create_purchase">
-    	<a href='#' > Create Purchase Order</a>
+    <li class="left-menu-item" id="purchase_home">
+    	<a href='#/create_purchase_order' >Purchase Order</a>
 	</li> 		
 	
-	<li class="left-menu-item" id='purchase_list' >
-    	<a class="thickbox" href='includes/contents/list_all/list_all_purchase.php?height=400&width=760'  title="Purchase List">Purchase List</a>    		
-    </li>
-    
+
     
 	<li class="left-menu-item" id="create_supplier_catagory">  
 		<a href='#' >  Supplier Catagory</a> 
@@ -143,8 +138,8 @@
    </li>
 	<!--<li class="left-menu-item" id="create_sample_sending"><a href="#">Create Sample Sending</a></li>-->
 	
-	<li class="left-menu-item" id="create_stock_return">
-		<a href="#">Create Stock Return</a>
+	<li class="left-menu-item" id="stock_return_home">
+		<a href="#/stock_return_home">Stock Return</a>
 	</li>
 	
 	<li class="left-menu-item" id="gate_pass_home">
@@ -162,7 +157,7 @@
 	<li id="consumption_home"> 
         <a href='#/includes/contents/consumption_home.php' >  Consumption </a>
 	</li>
-	<li class="left-menu-item" id="create_qc"><a href="#">Quality Certificate</a></li>
+	<li class="left-menu-item" id="qc_home"><a href="#">Quality Certificate</a></li>
     
     <?php endif ?> 
     
@@ -180,6 +175,4 @@
 	  <li class="left-menu-item" id='logout' >
     	<a href='#' >Logout </a>    		
     </li>
-</ul>	
-
-
+</ul>

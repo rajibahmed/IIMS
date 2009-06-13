@@ -43,7 +43,8 @@ class GatePass extends DbUtils
 	
 	public function FindDetailsOfGatePass($id)
 	{
-		 $sql="	SELECT cd.*,si.* ,gpm.*,cm.consumption_num,siu.* ,GROUP_CONCAT(scd.stock_code,' ') stock_code, 
+		 $sql="	SELECT cd.*,si.* ,gpm.*,cm.consumption_num,siu.* ,
+	 			GROUP_CONCAT(scd.stock_code,' ') stock_code, 
 				GROUP_CONCAT(spd.stock_part,' ') stock_part 
 					
 				FROM gate_pass_master gpm,gate_pass_details cd, 
