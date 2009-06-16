@@ -1,21 +1,21 @@
 <div class="rightcontent1">
         <div class="bodybanner1"></div>
-        <div class="bodybanner2">Quality Certificate</div>
+        <div class="bodybanner2">Indent</div>
         <div class="bodybanner3"></div>
     </div>
 <div id="inventory" class="column">
 
 <ul>
 	 <li><a 
-	 	title='Create Q.C'
-	 	href="includes/contents/create_qc.php?height=300&width=800"
-	 	class='thickbox'>Create Q.C</a></li>
+	 	title='Create Indent'
+	 	href="includes/contents/create_indent.php?height=300&width=800"
+	 	class='thickbox'>Create Indent</a></li>
 	 
  	
  	<li>
 	 	<a 
-		title='Q.C List' href="includes/contents/list_all/list_all_qc.php?height=300&width=700"
-	 	class='thickbox' >Q.C List
+		title='Indent List' href="includes/contents/list_all/list_all_indent.php?height=300&width=700"
+	 	class='thickbox' >Indent List
  		</a>
  	</li>
  		

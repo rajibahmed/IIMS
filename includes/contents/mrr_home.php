@@ -8,15 +8,19 @@
 
 <ul>
 	<li>
-		<a class="thickbox" href="includes/contents/create_mrr_by_LC.php?width=700&height=400" title="MRR-LC" >MRR-LC</a>	
+		<a class="thickbox" href="includes/contents/create_mrr_by_LC.php?width=550&height=400" title="MRR-Raw Item" >MRR-Raw Item</a>	
 	</li>
 	
 	<li>
-		<a class="thickbox" href="includes/contents/create_mrr_with_po.php?height=400&width=800" title="MRR-With PO"  >MRR-With PO </a>		
+		<a class="thickbox" href="includes/contents/create_mrr_finished.php?width=550&height=350" title="MRR-Finished Item" >MRR-Finished Item</a>	
 	</li>
 	
 	<li>
-		<a class="thickbox" href="includes/contents/create_mrr.php?width=800&height=400" title="MRR-Direct" >MRR-Direct </a>
+		<a class="thickbox" href="includes/contents/create_mrr_with_po.php?height=350&width=800" title="MRR-With PO"  >MRR-With PO </a>		
+	</li>
+	
+	<li>
+		<a class="thickbox" href="includes/contents/create_mrr.php?width=800&height=350" title="MRR-Direct" >MRR-Direct </a>
 	</li>
 	
 	<li>

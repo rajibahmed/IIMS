@@ -8,27 +8,34 @@ $objStockGroupInfo = new Stock();
 $stock=new Stock();
 $StockGrpInfo=$objStockGroupInfo->retriveStockGroupUnderInfo();
 $StockGrpInfo_options = options_for_select(	$StockGrpInfo,
-											'stock_group_id',
+											'stock_group_name',
 											'stock_group_name',
 											true	
 										);
 //// Retrive Stock Unit Name
 $unitName=options_for_select(	$stock->retriveStockUnit(),
-											'stock_item_unit_id',
+											'stock_item_unit_name',
 											'stock_item_unit_name',
 											true	
 										);	
 $Count= new Count();
 $countName=options_for_select($Count->retriveCountInfo(),
-											'count_id',
+											'count_name',
 											'count_name',
 											true	
 										);
 $Lot = new Lot;
 $outputLot=options_for_select($Lot->retriveLotInfo(),
-									'lot_id',
 									'lot_name',
-									true);																						
+									'lot_name',
+									true);	
+$stockMachineName=options_for_select(	$stock->retriveMachineName(),
+											'm_name',
+											'm_name',
+											true	
+										);	
+$StockLocationInfo=$stock->retriveLocation();
+$rowStockLocation=count($StockLocationInfo);																																							
 /////////////////////////////////										
 
 @session_start();
@@ -90,6 +97,20 @@ $user_level = $_SESSION[user_level];
     <td>Description</td>
     <td><input name="desc" type="text" class="inventori_txtfield" id="desc"></td>
   </tr>
+   <tr>
+      <td>Location</td>
+    <td><select name="locationID" id="locationID" class="inventori_txtfield" >
+            <option value="0">Select One </option>
+            <?php
+					for($i=0; $i<$rowStockLocation; $i++)
+					 {
+				
+				 ?>
+            <option value="<?php echo $StockLocationInfo[$i]['stock_location_name']; ?>" > <?php echo $StockLocationInfo[$i]['stock_location_name']; ?></option>
+            <?php } ?>
+          </select></td>
+  </tr>
+  
   <tr>
     <td>Count</td>
     <td><select name="count" id="count"  class="inventori_txtfield">
@@ -102,6 +123,34 @@ $user_level = $_SESSION[user_level];
       <?php echo $outputLot; ?>
         </select></td>
   </tr>
+  <tr>
+    <td>Machine</td>
+    <td><select name="machine" id="machine"  class="inventori_txtfield">
+      <?php echo $stockMachineName; ?>
+        </select></td>
+  </tr>
+  
+   <tr>
+    <td>Knit/Wvg.</td>
+    <td><input name="knit" type="text" class="inventori_txtfield" id="knit"></td>
+  </tr>
+  
+   <tr>
+    <td>Q.A.</td>
+    <td><input name="qa" type="text" class="inventori_txtfield" id="qa"></td>
+  </tr>
+  
+  <tr>
+    <td>Prodn Date</td>
+    <td><input name="p_date" type="text" class="inventori_txtfield" id="p_date"></td>
+  </tr>
+  <tr>
+    <td>Remark</td>
+    <td><input name="remark" type="text" class="inventori_txtfield" id="remark"></td>
+  </tr>
+  
+  
+  
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -193,14 +242,14 @@ $user_level = $_SESSION[user_level];
       	return false;
     });
 	
-	$('.opQnty').blur(function(){
+	/*$('.opQnty').blur(function(){
 		var parent= $(this).parent().parent();
 		console.log(parent);  
 		var qty  = parseFloat(parent.find('.opQnty:first').val());
 		
 		window.open('includes/contents/localtionFinishOpQty.php?qty='+qty,'mywindow',		'width=900,height=200,top=300,left=30')
 		
-	})
+	})*/
 	
 	$('.OpRate').blur(function(){
 		var parent= $(this).parent().parent();

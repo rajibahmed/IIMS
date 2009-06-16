@@ -134,6 +134,10 @@
 		$('#qc_home').click(function(){
 				$('#ajax_content').load('includes/contents/qc_home.php');		
 		});
+		$('#indent_home').click(function(){
+				$('#ajax_content').load('includes/contents/indent_home.php');		
+		});
+		
 	})
 	
 </script> 

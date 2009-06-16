@@ -22,7 +22,7 @@ require_once("../lib/stock.class.php");
         <td width="44%" align="right" valign="top">Stock Group Name : </td>
         <td width="3%" align="left" valign="top">&nbsp;</td>
         <td width="53%" align="left" valign="top"><label>
-          <select name="group_issue_name" id="group_issue_name">
+          <select name="group_issue_name" id="group_issue_name" style="width:150px;">
 		  <?php
 		 
             for ($i=0; $i<count($Data);$i++)

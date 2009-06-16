@@ -15,7 +15,7 @@ $objStockItemInfo = new Stock();
 		
 		
 		
-		$getData = "'$StockItemId','$stkName','$stkGrp','$unitId','$altUnitId','$unitRel1','$unitRel2','$length','$txtStkcode','$desc','','','','$opQnty','$OpRate','$opValue','$opQnty','','',''";
+		$getData = "'$StockItemId','$stkName','$stkGrp','$unitId','$altUnitId','$unitRel1','$unitRel2','$length','$date','$lc','$suplier','$lot','','$locationID','$qa','$txtStkcode','$desc','','','','$opQnty','$OpRate','$opValue','$opQnty','','',''";
 		
 		
 		$rawItem->CreateRawStockItem($getData);

@@ -18,7 +18,7 @@
     
 <ul>
 	<li><a class="thickbox" href="includes/contents/create_engn_item.php?width=600&amp;height=600" title="Engineering Item" >Engineering Item</a></li>
-	<li><a class="thickbox" href="includes/contents/create_finished_item.php?height=400&width=500" title="Funished Goods"  >Funished Goods </a></li>
+	<li><a class="thickbox" href="includes/contents/create_finished_item.php?height=600&width=500" title="Funished Goods"  >Funished Goods </a></li>
 	<li><a class="thickbox" href="includes/contents/create_raw_item.php?width=500&height=400" title="Raw Material" >Raw Material </a></li>
     <li><a class="thickbox" href="includes/contents/create_genarel_item.php?width=500&height=300" title="Stock Item">Stock Item </a></li>
 </ul>    

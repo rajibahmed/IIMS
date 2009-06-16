@@ -5,6 +5,7 @@ require_once("../lib/helper_functions.php");
 	
 	
 	$Data = $REPORT->retriveDailyIssueReports();
+
 	$grandTotalPrice=0;
 ?>
 
@@ -31,7 +32,7 @@ require_once("../lib/helper_functions.php");
       <tr>
         <td height="26" align="center" valign="top"><h1>Square Textiles Ltd.</h1>
           <p class="style1">Saradaganj, Kashimpur, Gazipur </p>
-          <h3>DAILY ISSUE REPORT</h3>
+          <h3>DAILY S.R.I.N REPORT</h3>
 		  <h4>As on Date : <?php echo date("Y-m-d"); ?></h4>		</td>
       </tr>
       <tr>

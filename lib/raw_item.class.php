@@ -60,5 +60,49 @@ class rawItem extends DbUtils
 	}
 	
 	
+	function getStockItemById($id){
+		
+		$sql="	SELECT * FROM finish_item stock_item_id='$id'";	
+			
+		return parent::SELECTQuery($sql);
+	}
+	 
+	function retriveStockItemByid($id){
+		
+			 $sql = "SELECT *FROM  raw_item WHERE stock_item_id='$id'";
+			return parent::SELECTQuery($sql);
+		}	
+		function updateAddClBalance($item_code,$prev_cl,$qty){
+				
+				  $current_clB=$prev_cl+$qty; 
+				 $sql= "Update  raw_item set stock_item_cl_balance='$current_clB' WHERE stock_item_id='$item_code'";
+				return parent::updateQuery($sql);
+		}
+		
+		function updateReceivedQty($item_code,$current_recieved_qty){
+				
+				
+				  $sql= "Update raw_item  set 	stock_received_qty='$current_recieved_qty' WHERE stock_item_id='$item_code'";
+				return parent::updateQuery($sql);
+		}
+		
+		function updateClBalance($item_code,$prev_cl,$qty){
+				
+				 $current_clB=$prev_cl-$qty;
+				 $sql= "Update raw_item set stock_item_cl_balance='$current_clB' WHERE stock_item_id='$item_code'";
+				return parent::updateQuery($sql);
+		}   
+		
+		function updateIssueQtyANDlocation($item_code,$currentIssueQty,$issueLocation){
+				
+				
+				  $sql= "Update raw_item set stock_issue_qty='$currentIssueQty' , issue_location='$issueLocation' WHERE stock_item_id='$item_code'";
+				return parent::updateQuery($sql);
+		}
+		
+	
+	
+	
+	
 }
   ?>

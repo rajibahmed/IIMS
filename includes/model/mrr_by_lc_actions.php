@@ -3,12 +3,12 @@ session_start();
 
 
 require_once('../../lib/mrr.class.php');
-require_once('../../lib/stock.class.php'); 
+require_once('../../lib/raw_item.class.php'); 
 
 
 	$MRR=new MRR;
-	$stock= new Stock;
-	$num = $MRR->getNewId();
+	$stock= new rawItem;
+	$num = $MRR->getMRRrawId();
 
 	
 	
@@ -18,9 +18,9 @@ require_once('../../lib/stock.class.php');
 	
 	
 	extract($_POST);
-	$getData="'$num','$mrr_num','$locationId','$date_of_submit','$userId','','$selSupplier','$lc_no','$lot_no','1'";
+	$getData="'$num','$mrr_num','$date_of_submit','$userId','$PurchaseorderId','$selSupplier','$indentNo','','',1";
 	
-		extract($MRR->CreateMRRMaster($getData));
+		extract($MRR->CreateMrrRawMaster($getData));
 	
 	$getData='';
 	$counter=$id;
@@ -29,13 +29,14 @@ require_once('../../lib/stock.class.php');
 	for($i=0;$i<count($stock_item);$i++)
 	{	
 		$getData =	"'null',	$counter,
+								'',
 								$stock_item[$i],
 								$item_qty[$i],
 								$item_rate[$i],
 								'',
 								$item_total[$i]";
 	
-		$MRR->CreateMRRDetails($getData);
+		$MRR->CreateMrrRawDetails($getData);
 		$item_cl_balance_data=$stock->retriveStockItemByid($stock_item[$i]);
 		$item_cl_balance=$item_cl_balance_data[0]["stock_item_cl_balance"];
 		$stock->updateAddClBalance($stock_item[$i],$item_cl_balance,$item_qty[$i]);

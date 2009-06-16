@@ -2,6 +2,9 @@
 require_once('../../../lib/defination.class.php');
 require_once ('../../../lib/stock.class.php');
 require_once ("../../../lib/raw_item.class.php");
+include('../../../lib/supplier.class.php');
+include('../../../lib/lc.class.php');
+include('../../../lib/lot.class.php');
 
 
 //Object
@@ -20,6 +23,13 @@ $stock_item_id=$rawItemByID[0]['stock_item_id'];
 $StockGroupId = $rawItemByID[0]['stock_item_grp_id'];
 $StockUnitId = $rawItemByID[0]['stock_item_unit_id'];
 $StockAltUnitId = $rawItemByID[0]['stock_alt_unit'];
+$date=$rawItemByID[0]['date'];
+$lc=$rawItemByID[0]['lc'];
+$supplier=$rawItemByID[0]['supplier'];
+$qa=$rawItemByID[0]['qa'];
+$locationId=$rawItemByID[0]['location'];
+$lot=$rawItemByID[0]['lot'];
+
 
 
 //// Retrive Stock Group Name
@@ -38,7 +48,30 @@ $unitName=options_for_select(	$stock->retriveStockUnit(),
 											$StockUnitId
 										);	
 										
-				
+$location_info=	options_for_select(	$stock->retriveLocation(),
+											'stock_location_name',
+											'stock_location_name',
+											true,
+											$locationId
+										);	
+$Supplier = new Supplier;
+$outputSupplierItem=options_for_select($Supplier->retriveSupplierInfo(),
+									'sup_name',
+									'sup_name',
+									  true,
+									  $supplier);	
+$LC = new LC;
+$outputLC=options_for_select($LC->retriveLcInfo(),
+									'lc_name',
+									'lc_name',
+									true,
+									  $lc);	
+$Lot = new Lot;
+$outputLot=options_for_select($Lot->retriveLotInfo(),
+									'lot_name',
+									'lot_name',
+									true,
+									$lot);																															
 /////////////////////////////////						
 
 $allStockItemUnit=$objStockGroupInfo->retriveStockUnit();
@@ -109,6 +142,38 @@ $rowStockItemUnit=count($allStockItemUnit);
     <td><input name="length" type="text" class="inventori_txtfield" id="length"  value="<?php echo $rawItemByID[0]['length'];?>"></td>
   </tr>
   <tr>
+    <td>Date </td>
+    <td><input name="date" type="text" class="inventori_txtfield" id="date" value="<?php echo $rawItemByID[0]['date'];?>" /></td>
+  </tr>
+  <tr>
+    <td>LC </td>
+    <td><select name="lc" id="lc" class="inventori_txtfield" >
+        <?php echo $outputLC; ?>
+    </select></td>
+  </tr>
+  <tr>
+    <td>LOT </td>
+    <td><select name="lot" id="lot" class="inventori_txtfield" >
+        <?php echo $outputLot; ?>
+    </select></td>
+  </tr>
+  <tr>
+    <td>Suplier </td>
+    <td><select name="suplier" id="suplier" class="inventori_txtfield" >
+        <?php echo $outputSupplierItem; ?> 
+    </select></td>
+  </tr>
+  <tr>
+    <td>Location</td>
+    <td><select name="locationID" id="locationID" class="inventori_txtfield" >
+        <?php echo $location_info; ?> 
+    </select></td>
+  </tr>
+  <tr>
+    <td>QA </td>
+    <td><input name="qa" type="text" class="inventori_txtfield" id="qa" value="<?php echo $rawItemByID[0]['qa'];?>" /></td>
+  </tr>
+  <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
@@ -135,9 +200,7 @@ $rowStockItemUnit=count($allStockItemUnit);
         </tr>
         <tr>
           <td colspan="2" align="right" valign="top">
-          <a href="includes/contents/list_all/list_all_raw_item.php?height=500&width=600" title="Raw Item" class="thickbox button2">List All 
-          </a>
-          </td>
+          <a href="includes/contents/list_all/list_all_raw_item.php?height=500&width=600" title="Raw Item" class="thickbox button2">List All          </a>          </td>
           <td align="right" valign="top"><input type="submit" name="btn_save" value="Update" /></td>
           <td align="right" valign="top"><input type="hidden" name="stock_item_id" id="stock_item_id" value="<?php echo $stock_item_id; ?>" /></td>
         </tr>

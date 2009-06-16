@@ -81,19 +81,20 @@
 	
 	 <div id="inline_form">
 			
-			<div class="mediumbody">
-				<div class="lowbanner1"> </div>
-	            <div class="lowbannertest">	
-					<ul>
-						<li style="width:120px"> Stock Item </li>
-						<li style="width:60px">Qty </li>  
-						<li style="width:60px">Rate</li> 
-						<li style="width:60px">Total</li> 
-						<li style="width:69px">Remark  </li> 
-					</ul>
-				</div>
-	            <div class="lowbanner3"> </div>	
-		</div> 
+			<div class="mediumbody small_fonts">
+			<div class="lowbanner1"> </div>
+            <div class="lowbannertest">	
+				<ul>
+
+					<li style="width:200px">Item Name</li> 
+					<li style="width:90px" >Item Qty </li>
+					<li style="width:80px" >Rate</li> 
+					<li style="width:170px" >Value</li>
+					<li>Remark</li>
+				</ul>
+			</div>
+            <div class="lowbanner3"> </div>	
+		</div>	
 
 	<div class='clear'> </div>
 	 
@@ -101,13 +102,13 @@
 	
 	<div class="row_elements">
 		
-		<select name='stock_item[]' >
+		<select name='stock_item[]' style="width:190px;"  >
 			<?php echo $stockItems ?>
 		</select>
-		<input type="text" style="width:55px"name="item_qty[]" class="item_qty" value="" /> 
-		<input type="text" style="width:55px"name="item_rate[]"class="item_rate "  value=""  /> 
-		<input type="text" style="width:55px"name="item_total[]" class="item_total" value="" /> 
-		<input type="text" style="width:200px"name="item_remark[]" class="remark " value="" /> 
+		<input type="text" style="width:70px;" name="item_qty[]" class="item_qty" value="" /> 
+		<input type="text" style="width:70px;" name="item_rate[]"class="item_rate "  value=""  /> 
+		<input type="text" style="width:70px;" name="item_total[]" class="item_total" value="" /> 
+		<input type="text" style="width:300px;" name="item_remark[]" class="remark " value="" /> 
 	</div>	
 		
 		
@@ -125,8 +126,8 @@
 <div id="submit_set"> 
 				<input class='button' id="btn_save"type="submit" 
 				name="submit" value="Save" />
-	  		<a href='includes/contents/create_general_requisition.php?height=400&width=560' class='thickbox button_b'> Reset</a>
-
+	  		<!--<a href='includes/contents/create_general_requisition.php?height=400&width=560' class='thickbox button_b'> Reset</a>
+-->
   </div>
 
 </form>

@@ -157,6 +157,7 @@
 				<ul>
 
 					<li style="width:200px">Item Name</li> 
+					<li style="width:90px" >CL Qty </li>
 					<li style="width:90px" >Item Qty </li>
 					<li style="width:80px" >Rate</li> 
 					<li style="width:170px" >Value</li>
@@ -168,10 +169,11 @@
 	<div class="row_elements">
 		<input type="text" 	class="stock_item" style="width:190px;" />
 		<input type="hidden" name='stock_item[]' value="" id="" />
+		<input type="text" name="cl_qty" class="cl_qty" value="" style="width:70px;" />
 		<input type="text" name="item_qty[]" class="item_qty" value="" style="width:70px;" /> 
 		<input type="text" name="item_rate[]"class="item_rate "  value=""  style="width:70px;" /> 
 		<input type="text" name="item_total[]" class="item_total" value=""  style="width:70px;"/> 
-		<input type="text" style="width:300px" name="item_remark[]" class="remark " value=""  style="width:340px;"/> 
+		<input type="text" style="width:200px" name="item_remark[]" class="remark " value=""  style="width:340px;"/> 
 		</div>	
 		
 		
@@ -189,7 +191,7 @@
 <div id="submit_set"> 
 				<input class='button' id="btn_save"type="submit" 
 				name="submit" value="Save" />
-	  		<a href='includes/contents/create_engineering_requisition.php?height=400&width=760' class='thickbox button_b'> Reset</a>
+	  		<!--<a href='includes/contents/create_engineering_requisition.php?height=400&width=760' class='thickbox button_b'> Reset</a>-->
 
   </div>
 
@@ -248,10 +250,12 @@
 		 		var value= parseInt(data.split("#")[0]);
 		 		var text= data.split("#")[1];
 		 		var last_rate= data.split("#")[2];
+				var cl_qty= data.split("#")[3];
 
 				$(".row_elements:last").find("input.stock_item:first").val(text);
 				$(".row_elements:last").find("input[type=hidden]:first").val(value);
-				$(".row_elements:last").find("input.item_rate:first").val(last_rate);				
+				$(".row_elements:last").find("input.item_rate:first").val(last_rate);
+				$(".row_elements:last").find("input.cl_qty:first").val(cl_qty);				
 		 	}
 		);
 

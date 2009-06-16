@@ -1,15 +1,13 @@
 <?php  
-	require_once ("../../../lib/stkReturn.class.php");
+	require_once ("../../../lib/qc.class.php");
 	require_once ("../../../lib/helper_functions.php");
 
-	$StockReturn =new StockReturn;
+	$QC= new QC;
 	
-	$stock_returns = $StockReturn->PrintDetailsOfStockReturn( (int) $_GET[id]);
-	// echo "<pre>";
-	// 	var_dump($getPassDetails);
-	// echo "</pre>";
 	
-	$row=count($stock_returns);
+	$QC = $QC->PrintDetailsOfQC( (int) $_GET[id]);
+	
+	$row=count($QC);
 	 	
 
 ?>
@@ -38,18 +36,18 @@
     <td width="10%">&nbsp;</td>
     <td width="48%">&nbsp;</td>
     <td width="25%">&nbsp;</td>
-    <td width="17%">Q.C. No. A</td>
+    <td width="17%">Q.C. No. <?php echo $QC[0]["qc_number"]; ?></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td>Date: </td>
+    <td>Date: <?php echo formatted_date($QC[0]["qc_create_date"]); ?></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td colspan="2">Supplier M/s</td>
+    <td colspan="2">Supplier M/s <?php echo $QC[0]["sup_name"]; ?></td>
   </tr>
 </table>
 
@@ -58,7 +56,7 @@
     <td>To</td>
   </tr>
   <tr>
-    <td>The head of the indenting department / section ................................... Please check the quality, size, country of origin, suitability etc. of the following materials recieved in the general store on ......................... against purchase order no. ................................ date ....................... challan no. ............... date ............................ and let me have your comments regarding its/their correctness and acceptability or otherwise, so that we can receive the same formally through a material receiving report.</td>
+    <td>The head of the indenting department / section ................................... Please check the quality, size, country of origin, suitability etc. of the following materials recieved in the general store on ......................... against purchase order no. <?php echo $QC[0]["pm_no"]; ?> date <?php echo formatted_date($QC[0]["date"]); ?>  and let me have your comments regarding its/their correctness and acceptability or otherwise, so that we can receive the same formally through a material receiving report.</td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -73,7 +71,7 @@
 <tr Class="report_item_name">
         <td width="6%" align="center" class="table1" style="border-right:2px solid #000000;">Serial #</td>
         <td colspan="2" align="center" class="table3">MRR No.</td>
-        <td width="19%" align="center" class="table3">Indent No.</td>
+       
     <td width="31%" align="center" class="table3">Item Name</td>
     <td width="8%" align="center" class="table3">Quantity</td>
     <td width="18%" align="center" class="table3">Value</td>
@@ -85,11 +83,11 @@
 	  ?>
       <tr>
         <td align="center" valign="top" class="table6" style="border-left:1px solid #CCCCCC;"><?php echo $j+1;?></td>
-        <td colspan="2" valign="top" class="table6"><?php echo $stock_returns[$j]["stock_item_name"]; ?></td>
-        <td align="center" valign="top" class="table6"><?php echo $stock_returns[$j]["stock_item_unit_name"]; ?></td>
-        <td valign="top" class="table6" align="center"><?php echo $stock_returns[$j]["stock_code"]; ?></td>
-        <td valign="top" class="table6" align="center"><?php echo $stock_returns[$j]["qunty"]; ?></td> 	
-        <td valign="top" class="table6" align="center"><?php echo $stock_returns[$j]["amount"]; ?></td>
+        <td colspan="2" valign="top" class="table6"><?php echo $QC[$j]["mrr_number"]; ?></td>
+       
+        <td valign="top" class="table6" align="center"><?php echo $QC[$j]["stock_item_name"]; ?></td>
+        <td valign="top" class="table6" align="center"><?php echo $QC[$j]["qunty"]; ?></td> 	
+        <td valign="top" class="table6" align="center"><?php echo $QC[$j]["amount"]; ?></td>
   </tr>
       <?php } ?>
       <tr>

@@ -18,6 +18,16 @@ class Consumption extends DbUtils
 		return parent::insertQuery($sql);		
 	}
 	
+	public function CreateConsumptionRaeMaster($getData)
+	{
+ 		 $sql = "INSERT INTO
+ 					consumptions_raw_master
+ 					VALUES(".$getData.")";
+		#echo $sql;		
+		return parent::insertQuery($sql);		
+	}
+	
+	
 		
 	
 	public function CreateConsumptionDetails($getData)
@@ -30,10 +40,26 @@ class Consumption extends DbUtils
 		
 	}	
 	
+	public function CreateConsumptionRawDetails($getData)
+	{
+	   $sql = "INSERT INTO
+ 					consumption_raw_details 
+ 					VALUES($getData)";
+
+		return parent::insertQuery($sql);		
+		
+	}	
+	
 	
 	function getNewId(){
 		
 		$id = parent::getLastId("consumptions_master","cm_id");
+		return $id+1;
+	}
+	
+	function getissueRawNewId(){
+		
+		$id = parent::getLastId("consumptions_raw_master","cm_id");
 		return $id+1;
 	}
 	

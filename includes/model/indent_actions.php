@@ -7,8 +7,8 @@ require_once('../../lib/indent.class.php');
 	extract($_POST);
 	$indent=new Indent;
 	$requisition= new Requisition;
-	
-	$getData="'$indent_code','$indent_remark','$date_of_submit'";
+	$num = $indent->getNewIndentId();
+	$getData="'$num','$indent_code','$indent_remark','$date_of_submit'";
 	
 	extract($indent->CreateIndentMaster($getData));
 	

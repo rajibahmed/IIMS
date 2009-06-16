@@ -18,7 +18,7 @@
 						<li style="width:220px">Items </li>
 						<li style="width:90px">MRR # </li>
 						<li style="width:130px">MRR Create Date</li>  
-						<li style="width:110px">MRR Lc#</li> 
+						
 						<li style="width:80px"></li> 
 						<li style="width:50px"></li> 
 					</ul>
@@ -42,7 +42,7 @@
 			
 			<p style="width:130px"><?php echo formatted_date($mrr["mrr_create_date"]); ?></p>
 			
-			<p style="width:60px"><?php echo $mrr["mrr_lc_no"]; ?></p>	
+				
 			
 			<p style="width:100px"><?php //echo $mrr[amount]; ?></p>
 			

@@ -43,7 +43,7 @@ require_once("../lib/report.class.php");
   </tr>
   <tr class="report_item_name">
     <td height="35" align="center" valign="middle" class="table1">MRR No.</td>
-    <td align="center" valign="middle" class="table2">Purchase No. </td>
+    
     <td align="center" valign="middle" class="table2">Store Code </td>
     <td align="center" valign="middle" class="table2">Item Name</td>
     <td align="center" valign="middle" class="table2">Item Part Number </td>
@@ -60,11 +60,11 @@ require_once("../lib/report.class.php");
 				$DataItemUnit = $REPORT->retriveDailyRecivedItemUnitReports($Data[$i]['stock_item_unit_id']);
 			?>
   <tr>
-    <td align="center" valign="middle" class="table4"><?php echo $Data[$i]['mrr_id']; ?></td>
-    <td align="center" valign="middle" class="table5"><?php echo $Data[$i]['purchase_m_id']; ?></td>
-    <td align="center" valign="middle" class="table5"><?php echo $Data[$i]['stock_item_id']; ?></td>
+    <td align="center" valign="middle" class="table4"><?php echo $Data[$i]['mrr_number']; ?></td>
+    
+    <td align="center" valign="middle" class="table5"><?php echo $Data[$i]['stock_code']; ?></td>
     <td align="center" valign="middle" class="table5"><?php echo $Data[$i]['stock_item_name']; ?></td>
-    <td align="center" valign="middle" class="table5"><?php echo $Data[$i]['stock_part_m_id']; ?></td>
+    <td align="center" valign="middle" class="table5"><?php echo $Data[$i]['stock_part']; ?></td>
     <td align="center" valign="middle" class="table5"><?php echo $Data[$i]['qunty']; ?></td>
     <td align="center" valign="middle" class="table5"><?php echo $DataItemUnit[0]['stock_item_unit_name']; ?></td>
     <td align="right" valign="middle" class="table5"><?php echo $Data[$i]['rate']; ?></td>
@@ -74,8 +74,9 @@ require_once("../lib/report.class.php");
 		$grandTotalPrice=(float) $grandTotalPrice;
 	  } ?>
   <tr>
-    <td height="35" colspan="9" align="right" valign="middle" class="lastTable">Grand Total : </td>
-    <td align="right" valign="middle" class="lastTable"><?php echo $grandTotalPrice;  ?></td>
+    <td height="35" colspan="8" align="right" valign="middle" class="lastTable">Grand Total : </td>
+    <td height="35" align="right" valign="middle" class="lastTable"><?php echo $grandTotalPrice;  ?></td>
+   
   </tr>
 </table>
 </body>

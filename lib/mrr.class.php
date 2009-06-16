@@ -9,20 +9,61 @@ class MRR extends DbUtils
 		return parent::insertQuery($sql);
  	}
 	
+	public function CreateMRRFinishDetails($getData)
+ 	{
+ 		   $sql = "INSERT INTO  mrr_finish_item_details VALUES(".$getData.")";
+		return parent::insertQuery($sql);
+ 	}
+	
+	public function CreateMrrRawDetails($getData)
+ 	{
+ 		   $sql = "INSERT INTO  mrr_raw_item_details VALUES(".$getData.")";
+		return parent::insertQuery($sql);
+ 	}
 
  	
  	 
  	public function CreateMRRMaster($getData)
 	{
- 		  $sql = "INSERT INTO mrr_master VALUES(".$getData.")";
+ 		   $sql = "INSERT INTO mrr_master VALUES(".$getData.")";
 		return parent::insertQuery($sql);		
-	}	
+	}
+	
+	public function CreateMRRFinishMaster($getData)
+	{
+ 		   $sql = "INSERT INTO mrr_finish_item_master VALUES(".$getData.")";
+		return parent::insertQuery($sql);		
+	}		
+	
+	public function CreateMrrRawMaster($getData)
+	{
+ 		   $sql = "INSERT INTO mrr_raw_item_master VALUES(".$getData.")";
+		return parent::insertQuery($sql);		
+	}		
+	
+	
+	
 	
 	function getNewId(){
 		
 		$id = parent::getLastId("mrr_master","mrr_id");
 		return $id+1;
+	} 
+	function getMRRFinishId(){
+		
+		$id = parent::getLastId("mrr_finish_item_master","mrr_id");
+		return $id+1;
 	}
+	
+	function getMRRrawId(){
+		
+		$id = parent::getLastId("mrr_raw_item_master","mrr_id");
+		return $id+1;
+	}
+	
+	
+	
+	
 	
 	public function findMrrList()
 	{

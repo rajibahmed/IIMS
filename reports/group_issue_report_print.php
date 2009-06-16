@@ -44,7 +44,7 @@ require_once("../lib/helper_functions.php");
   <tr  class="report_item_name">
     <td height="35" align="center" valign="middle" class="table1">Issue No. </td>
     <td align="center" valign="middle" class="table2">Issue Date </td>
-    <td align="center" valign="middle" class="table2">M/C Code </td>
+   
     <td align="center" valign="middle" class="table2">Machine Name </td>
     <td align="center" valign="middle" class="table2">Item Code</td>
     <td align="center" valign="middle" class="table2">Item Name </td>
@@ -60,23 +60,48 @@ require_once("../lib/helper_functions.php");
 
 			?>
   <tr >
-    <td align="center" valign="middle" class="table4"><?php echo $Data[$i]['cm_id']; ?></td>
-    <td align="center" valign="middle" class="table5"><?php echo formatted_date($Data[$i]['created_at']); ?></td>
-    <td align="center" valign="middle" class="table5"><?php echo $Data[$i]['m_id']; ?></td>
-    <td align="center" valign="middle" class="table5"><?php echo $Data[$i]['m_name']; ?></td>
-    <td align="center" valign="middle" class="table5"><?php echo $Data[$i]['stock_item_id']; ?></td>
-    <td align="center" valign="middle" class="table5"><?php echo $Data[$i]['stock_item_name']; ?></td>
-    <td align="center" valign="middle" class="table5"><?php //echo $DataItemUnit[0]['stock_item_unit_name']; ?></td>
-    <td align="right" valign="middle" class="table5"><?php echo $Data[$i]['consumptions_qunatity']; ?></td>
-    <td align="right" valign="middle" class="table5"><?php echo $Data[$i]['consumptions_rate']; ?></td>
-    <td align="right" valign="middle" class="table6"><?php echo $TotalPrice=($Data[$i]['consumptions_qunatity']* $Data[$i]['consumptions_rate']); ?></td>
+	    <td align="center" valign="middle" class="table4">
+	    	<?php echo $Data[$i]['cm_id']; ?>		
+    	</td>
+		
+	    <td align="center" valign="middle" class="table5">
+	    	<?php echo formatted_date($Data[$i]['created_at']); ?>		
+    	</td>
+		
+	  
+	    <td align="center" valign="middle" class="table5">
+	    	<?php echo $Data[$i]['m_name']; ?>		
+    	</td>
+
+	    <td align="center" valign="middle" class="table5">
+	    	<?php echo $Data[$i]['stock_code']; ?>		
+    	</td>
+		
+	    <td align="center" valign="middle" class="table5">
+	    	<?php echo $Data[$i]['stock_item_name']; ?>		
+    	</td>
+
+	    <td align="center" valign="middle" class="table5">
+	    	<?php echo $Data[$i]['stock_part']; ?>		
+    	</td>
+		
+	    <td align="right" valign="middle" class="table5">
+	    	<?php echo $Data[$i]['consumptions_qunatity']; ?>		
+    	</td>
+	    <td align="right" valign="middle" class="table5">
+	    	<?php echo $Data[$i]['consumptions_rate']; ?>		
+    	</td>
+    	
+	    <td align="right" valign="middle" class="table6">
+	    	<?php echo $TotalPrice=($Data[$i]['consumptions_qunatity']* $Data[$i]['consumptions_rate']); ?>		</td>
   </tr>
   <?php $grandTotalPrice=$grandTotalPrice+$TotalPrice;
 		$grandTotalPrice=(float) $grandTotalPrice;
 	  } ?>
   <tr>
-    <td height="35" colspan="9" align="right" valign="middle" class="lastTable">Grand Total : </td>
-    <td align="right" valign="middle" class="lastTable"><?php echo $grandTotalPrice;  ?></td>
+    <td height="35" colspan="8" align="right" valign="middle" class="lastTable">Grand Total : </td>
+    <td height="35" align="right" valign="middle" class="lastTable"><?php echo $grandTotalPrice;  ?></td>
+    
   </tr>
 </table>
 </body>

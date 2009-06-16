@@ -59,7 +59,7 @@ $stockMachineName=options_for_select(	$objStockItemInfo->retriveMachineName(),
             <option value="<?php echo $StockLocationInfo[$i]['stock_location_id']; ?>" > <?php echo $StockLocationInfo[$i]['stock_location_name']; ?></option>
             <?php } ?>
           </select></td>
-    <td><input type="text"  name="item_qty[]"  class="item_qty1"/></td>
+    <td><input type="text"  name="item_qty[]"  class="item_qty"/></td>
     <td>			<input type="text"  name="item_rate[]"  class="item_rate" />
 </td>
     <td><input type="text" name="item_total[]" value="" class="item_total"/></td>
@@ -120,15 +120,15 @@ $stockMachineName=options_for_select(	$objStockItemInfo->retriveMachineName(),
       	return false;
     });
 	
-	 $('.item_rate').blur(function(){
-		var parent= $(this).parent();
-		var qty  = parseFloat(parent.find('.item_qty1:first').val());
+	$('.item_rate').blur(function(){
+		var parent= $(this).parent().parent();
+		var qty  = parseFloat(parent.find('.item_qty:first').val());
 		var rate = parseFloat(parent.find('.item_rate:first').val());
-		
+		//alert(qty);
 		var total= qty*rate;
 		parent.find('.item_total:first').attr('value',total);
 		return false;
-	})
+	})   
 	
 	$(".date").dynDateTime({
 	//showsTime: true,

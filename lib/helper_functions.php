@@ -108,7 +108,7 @@
 			
 			foreach( $options as $option )
 			{
-				$output .="<option value=\"$option[$value]\">".$option[$display].'          ,'.$option[$display2]."</option>";
+				$output .="<option value=\"$option[$value]\">".$option[$display].'<strong>,'.$option[$display2]."</strong></option>";
 			}
 			return $output;
 		}

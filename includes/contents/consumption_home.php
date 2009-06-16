@@ -1,15 +1,15 @@
 <div class="rightcontent1">
         <div class="bodybanner1"></div>
-        <div class="bodybanner2">Create Master</div>
+        <div class="bodybanner2">Consumption</div>
         <div class="bodybanner3"></div>
     </div>
 <div id="inventory" class="column">
 
 <ul>
 	 <li><a 
-	 	title='Create Consumption'
+	 	title='Consumption-Eng. Item'
 	 	href="includes/contents/create_consumption.php?height=300&width=700"
-	 	class='thickbox'>Create Consumption</a></li>
+	 	class='thickbox'>Consumption-Eng. Item</a></li>
 	 <li>
 	 	<a 
 		title='Consumption Raw Material'	 	href="includes/contents/create_consumption_raw_item.php?height=300&width=700"

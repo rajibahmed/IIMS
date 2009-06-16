@@ -1,11 +1,13 @@
 <?php
  	require_once('../../lib/defination.class.php');
 	include('../../lib/stock.class.php');
+	include('../../lib/raw_item.class.php');
 	require_once('../../lib/consumption.class.php');
 	$stock=new Stock;
 	$Consumption=new Consumption;
 	$stock_info =	$stock->retriveStockItem();
-	$output=options_for_select(	$stock->retriveStockItem(),
+	$rawItem= new rawItem;
+	$output=options_for_select(	$rawItem->retriveRawItem(),
 								'stock_item_id',
 								'stock_item_name'
 								);
@@ -16,16 +18,16 @@
 								'stock_item_part_id'
 								);
 	$locations=options_for_select(	$stock->retriveLocation(),
-								'stock_location_id',
+								'stock_location_name',
 								'stock_location_name'
 								);
 								
-	$num = $Consumption->getNewId();							
+	$num = $Consumption->getissueRawNewId();							
  ?>
 
 <div id="note"> </div>
 
-<form id="consumptionForm" name="consumptionForm" method="post"  action="includes/model/consumption_actions.php" >	
+<form id="consumptionForm" name="consumptionForm" method="post"  action="includes/model/consumption_raw_actions.php" >	
 
 
 	<div class='morelabel'>
@@ -33,9 +35,9 @@
 		<p>
 			
 				<label>Consumption # </label>
-			<input type="text" disabled value="<?php echo generate_timestamp('CON',$num); ?>"  />
+			<input type="text" disabled value="<?php echo generate_timestamp('CON-R',$num); ?>"  />
 			<input type="hidden" name="con_num" 
-				value="<?php echo generate_timestamp('CON',$num); ?>" 
+				value="<?php echo generate_timestamp('CON-R',$num); ?>" 
 				id="con_num" />	
 							
 		</p>
@@ -60,8 +62,8 @@
             <div class="lowbannertest">
 			<ul>
 				<li style="width:190px">Item</li> 
-				<li style="width:100px">Code #</li> 
-				<li style="width:120px">Part #</li> 
+				<!--<li style="width:100px">Code #</li> 
+				<li style="width:120px">Part #</li> -->
 				<li style="width:100px"> Location  </li> 
 				<li  style="width:60px">Quantity</li> 
 				<li >Rate</li> 
@@ -71,19 +73,19 @@
             <div class="lowbanner3"> </div>	
 		</div>	 
 		<div class="row_elements">
-			<select class="stock_item_select" style="width:180px"name="stock_item[]"  >
+			<select class="stock_item_select" style="width:180px"name="item_code[]"  >
 				<?php echo $output; ?>
 			</select>
 			
-			<input type="text" 
+			<!--<input type="text" 
 			name="item_code[]" value="" 
 			class="stock_item_code" / >
 			
 			<input type="text" 
 			name="stock_part_code[]" value="" 
-			class="stock_part_code"/>	
+			class="stock_part_code"/>	-->
 			
-			<select name="ConlocationId" >
+			<select name="ConlocationId[]" >
 			<?php echo $locations ; ?>
 			</select>
 			
@@ -107,11 +109,7 @@
   		</div>
 
 </form>
-<div class="rightimg3">
-        <div class="downimg1"></div>
-        <div class="downimg2"></div>
-        <div class="downimg3"></div>
-    </div>
+
 	 
 <script type='text/javascript'>
 

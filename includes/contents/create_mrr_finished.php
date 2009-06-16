@@ -1,38 +1,40 @@
 <?php
  	require_once('../../lib/defination.class.php');
-	include('../../lib/stock.class.php');
-	include('../../lib/raw_item.class.php');
+	include('../../lib/supplier.class.php');
+	include('../../lib/finish_item.class.php');
+	include('../../lib/indent.class.php');
 	include('../../lib/mrr.class.php');
-	include('../../lib/supplier.class.php'); 
+	include('../../lib/stock.class.php');
 	$stock=new Stock;
-	$MRR= new MRR;
-	$rawItem= new rawItem;
-
-	$stock_info =	$rawItem->retriveRawItem();
-	$output=options_for_select(	$stock_info,
+	$finishItem= new finishItem;
+	$MRR=new MRR;
+	
+	$output=options_for_select(	$finishItem->retriveFinishItem(),
 								'stock_item_id',
 								'stock_item_name'
 								);
-	//echo $output;							
-	$part_number=options_for_select(	$stock_info,
-								'stock_item_part_id',
-								'stock_item_part_id'
-								);
-	$locations=options_for_select(	$stock->retriveLocation(),
-								'stock_location_id',
-								'stock_location_name'
-								);
+								
+	// get suppliers info for combo box;
 	$Supplier = new Supplier;
 	$outputSupplierItem=options_for_select($Supplier->retriveSupplierInfo(),
 									'sup_id',
 									'sup_name',
-									true);							
+									true);
+    $Indent = new Indent;
+	$outputIndentNo=options_for_select($Indent->retriveIndendInfo(),
+									'indent_id',
+									'indent_code',
+									true);	
+	$locations=options_for_select(	$stock->retriveLocation(),
+								'stock_location_id',
+								'stock_location_name'
+								);	
 								
-	$num = $MRR->getMRRrawId();
+	$num = $MRR->getMRRFinishId();	
 							
  ?>
 
-<form id="consumptionForm" name="consumptionForm" method="post"   action="includes/model/mrr_by_lc_actions.php" >	
+<form id="consumptionForm" name="consumptionForm" method="post"   action="includes/model/mrr_finish_actions.php" >	
 
 		
 	
@@ -42,9 +44,9 @@
 		<p>
 			
 				<label>MRR # </label>
-			<input type="text" disabled value="<?php echo generate_timestamp('MRR-R',$num); ?>"  />
+			<input type="text" disabled value="<?php echo generate_timestamp('MRR-F',$num); ?>"  />
 			<input type="hidden" name="mrr_num" 
-				value="<?php echo generate_timestamp('MRR-R',$num); ?>" 
+				value="<?php echo generate_timestamp('MRR-F',$num); ?>" 
 				id="req_num" />	
 							
 		</p>
@@ -69,7 +71,17 @@
 		</p>
 	
 	</div >
-	
+	<!--<div class='morelabel'>
+		<p>	
+			<label>LC NO:</label>
+			<input type="text" name="lc_no" value="" />
+		</p>
+		
+		<p>	
+			<label>Lot NO:</label>
+			<input type="text" name="lot_no" value="" />
+		</p>
+	</div>	-->
 	
 	<div style="clear:both"> </div>
 	<div id="inline_form">
@@ -94,7 +106,7 @@
 		
 		 
 		<div class="small_row_elements">
-			<select class="stock_item_select" style="width:220px"  name="stock_item[]">
+			<select class="stock_item_select" style="width:220px"  name="item_code[]">
 				<?php echo $output; ?>
 			</select>
 			
@@ -104,7 +116,7 @@
 					<input type="text"  name="item_qty[]" value="" class="item_qty"/>
 			<input type="text"  name="item_rate[]" value="" class="item_rate" />
 			
-			<input type="text" name="item_total[]" value="" style="width:80px" class="item_total"/>
+			<input type="text" name="item_amount[]" value="" style="width:80px" class="item_total"/>
 			
 		</div>
 		<div id="add_remove"> 
@@ -130,7 +142,7 @@
   		var stock_item_number=$(this).val();
 		
 		$.getJSON(	
-			'includes/pages/stock_item_onchange.php',
+			'includes/pages/finish_stock_item_onchange.php',
 			{id:stock_item_number},
 			function(data){
 				parent.find('.item_description:first').attr('value',data.stock_item_desc);

@@ -2,22 +2,44 @@
 require_once('../../lib/defination.class.php');
 require_once ("../../lib/stock.class.php");
 require_once('../../lib/defination.class.php');
+include('../../lib/supplier.class.php');
+include('../../lib/lc.class.php');
+include('../../lib/lot.class.php');
 
 //// Retrive Stock Group Name
 $objStockGroupInfo = new Stock();
 $stock=new Stock();
 $StockGrpInfo=$objStockGroupInfo->retriveStockGroupUnderInfo();
 $StockGrpInfo_options = options_for_select(	$StockGrpInfo,
-											'stock_group_id',
+											'stock_group_name',
 											'stock_group_name',
 											true	
 										);
 //// Retrive Stock Unit Name
 $unitName=options_for_select(	$stock->retriveStockUnit(),
-											'stock_item_unit_id',
+											'stock_item_unit_name',
 											'stock_item_unit_name',
 											true	
 										);	
+$Supplier = new Supplier;
+$outputSupplierItem=options_for_select($Supplier->retriveSupplierInfo(),
+									'sup_name',
+									'sup_name',
+									true);	
+$LC = new LC;
+$outputLC=options_for_select($LC->retriveLcInfo(),
+									'lc_name',
+									'lc_name',
+									true);	
+$Lot = new Lot;
+$outputLot=options_for_select($Lot->retriveLotInfo(),
+									'lot_name',
+									'lot_name',
+									true);	
+
+$StockLocationInfo=$stock->retriveLocation();
+$rowStockLocation=count($StockLocationInfo);																			
+										
 /////////////////////////////////										
 @session_start();
 	
@@ -78,6 +100,48 @@ $unitName=options_for_select(	$stock->retriveStockUnit(),
     <td>Staple Length </td>
     <td><input name="length" type="text" class="inventori_txtfield" id="length"></td>
   </tr>
+   <tr>
+    <td>Date </td>
+    <td><input name="date" type="text" class="inventori_txtfield" id="date"></td>
+  </tr>
+  
+  <tr>
+    <td>LC </td>
+    <td><select name="lc" id="lc" class="inventori_txtfield" >
+      <?php echo $outputLC; ?>
+    </select></td>
+  </tr>
+  
+   <tr>
+    <td>LOT </td>
+   <td><select name="lot" id="lot" class="inventori_txtfield" >
+      <?php echo $outputLot; ?>
+    </select></td> 
+  </tr>
+  <tr>
+    <td>Suplier </td>
+   <td><select name="suplier" id="suplier" class="inventori_txtfield" >
+      <?php echo $outputSupplierItem; ?>
+    </select></td> 
+  </tr>
+    <tr>
+      <td>Location</td>
+    <td><select name="locationID" id="locationID" class="inventori_txtfield" >
+            <option value="0">Select One </option>
+            <?php
+					for($i=0; $i<$rowStockLocation; $i++)
+					 {
+				
+				 ?>
+            <option value="<?php echo $StockLocationInfo[$i]['stock_location_name']; ?>" > <?php echo $StockLocationInfo[$i]['stock_location_name']; ?></option>
+            <?php } ?>
+          </select></td>
+  </tr>
+  
+    <td>QA </td>
+    <td><input name="qa" type="text" class="inventori_txtfield" id="qa"></td>
+  </tr>
+  
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -170,7 +234,7 @@ $unitName=options_for_select(	$stock->retriveStockUnit(),
       	return false;
     });
 	
-	$('.opQnty').blur(function(){
+	/*$('.opQnty').blur(function(){
 		var parent= $(this).parent().parent();
 		console.log(parent);  
 		var qty  = parseFloat(parent.find('.opQnty:first').val());
@@ -178,7 +242,7 @@ $unitName=options_for_select(	$stock->retriveStockUnit(),
 		window.open('includes/contents/localtionRawOpQty.php?qty='+qty,'mywindow',		'width=900,height=200,top=300,left=30')
 		
 		
-	})
+	})*/
 	
 	$('.OpRate').blur(function(){
 		var parent= $(this).parent().parent();

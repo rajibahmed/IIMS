@@ -24,7 +24,7 @@
 		    <a href='includes/contents/create_engineering_requisition.php?height=400&width=760' class='thickbox'> Engineering Requisition </a> 
 		</li>	
 		 <li>
-		    <a href='includes/contents/create_general_requisition.php?height=400&width=560' class='thickbox'> General Requisition </a> 
+		    <a href='includes/contents/create_general_requisition.php?height=400&width=760' class='thickbox'> General Requisition </a> 
 		</li>		    
 		<li class="left-menu-item" id="my_requisitions"><a class='thickbox'  href='includes/contents/my_requisitions.php?height=400&width=700'>My Requisitions</a></li>
 		
@@ -132,10 +132,11 @@
 	<li>
   		 <a href='includes/contents/production_reciept.php?height=400&width=800' class='thickbox'>Production  Voucher </a>  
 	</li>
+	<li class="left-menu-item" id="indent_home">
+		<a href="#/indent_home">Indent</a>
+	</li>
 	
-	<li>
-   		<a href='includes/contents/create_indent.php?height=400&width=800' class='thickbox'>Create Indent</a>  
-   </li>
+	
 	<!--<li class="left-menu-item" id="create_sample_sending"><a href="#">Create Sample Sending</a></li>-->
 	
 	<li class="left-menu-item" id="stock_return_home">

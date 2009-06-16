@@ -7,10 +7,10 @@ $objStockItemInfo = new Stock();
 		extract($_POST);
 		
 		//get a new id
-		$StockItemId = $finishItem->getNewFinishItemId();
+		//$StockItemId = $objStockItemInfo->getNewStockItemId();
 		/////////////////////////////
 		
-		$getData = "'$StockItemId','$stkName','$stkGrp','$unitId','$altUnitId','$unitRel1','$unitRel2','$count','$lot','$txtStkcode','$desc','','','','$opQnty','$OpRate','$opValue','$opQnty','','',''";
+		$getData = "'','$stkName','$stkGrp','$unitId','$altUnitId','$unitRel1','$unitRel2','$count','$lot','$knit','$qa','$p_date','$remark','$machine','$locationID','$txtStkcode','$desc','','','','$opQnty','$OpRate','$opValue','$opQnty','','',''";
 		
 		
 		$finishItem->CreateFinishItem($getData);

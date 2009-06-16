@@ -1,0 +1,2432 @@
+-- phpMyAdmin SQL Dump
+-- version 3.1.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Jun 14, 2009 at 09:40 PM
+-- Server version: 5.1.30
+-- PHP Version: 5.2.8
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `iims`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id` int(10) unsigned NOT NULL,
+  `comment_text` mediumtext NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `requsition_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `comments`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `companies`
+--
+
+CREATE TABLE IF NOT EXISTS `companies` (
+  `company_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `company_name` varchar(255) NOT NULL,
+  `company_mailing_name` varchar(100) NOT NULL,
+  `company_address` varchar(255) NOT NULL,
+  `company_phone` varchar(255) NOT NULL,
+  `company_email` varchar(100) NOT NULL,
+  `company_financial_year_start` date NOT NULL,
+  `company_financial_year_end` date NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`company_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `companies`
+--
+
+INSERT INTO `companies` (`company_id`, `company_name`, `company_mailing_name`, `company_address`, `company_phone`, `company_email`, `company_financial_year_start`, `company_financial_year_end`, `created_at`, `updated_at`) VALUES
+(1, 'Square Textiles Ltd.', 'Saradaganj, Kashimpur, Gazipur', 'Saradaganj, Kashimpur, Gazipur', '7701232,7701355', 'info@squaregroup.com', '2009-01-01', '2009-12-31', '0000-00-00 00:00:00', '2009-05-12 19:30:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `consumptions_master`
+--
+
+CREATE TABLE IF NOT EXISTS `consumptions_master` (
+  `cm_id` int(11) NOT NULL AUTO_INCREMENT,
+  `consumption_num` varchar(30) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`cm_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `consumptions_master`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `consumptions_raw_master`
+--
+
+CREATE TABLE IF NOT EXISTS `consumptions_raw_master` (
+  `cm_id` int(11) NOT NULL AUTO_INCREMENT,
+  `consumption_num` varchar(30) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`cm_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `consumptions_raw_master`
+--
+
+INSERT INTO `consumptions_raw_master` (`cm_id`, `consumption_num`, `location`, `created_at`, `user_id`) VALUES
+(1, 'CON-R#1-2009', '', '2009-06-13 19:31:16', 4),
+(2, 'CON-R#2-2009', '', '2009-06-13 19:35:06', 4),
+(3, 'CON-R#3-2009', '', '2009-06-13 19:39:55', 4),
+(4, 'CON-R#4-2009', '', '2009-06-13 19:40:48', 4),
+(5, 'CON-R#5-2009', '', '2009-06-13 19:43:19', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `consumption_details`
+--
+
+CREATE TABLE IF NOT EXISTS `consumption_details` (
+  `cd_id` int(11) NOT NULL AUTO_INCREMENT,
+  `consumptions_master_id` int(11) NOT NULL,
+  `stock_item_id` int(11) NOT NULL,
+  `consumption_location` int(11) NOT NULL,
+  `consumptions_qunatity` int(11) NOT NULL DEFAULT '0',
+  `consumptions_rate` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `consumption_value` float(10,2) NOT NULL,
+  PRIMARY KEY (`cd_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `consumption_details`
+--
+
+INSERT INTO `consumption_details` (`cd_id`, `consumptions_master_id`, `stock_item_id`, `consumption_location`, `consumptions_qunatity`, `consumptions_rate`, `consumption_value`) VALUES
+(1, 1, 51, 0, 10, 1000.00, 10000.00),
+(2, 1, 28, 0, 6, 200.00, 1200.00);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `consumption_raw_details`
+--
+
+CREATE TABLE IF NOT EXISTS `consumption_raw_details` (
+  `cd_id` int(11) NOT NULL AUTO_INCREMENT,
+  `consumptions_master_id` int(11) NOT NULL,
+  `stock_item_id` int(11) NOT NULL,
+  `consumption_location` varchar(30) NOT NULL,
+  `consumptions_qunatity` int(11) NOT NULL DEFAULT '0',
+  `consumptions_rate` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `consumption_value` float(10,2) NOT NULL,
+  PRIMARY KEY (`cd_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `consumption_raw_details`
+--
+
+INSERT INTO `consumption_raw_details` (`cd_id`, `consumptions_master_id`, `stock_item_id`, `consumption_location`, `consumptions_qunatity`, `consumptions_rate`, `consumption_value`) VALUES
+(1, 1, 1, '0', 10, 100.00, 1000.00),
+(2, 2, 2, '0', 10, 2000.00, 20000.00),
+(3, 3, 1, 'R', 5, 100.00, 500.00),
+(4, 4, 1, 'R', 10, 100.00, 1000.00),
+(5, 4, 2, 'o', 20, 200.00, 4000.00),
+(6, 5, 1, 'Unit-I', 10, 100.00, 1000.00);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `count`
+--
+
+CREATE TABLE IF NOT EXISTS `count` (
+  `count_id` int(11) NOT NULL AUTO_INCREMENT,
+  `count_name` varchar(25) NOT NULL,
+  PRIMARY KEY (`count_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `count`
+--
+
+INSERT INTO `count` (`count_id`, `count_name`) VALUES
+(1, 'Count'),
+(2, 'Count Try'),
+(3, 'Try 123'),
+(4, 'count-1'),
+(5, 'count-2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivery_challan_details`
+--
+
+CREATE TABLE IF NOT EXISTS `delivery_challan_details` (
+  `delivery_challan_d_id` int(11) NOT NULL AUTO_INCREMENT,
+  `delivery_challan_m_id` int(11) NOT NULL,
+  `stock_item_id` int(11) NOT NULL,
+  `gate_pass_no` varchar(100) NOT NULL,
+  `qunty` varchar(11) NOT NULL,
+  `naration` varchar(255) NOT NULL,
+  PRIMARY KEY (`delivery_challan_d_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `delivery_challan_details`
+--
+
+INSERT INTO `delivery_challan_details` (`delivery_challan_d_id`, `delivery_challan_m_id`, `stock_item_id`, `gate_pass_no`, `qunty`, `naration`) VALUES
+(1, 2, 28, '1', '6', 'wwew'),
+(2, 2, 51, '1', '10', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivery_challan_master`
+--
+
+CREATE TABLE IF NOT EXISTS `delivery_challan_master` (
+  `delivery_challan_id` int(11) NOT NULL,
+  `delivery_challan_no` varchar(30) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `contact_name` varchar(100) NOT NULL,
+  `consignee_ref` varchar(100) NOT NULL,
+  `our_ref_no` varchar(100) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`delivery_challan_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `delivery_challan_master`
+--
+
+INSERT INTO `delivery_challan_master` (`delivery_challan_id`, `delivery_challan_no`, `create_date`, `contact_name`, `consignee_ref`, `our_ref_no`, `user_id`) VALUES
+(1, 'Delivery#1-2008', '2009-06-11 06:24:03', 'sdsdsd', 'sdsds', '2323', 4),
+(2, 'Delivery#2-2009', '2009-06-13 17:34:23', 'wewe', 'wewe', 'wewe', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `departments`
+--
+
+CREATE TABLE IF NOT EXISTS `departments` (
+  `department_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `department_name` varchar(255) NOT NULL,
+  `department_office_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`department_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`department_id`, `department_name`, `department_office_id`) VALUES
+(1, 'Utility Department', 0),
+(2, 'Store Department', 0),
+(3, 'Accounts & Finance Department', 0),
+(4, 'Quality Assurance Department', 0),
+(5, 'HR & Admin. Department', 0),
+(6, 'Production Department', 0),
+(7, 'Civil Department', 0),
+(8, 'Maintenance Department', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `finish_item`
+--
+
+CREATE TABLE IF NOT EXISTS `finish_item` (
+  `stock_item_id` int(11) NOT NULL AUTO_INCREMENT,
+  `stock_item_name` varchar(255) NOT NULL,
+  `stock_item_grp_id` varchar(30) NOT NULL,
+  `stock_item_unit_id` varchar(30) NOT NULL,
+  `stock_alt_unit` varchar(20) NOT NULL,
+  `unit_relation1` int(11) NOT NULL,
+  `unit_relation2` int(11) NOT NULL,
+  `count` varchar(30) NOT NULL,
+  `lot` varchar(100) NOT NULL,
+  `knit` varchar(5) NOT NULL,
+  `qa` varchar(5) NOT NULL,
+  `prod_date` varchar(20) NOT NULL,
+  `remark` varchar(255) NOT NULL,
+  `machine_name` varchar(255) NOT NULL,
+  `location` varchar(100) NOT NULL,
+  `stock_code_m_id` varchar(100) NOT NULL,
+  `stock_item_desc` varchar(255) NOT NULL,
+  `stock_minimum_stock` varchar(10) NOT NULL,
+  `stock_reorder_qty` varchar(10) NOT NULL DEFAULT '',
+  `last_purchase_rate` int(11) NOT NULL,
+  `stock_item_op_balance` int(11) NOT NULL,
+  `stock_item_op_rate` float(10,2) NOT NULL,
+  `stock_item_op_value` float(10,2) NOT NULL,
+  `stock_item_cl_balance` int(11) NOT NULL,
+  `stock_received_qty` int(11) NOT NULL,
+  `stock_issue_qty` int(11) NOT NULL,
+  `stock_rejected_qty` int(11) NOT NULL,
+  PRIMARY KEY (`stock_item_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `finish_item`
+--
+
+INSERT INTO `finish_item` (`stock_item_id`, `stock_item_name`, `stock_item_grp_id`, `stock_item_unit_id`, `stock_alt_unit`, `unit_relation1`, `unit_relation2`, `count`, `lot`, `knit`, `qa`, `prod_date`, `remark`, `machine_name`, `location`, `stock_code_m_id`, `stock_item_desc`, `stock_minimum_stock`, `stock_reorder_qty`, `last_purchase_rate`, `stock_item_op_balance`, `stock_item_op_rate`, `stock_item_op_value`, `stock_item_cl_balance`, `stock_received_qty`, `stock_issue_qty`, `stock_rejected_qty`) VALUES
+(1, 'finish-1', 'Spare Parts-Machanical ', 'Primary', 'Primary', 0, 0, 'Primary', 'Primary', '', '', '', '', 'Primary', '0', 'FG41', '', '', '', 0, 100, 200.00, 20000.00, 110, 10, 0, 0),
+(2, 'finish-2', 'Primary', 'Primary', 'Primary', 0, 0, 'Primary', 'Primary', '', '', '', '', 'Primary', '0', 'FG67', '', '', '', 0, 100, 20.00, 2000.00, 110, 10, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gate_pass_details`
+--
+
+CREATE TABLE IF NOT EXISTS `gate_pass_details` (
+  `gate_pass_d_id` int(11) NOT NULL AUTO_INCREMENT,
+  `gate_pass_m_id` int(11) NOT NULL,
+  `stock_item_id` int(11) NOT NULL,
+  `qunty` varchar(11) NOT NULL,
+  `naration` varchar(255) NOT NULL,
+  PRIMARY KEY (`gate_pass_d_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `gate_pass_details`
+--
+
+INSERT INTO `gate_pass_details` (`gate_pass_d_id`, `gate_pass_m_id`, `stock_item_id`, `qunty`, `naration`) VALUES
+(1, 1, 28, '6', 'wwew'),
+(2, 1, 51, '10', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gate_pass_master`
+--
+
+CREATE TABLE IF NOT EXISTS `gate_pass_master` (
+  `gate_pass_id` int(11) NOT NULL AUTO_INCREMENT,
+  `gate_pass_no` varchar(30) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `purpose` varchar(255) NOT NULL,
+  `contact_name` varchar(100) NOT NULL,
+  `contact_add` varchar(100) NOT NULL,
+  `status` int(11) NOT NULL,
+  `ref_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`gate_pass_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `gate_pass_master`
+--
+
+INSERT INTO `gate_pass_master` (`gate_pass_id`, `gate_pass_no`, `create_date`, `purpose`, `contact_name`, `contact_add`, `status`, `ref_id`, `user_id`) VALUES
+(1, 'GatePass#1-2008', '2009-06-11 02:08:31', 'sdsd', 'sdsds', 'wwew', 2, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `import_goods`
+--
+
+CREATE TABLE IF NOT EXISTS `import_goods` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `initial_offer_date` datetime NOT NULL,
+  `pi_num` varchar(100) NOT NULL,
+  `pi_date` datetime NOT NULL,
+  `factory_indent_num` varchar(100) NOT NULL,
+  `ic_num` varchar(100) NOT NULL,
+  `ic_date` datetime NOT NULL,
+  `goods_shipment_date` datetime NOT NULL,
+  `port_arrival_date` datetime NOT NULL,
+  `goods_deliv_date` datetime NOT NULL,
+  `factory_rec_date` datetime NOT NULL,
+  `short_supply_claim_date` datetime NOT NULL,
+  `short_supply_recive_date` datetime NOT NULL,
+  `remark` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `import_goods`
+--
+
+INSERT INTO `import_goods` (`id`, `initial_offer_date`, `pi_num`, `pi_date`, `factory_indent_num`, `ic_num`, `ic_date`, `goods_shipment_date`, `port_arrival_date`, `goods_deliv_date`, `factory_rec_date`, `short_supply_claim_date`, `short_supply_recive_date`, `remark`) VALUES
+(1, '2009-05-26 15:27:00', 'AD53244', '2009-05-19 15:27:21', 'ASF4325', 'WED3123456546', '2009-05-19 15:27:33', '2009-05-25 15:27:35', '2009-05-13 15:27:36', '2009-05-05 15:27:38', '2009-05-01 15:27:40', '0000-00-00 00:00:00', '2009-05-25 15:27:00', 'AFGB$%$#$');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `indents_master`
+--
+
+CREATE TABLE IF NOT EXISTS `indents_master` (
+  `indent_id` int(11) NOT NULL AUTO_INCREMENT,
+  `indent_code` varchar(255) NOT NULL,
+  `indent_remarks` mediumtext NOT NULL,
+  `created_at_fake` varchar(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`indent_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `indents_master`
+--
+
+INSERT INTO `indents_master` (`indent_id`, `indent_code`, `indent_remarks`, `created_at_fake`, `created_at`, `updated_at`) VALUES
+(1, 'indent#1-2009', 'Ok OK dfdfsdfs', '', '2009-06-03 19:24:09', '0000-00-00 00:00:00'),
+(2, 'indent#2-2009', 'sdds', '', '2009-06-13 23:41:15', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `indent_details`
+--
+
+CREATE TABLE IF NOT EXISTS `indent_details` (
+  `in_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `indent_master_id` int(11) NOT NULL,
+  `stock_item_id` int(10) unsigned NOT NULL,
+  `indent_qty` int(10) unsigned NOT NULL DEFAULT '0',
+  `requisition_master_id` int(11) NOT NULL,
+  PRIMARY KEY (`in_id`),
+  KEY `requisition_master_id` (`requisition_master_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `indent_details`
+--
+
+INSERT INTO `indent_details` (`in_id`, `indent_master_id`, `stock_item_id`, `indent_qty`, `requisition_master_id`) VALUES
+(1, 1, 2, 10, 1),
+(2, 1, 106, 60, 1),
+(3, 2, 130, 20, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lc`
+--
+
+CREATE TABLE IF NOT EXISTS `lc` (
+  `lc_id` int(11) NOT NULL AUTO_INCREMENT,
+  `lc_name` varchar(25) NOT NULL,
+  PRIMARY KEY (`lc_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `lc`
+--
+
+INSERT INTO `lc` (`lc_id`, `lc_name`) VALUES
+(1, 'LC-1'),
+(2, 'LC-2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `location_wise_finish_item`
+--
+
+CREATE TABLE IF NOT EXISTS `location_wise_finish_item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `stock_id` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  `location` varchar(100) NOT NULL,
+  `lot` varchar(100) NOT NULL,
+  `Knit` varchar(10) NOT NULL,
+  `count` varchar(100) NOT NULL,
+  `supplier` varchar(100) NOT NULL,
+  `machine` varchar(100) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `rate` float(10,2) NOT NULL,
+  `value` float(10,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `location_wise_finish_item`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `location_wise_raw_item`
+--
+
+CREATE TABLE IF NOT EXISTS `location_wise_raw_item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `stock_id` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  `location` varchar(100) NOT NULL,
+  `lot` varchar(100) NOT NULL,
+  `lc` varchar(100) NOT NULL,
+  `supplier` varchar(100) NOT NULL,
+  `machine` varchar(100) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `rate` float(10,2) NOT NULL,
+  `value` float(10,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `location_wise_raw_item`
+--
+
+INSERT INTO `location_wise_raw_item` (`id`, `stock_id`, `date`, `location`, `lot`, `lc`, `supplier`, `machine`, `qty`, `rate`, `value`) VALUES
+(1, 1, '0000-00-00 00:00:00', '2', 'lot1', 'LC-1', '1', '3', 12, 100.00, 1200.00);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `location_wise_stock_item`
+--
+
+CREATE TABLE IF NOT EXISTS `location_wise_stock_item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `stock_item_id` int(11) NOT NULL,
+  `location_id` int(11) NOT NULL,
+  `op_qty` int(11) NOT NULL,
+  `op_rate` float(10,2) NOT NULL,
+  `op_vale` float(10,2) NOT NULL,
+  `received_qty` int(11) NOT NULL,
+  `closing_qty` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=171 ;
+
+--
+-- Dumping data for table `location_wise_stock_item`
+--
+
+INSERT INTO `location_wise_stock_item` (`id`, `stock_item_id`, `location_id`, `op_qty`, `op_rate`, `op_vale`, `received_qty`, `closing_qty`) VALUES
+(1, 1, 1, 2, 980.00, 1960.00, 0, 2),
+(2, 2, 1, 4, 57849.00, 231396.00, 0, 4),
+(3, 3, 1, 1, 7860.00, 7860.00, 0, 1),
+(4, 4, 1, 4, 227.00, 908.00, 0, 4),
+(5, 6, 1, 1, 6548.00, 6548.00, 0, 1),
+(6, 6, 1, 1, 6548.00, 6548.00, 0, 1),
+(7, 7, 1, 11, 402.00, 4422.00, 0, 11),
+(8, 8, 2, 1, 1890.00, 1890.00, 0, 1),
+(9, 9, 2, 1, 2354.00, 2354.00, 0, 1),
+(10, 12, 2, 1, 2458.00, 2458.00, 0, 1),
+(11, 12, 2, 1, 320.00, 320.00, 0, 1),
+(12, 13, 2, 1, 350.00, 350.00, 0, 1),
+(13, 14, 2, 2, 400.00, 800.00, 0, 2),
+(14, 15, 2, 2, 8779.00, 17558.00, 0, 2),
+(15, 16, 2, 1, 40.00, 40.00, 0, 1),
+(16, 17, 3, 2, 6936.00, 13872.00, 0, 2),
+(17, 18, 3, 4, 7860.00, 31440.00, 0, 4),
+(18, 19, 0, 2, 1200.00, 2400.00, 0, 2),
+(19, 20, 25, 2, 1200.00, 2400.00, 0, 2),
+(20, 21, 33, 1, 698281.00, 698281.00, 0, 1),
+(21, 21, 2, 2, 5256.00, 10512.00, 0, 2),
+(22, 21, 33, 1, 698281.00, 698281.00, 0, 1),
+(23, 22, 25, 1, 14581.00, 14581.00, 0, 1),
+(24, 22, 33, 1, 125473.00, 125473.00, 0, 1),
+(25, 25, 25, 4, 19887.00, 79548.00, 0, 4),
+(26, 26, 36, 60, 21796.00, 1307760.00, 0, 60),
+(27, 27, 25, 31, 500.00, 15500.00, 0, 31),
+(28, 28, 33, 16, 300.00, 4800.00, 0, 16),
+(29, 29, 3, 2, 6760.00, 13520.00, 0, 2),
+(30, 30, 25, 20, 135.00, 2700.00, 0, 20),
+(31, 31, 26, 2, 300.00, 600.00, 0, 2),
+(32, 32, 27, 12, 20070.00, 240840.00, 0, 12),
+(33, 33, 4, 20, 3009.00, 60180.00, 0, 20),
+(34, 34, 27, 8, 11520.00, 92160.00, 0, 8),
+(35, 35, 37, 2, 250000.00, 500000.00, 0, 2),
+(36, 36, 27, 8, 22681.00, 181448.00, 0, 8),
+(37, 37, 27, 8, 17970.00, 143760.00, 0, 8),
+(38, 38, 5, 6, 6431.00, 38586.00, 0, 6),
+(39, 38, 38, 1, 40600.00, 40600.00, 0, 1),
+(40, 40, 124, 50, 3108.00, 155400.00, 0, 50),
+(41, 41, 26, 1, 4192.00, 4192.00, 0, 1),
+(42, 42, 40, 4, 146520.00, 586080.00, 0, 4),
+(43, 43, 25, 20, 8.00, 160.00, 0, 20),
+(44, 44, 34, 2, 2.00, 4.00, 0, 2),
+(45, 45, 25, 20, 6.00, 120.00, 0, 20),
+(46, 46, 37, 3, 51156.00, 153468.00, 0, 3),
+(47, 47, 25, 6, 400.00, 2400.00, 0, 6),
+(48, 48, 114, 62, 2465.00, 152830.00, 0, 62),
+(49, 49, 28, 2, 1298.00, 2596.00, 0, 2),
+(50, 50, 114, 68, 2638.00, 179384.00, 0, 68),
+(51, 51, 28, 15, 340.00, 5100.00, 0, 15),
+(52, 52, 37, 3, 200.00, 600.00, 0, 3),
+(53, 54, 33, 4, 500.00, 2000.00, 0, 4),
+(54, 55, 34, 2, 88500.00, 177000.00, 0, 2),
+(55, 56, 29, 5, 12433.00, 62165.00, 0, 5),
+(56, 57, 49, 6, 13148.00, 78888.00, 0, 6),
+(57, 59, 6, 3, 31919.00, 95757.00, 0, 3),
+(58, 59, 135, 54, 531.00, 28674.00, 0, 54),
+(59, 60, 6, 2, 12213.00, 24426.00, 0, 2),
+(60, 62, 7, 1, 8000.00, 8000.00, 0, 1),
+(61, 62, 7, 1, 8000.00, 8000.00, 0, 1),
+(62, 62, 129, 29, 1090.00, 31610.00, 0, 29),
+(63, 63, 7, 1, 8000.00, 8000.00, 0, 1),
+(64, 64, 39, 4, 15000.00, 60000.00, 0, 4),
+(65, 65, 11, 23, 53.00, 1219.00, 0, 23),
+(66, 66, 165, 1, 1260.00, 1260.00, 0, 1),
+(67, 66, 168, 71, 1591.00, 112961.00, 0, 71),
+(68, 68, 34, 10, 9890.00, 98900.00, 0, 10),
+(69, 69, 30, 4, 9400.00, 37600.00, 0, 4),
+(70, 70, 167, 1, 421490.00, 421490.00, 0, 1),
+(71, 71, 31, 5, 600.00, 3000.00, 0, 5),
+(72, 72, 165, 1, 1260.00, 1260.00, 0, 1),
+(73, 72, 115, 10, 0.00, 0.00, 0, 10),
+(74, 74, 32, 6, 2125.00, 12750.00, 0, 6),
+(75, 75, 84, 5, 150.00, 750.00, 0, 5),
+(76, 76, 42, 5, 950.00, 4750.00, 0, 5),
+(77, 77, 165, 1, 1260.00, 1260.00, 0, 1),
+(78, 78, 55, 12, 70.00, 840.00, 0, 12),
+(79, 79, 39, 33, 100.00, 3300.00, 0, 33),
+(80, 80, 31, 3, 8550.00, 25650.00, 0, 3),
+(81, 81, 167, 3, 1713.00, 5139.00, 0, 3),
+(82, 82, 165, 1, 1260.00, 1260.00, 0, 1),
+(83, 83, 179, 1, 76773.00, 76773.00, 0, 1),
+(84, 84, 169, 4, 1120.00, 4480.00, 0, 4),
+(85, 84, 55, 1, 43754.00, 43754.00, 0, 1),
+(86, 86, 128, 7, 355.00, 2485.00, 0, 7),
+(87, 87, 76, 32, 600.00, 19200.00, 0, 32),
+(88, 88, 170, 4, 1862.00, 7448.00, 0, 4),
+(89, 89, 128, 4, 526.00, 2104.00, 0, 4),
+(90, 90, 32, 117, 141.00, 16497.00, 0, 117),
+(91, 91, 128, 1071, 29.00, 31059.00, 0, 1071),
+(92, 92, 171, 2, 13770.00, 27540.00, 0, 2),
+(93, 93, 76, 4, 25960.00, 103840.00, 0, 4),
+(94, 93, 32, 7, 11610.00, 81270.00, 0, 7),
+(95, 94, 32, 15, 169.00, 2535.00, 0, 15),
+(96, 95, 172, 2, 7318.00, 14636.00, 0, 2),
+(97, 97, 180, 8, 363.00, 2904.00, 0, 8),
+(98, 98, 76, 4, 25960.00, 103840.00, 0, 4),
+(99, 99, 59, 2, 60.00, 120.00, 0, 2),
+(100, 99, 173, 30, 200.00, 6000.00, 0, 30),
+(101, 101, 47, 2, 300.00, 600.00, 0, 2),
+(102, 102, 47, 2, 300.00, 600.00, 0, 2),
+(103, 102, 173, 22, 200.00, 4400.00, 0, 22),
+(104, 104, 127, 240, 18.00, 4320.00, 0, 240),
+(105, 105, 180, 2, 12744.00, 25488.00, 0, 2),
+(106, 105, 46, 2, 500.00, 1000.00, 0, 2),
+(107, 107, 173, 3, 750.00, 2250.00, 0, 3),
+(108, 108, 45, 6, 2018.00, 12108.00, 0, 6),
+(109, 109, 173, 17, 927.00, 15759.00, 0, 17),
+(110, 110, 73, 1, 41494.00, 41494.00, 0, 1),
+(111, 111, 127, 16, 309.00, 4944.00, 0, 16),
+(112, 112, 61, 2, 17652.00, 35304.00, 0, 2),
+(113, 113, 174, 10, 1457.00, 14570.00, 0, 10),
+(114, 113, 61, 1, 26274.00, 26274.00, 0, 1),
+(115, 115, 142, 27, 544.00, 14688.00, 0, 27),
+(116, 116, 61, 2, 3202.00, 6404.00, 0, 2),
+(117, 117, 175, 14, 7067.00, 97938.00, 0, 14),
+(118, 118, 60, 2, 21980.00, 43960.00, 0, 2),
+(119, 119, 174, 2, 40.00, 80.00, 0, 2),
+(120, 120, 165, 2, 3660.00, 7320.00, 0, 2),
+(121, 121, 60, 2, 12919.00, 25838.00, 0, 2),
+(122, 122, 176, 9, 698.00, 6282.00, 0, 9),
+(123, 123, 181, 51, 7.00, 357.00, 0, 51),
+(124, 124, 60, 2, 5553.00, 11106.00, 0, 2),
+(125, 125, 143, 91, 54.00, 4914.00, 0, 91),
+(126, 126, 60, 10, 361.00, 3610.00, 0, 10),
+(127, 127, 177, 25, 12.00, 300.00, 0, 25),
+(128, 128, 180, 4, 2236.00, 8944.00, 0, 4),
+(129, 128, 60, 1, 10191.00, 10191.00, 0, 1),
+(130, 130, 37, 5, 10000.00, 50000.00, 0, 5),
+(131, 130, 142, 141, 382.00, 53862.00, 0, 141),
+(132, 132, 177, 20, 102.00, 2040.00, 0, 20),
+(133, 133, 48, 3, 26083.00, 78249.00, 0, 3),
+(134, 134, 143, 27, 65.00, 1755.00, 0, 27),
+(135, 135, 38, 7, 6654.00, 46578.00, 0, 7),
+(136, 136, 178, 16, 170.00, 2720.00, 0, 16),
+(137, 137, 180, 1, 6240.00, 6240.00, 0, 1),
+(138, 138, 77, 8, 14616.00, 116928.00, 0, 8),
+(139, 139, 128, 4, 3198.00, 12792.00, 0, 4),
+(140, 140, 48, 2, 26005.00, 52010.00, 0, 2),
+(141, 141, 48, 3, 6270.00, 18810.00, 0, 3),
+(142, 142, 183, 5, 3514.00, 17570.00, 0, 5),
+(143, 143, 143, 4, 800.00, 3200.00, 0, 4),
+(144, 144, 169, 4, 9500.00, 38000.00, 0, 4),
+(145, 145, 165, 4, 369.00, 1476.00, 0, 4),
+(146, 146, 186, 9, 820.00, 7380.00, 0, 9),
+(147, 147, 128, 5, 5535.00, 27675.00, 0, 5),
+(148, 148, 187, 18, 1260.00, 22680.00, 0, 18),
+(149, 149, 128, 1, 3000.00, 3000.00, 0, 1),
+(150, 150, 156, 3, 15255.00, 45765.00, 0, 3),
+(151, 151, 188, 6, 690.00, 4140.00, 0, 6),
+(152, 151, 188, 6, 690.00, 4140.00, 0, 6),
+(153, 152, 128, 2, 243.00, 486.00, 0, 2),
+(154, 153, 158, 6, 2878.00, 17268.00, 0, 6),
+(155, 154, 188, 1, 5690.00, 5690.00, 0, 1),
+(156, 155, 180, 4, 370.00, 1480.00, 0, 4),
+(157, 156, 181, 28, 8.00, 224.00, 0, 28),
+(158, 157, 180, 4, 11162.00, 44648.00, 0, 4),
+(159, 158, 181, 4, 8.00, 32.00, 0, 4),
+(160, 159, 200, 18, 855.00, 15390.00, 0, 18),
+(161, 160, 182, 8, 257.00, 2056.00, 0, 8),
+(162, 161, 182, 3, 495.00, 1485.00, 0, 3),
+(163, 162, 182, 4, 1178.00, 4712.00, 0, 4),
+(164, 163, 182, 2, 8217.00, 16434.00, 0, 2),
+(165, 164, 182, 3, 27317.00, 81951.00, 0, 3),
+(166, 165, 185, 9, 8584.00, 77256.00, 0, 9),
+(167, 166, 158, 5, 540.00, 2700.00, 0, 5),
+(168, 166, 184, 11, 900.00, 9900.00, 0, 11),
+(169, 167, 189, 15, 1280.00, 19200.00, 0, 15),
+(170, 168, 184, 4, 600.00, 2400.00, 0, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lot`
+--
+
+CREATE TABLE IF NOT EXISTS `lot` (
+  `lot_id` int(99) NOT NULL,
+  `lot_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`lot_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `lot`
+--
+
+INSERT INTO `lot` (`lot_id`, `lot_name`) VALUES
+(1, 'lot1'),
+(2, 'lot2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mrr_details`
+--
+
+CREATE TABLE IF NOT EXISTS `mrr_details` (
+  `mrr_d_id` int(11) NOT NULL AUTO_INCREMENT,
+  `mrr_m_id` int(11) NOT NULL,
+  `location_id` int(11) NOT NULL,
+  `stock_item_id` int(11) NOT NULL,
+  `qunty` varchar(11) NOT NULL,
+  `rate` double(10,2) NOT NULL,
+  `rate_per` varchar(11) NOT NULL,
+  `amount` double(10,2) NOT NULL,
+  PRIMARY KEY (`mrr_d_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `mrr_details`
+--
+
+INSERT INTO `mrr_details` (`mrr_d_id`, `mrr_m_id`, `location_id`, `stock_item_id`, `qunty`, `rate`, `rate_per`, `amount`) VALUES
+(1, 1, 0, 2, '10', 200.00, '', 2000.00),
+(2, 1, 0, 106, '60', 100.00, '', 6000.00);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mrr_finish_item_details`
+--
+
+CREATE TABLE IF NOT EXISTS `mrr_finish_item_details` (
+  `mrr_d_id` int(11) NOT NULL AUTO_INCREMENT,
+  `mrr_m_id` int(11) NOT NULL,
+  `location_id` int(11) NOT NULL,
+  `stock_item_id` int(11) NOT NULL,
+  `qunty` varchar(11) NOT NULL,
+  `rate` double(10,2) NOT NULL,
+  `rate_per` varchar(11) NOT NULL,
+  `amount` double(10,2) NOT NULL,
+  PRIMARY KEY (`mrr_d_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `mrr_finish_item_details`
+--
+
+INSERT INTO `mrr_finish_item_details` (`mrr_d_id`, `mrr_m_id`, `location_id`, `stock_item_id`, `qunty`, `rate`, `rate_per`, `amount`) VALUES
+(1, 1, 0, 1, '10', 200.00, '', 2000.00),
+(2, 2, 0, 2, '10', 200.00, '', 2000.00);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mrr_finish_item_master`
+--
+
+CREATE TABLE IF NOT EXISTS `mrr_finish_item_master` (
+  `mrr_id` int(11) NOT NULL AUTO_INCREMENT,
+  `mrr_number` varchar(30) NOT NULL,
+  `mrr_create_date` datetime NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `purchase_m_id` int(11) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `indent_no` int(11) NOT NULL,
+  `mrr_lc_no` varchar(30) NOT NULL,
+  `mrr_lot_no` varchar(40) NOT NULL,
+  `mrr_flag` int(1) NOT NULL,
+  PRIMARY KEY (`mrr_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `mrr_finish_item_master`
+--
+
+INSERT INTO `mrr_finish_item_master` (`mrr_id`, `mrr_number`, `mrr_create_date`, `user_id`, `purchase_m_id`, `supplier_id`, `indent_no`, `mrr_lc_no`, `mrr_lot_no`, `mrr_flag`) VALUES
+(1, 'MRR#2-2009', '2009-06-13 18:00:42', 4, 0, 1, 0, '', '', 1),
+(2, 'MRR-F#2-2009', '2009-06-13 18:41:24', 4, 0, 2, 0, '', '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mrr_master`
+--
+
+CREATE TABLE IF NOT EXISTS `mrr_master` (
+  `mrr_id` int(11) NOT NULL AUTO_INCREMENT,
+  `mrr_number` varchar(30) NOT NULL,
+  `mrr_create_date` datetime NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `purchase_m_id` int(11) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `indent_no` int(11) NOT NULL,
+  `mrr_lc_no` varchar(30) NOT NULL,
+  `mrr_lot_no` varchar(40) NOT NULL,
+  `mrr_flag` int(1) NOT NULL,
+  PRIMARY KEY (`mrr_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `mrr_master`
+--
+
+INSERT INTO `mrr_master` (`mrr_id`, `mrr_number`, `mrr_create_date`, `user_id`, `purchase_m_id`, `supplier_id`, `indent_no`, `mrr_lc_no`, `mrr_lot_no`, `mrr_flag`) VALUES
+(1, 'MRR#1-2009', '2009-06-20 17:50:19', 4, 1, 1, 0, '', '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mrr_raw_item_details`
+--
+
+CREATE TABLE IF NOT EXISTS `mrr_raw_item_details` (
+  `mrr_d_id` int(11) NOT NULL AUTO_INCREMENT,
+  `mrr_m_id` int(11) NOT NULL,
+  `location_id` int(11) NOT NULL,
+  `stock_item_id` int(11) NOT NULL,
+  `qunty` varchar(11) NOT NULL,
+  `rate` double(10,2) NOT NULL,
+  `rate_per` varchar(11) NOT NULL,
+  `amount` double(10,2) NOT NULL,
+  PRIMARY KEY (`mrr_d_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `mrr_raw_item_details`
+--
+
+INSERT INTO `mrr_raw_item_details` (`mrr_d_id`, `mrr_m_id`, `location_id`, `stock_item_id`, `qunty`, `rate`, `rate_per`, `amount`) VALUES
+(1, 1, 0, 2, '100', 200.00, '', 20000.00);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mrr_raw_item_master`
+--
+
+CREATE TABLE IF NOT EXISTS `mrr_raw_item_master` (
+  `mrr_id` int(11) NOT NULL AUTO_INCREMENT,
+  `mrr_number` varchar(30) NOT NULL,
+  `mrr_create_date` datetime NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `purchase_m_id` int(11) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `indent_no` int(11) NOT NULL,
+  `mrr_lc_no` varchar(30) NOT NULL,
+  `mrr_lot_no` varchar(40) NOT NULL,
+  `mrr_flag` int(1) NOT NULL,
+  PRIMARY KEY (`mrr_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `mrr_raw_item_master`
+--
+
+INSERT INTO `mrr_raw_item_master` (`mrr_id`, `mrr_number`, `mrr_create_date`, `user_id`, `purchase_m_id`, `supplier_id`, `indent_no`, `mrr_lc_no`, `mrr_lot_no`, `mrr_flag`) VALUES
+(1, 'MRR-R#1-2009', '2009-06-15 18:34:09', 4, 0, 1, 0, '', '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `offices`
+--
+
+CREATE TABLE IF NOT EXISTS `offices` (
+  `office_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `office_name` varchar(255) NOT NULL,
+  `office_address` varchar(400) NOT NULL,
+  `office_phone` varchar(255) NOT NULL,
+  `office_mail` varchar(25) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`office_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `offices`
+--
+
+INSERT INTO `offices` (`office_id`, `office_name`, `office_address`, `office_phone`, `office_mail`, `created_at`, `updated_at`) VALUES
+(1, 'Factory', 'Saradagonj, Kashimpur, Gazipur', '', '', '2009-05-26 09:06:27', '2009-05-26 09:06:27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_details`
+--
+
+CREATE TABLE IF NOT EXISTS `purchase_details` (
+  `pd_id` int(11) NOT NULL AUTO_INCREMENT,
+  `pm_id` int(11) NOT NULL,
+  `stock_item_id` int(11) NOT NULL,
+  `qunty` varchar(11) NOT NULL,
+  `rate` double(10,2) NOT NULL,
+  `rate_per` varchar(11) NOT NULL,
+  `amount` double(10,2) NOT NULL,
+  PRIMARY KEY (`pd_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `purchase_details`
+--
+
+INSERT INTO `purchase_details` (`pd_id`, `pm_id`, `stock_item_id`, `qunty`, `rate`, `rate_per`, `amount`) VALUES
+(1, 1, 2, '10', 200.00, '', 2000.00),
+(2, 1, 106, '60', 100.00, '', 6000.00);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_master`
+--
+
+CREATE TABLE IF NOT EXISTS `purchase_master` (
+  `pm_id` int(11) NOT NULL AUTO_INCREMENT,
+  `pm_no` varchar(30) NOT NULL,
+  `sup_id` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  `indent_id` int(11) NOT NULL,
+  `naration` text NOT NULL,
+  `delivery_terms` text NOT NULL,
+  `termsofpayment` text NOT NULL,
+  `support` text NOT NULL,
+  `others` text NOT NULL,
+  PRIMARY KEY (`pm_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `purchase_master`
+--
+
+INSERT INTO `purchase_master` (`pm_id`, `pm_no`, `sup_id`, `date`, `indent_id`, `naration`, `delivery_terms`, `termsofpayment`, `support`, `others`) VALUES
+(1, 'Purchase#1-2008', 2, '2009-06-12 12:18:33', 3, '', 'terms and conditions', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `qc_details`
+--
+
+CREATE TABLE IF NOT EXISTS `qc_details` (
+  `qc_d_id` int(11) NOT NULL AUTO_INCREMENT,
+  `qc_m_id` int(11) NOT NULL,
+  `stock_item_id` int(11) NOT NULL,
+  `qunty` varchar(11) NOT NULL,
+  `rate` double(10,2) NOT NULL,
+  `rate_per` varchar(11) NOT NULL,
+  `amount` double(10,2) NOT NULL,
+  PRIMARY KEY (`qc_d_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `qc_details`
+--
+
+INSERT INTO `qc_details` (`qc_d_id`, `qc_m_id`, `stock_item_id`, `qunty`, `rate`, `rate_per`, `amount`) VALUES
+(1, 2, 2, '10', 200.00, '', 2000.00),
+(2, 2, 106, '60', 100.00, '', 6000.00),
+(3, 3, 2, '10', 200.00, '', 2000.00),
+(4, 3, 106, '60', 100.00, '', 6000.00);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `qc_master`
+--
+
+CREATE TABLE IF NOT EXISTS `qc_master` (
+  `qc_id` int(11) NOT NULL AUTO_INCREMENT,
+  `qc_number` varchar(30) NOT NULL,
+  `qc_create_date` datetime NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `mrr_m_id` int(11) NOT NULL,
+  `purchase_m_id` int(11) NOT NULL,
+  `indent_m_id` int(11) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  PRIMARY KEY (`qc_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `qc_master`
+--
+
+INSERT INTO `qc_master` (`qc_id`, `qc_number`, `qc_create_date`, `user_id`, `mrr_m_id`, `purchase_m_id`, `indent_m_id`, `supplier_id`) VALUES
+(1, 'QC#1-2009', '2009-06-13 04:38:24', 4, 1, 1, 0, 1),
+(2, 'QC#2-2009', '2009-06-13 04:41:07', 4, 1, 1, 0, 1),
+(3, 'QC#3-2009', '2009-06-14 10:47:14', 4, 1, 1, 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quotation_details`
+--
+
+CREATE TABLE IF NOT EXISTS `quotation_details` (
+  `qut_id` int(11) NOT NULL AUTO_INCREMENT,
+  `quot_master_id` int(11) NOT NULL,
+  `stock_item_id` int(11) NOT NULL,
+  `Required_qnty` int(100) NOT NULL,
+  `product_orgin` varchar(100) NOT NULL,
+  `brand` varchar(100) NOT NULL,
+  `delivery_time` varchar(50) NOT NULL,
+  `price` double(10,2) NOT NULL,
+  `warranty` varchar(100) NOT NULL,
+  PRIMARY KEY (`qut_id`),
+  KEY `quot_master_id` (`quot_master_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `quotation_details`
+--
+
+INSERT INTO `quotation_details` (`qut_id`, `quot_master_id`, `stock_item_id`, `Required_qnty`, `product_orgin`, `brand`, `delivery_time`, `price`, `warranty`) VALUES
+(1, 1, 2, 10, 'ABCD', 'ABCD', 'ABCD', 125.99, 'yes'),
+(2, 1, 106, 60, 'dfsfafsa', 'dfdsfsd', 'FFF', 555.00, 'no'),
+(3, 2, 2, 10, '', '', '', 2633.00, ''),
+(4, 2, 4, 60, '', '', '', 33.00, ''),
+(5, 3, 2, 10, 'sdsd', '', '', 0.00, ''),
+(6, 3, 106, 60, '', '', '', 0.00, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quotation_master`
+--
+
+CREATE TABLE IF NOT EXISTS `quotation_master` (
+  `quot_master_id` int(11) NOT NULL AUTO_INCREMENT,
+  `indent_id` int(11) NOT NULL,
+  `sup_id` int(11) NOT NULL,
+  PRIMARY KEY (`quot_master_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `quotation_master`
+--
+
+INSERT INTO `quotation_master` (`quot_master_id`, `indent_id`, `sup_id`) VALUES
+(1, 3, 1),
+(2, 3, 2),
+(3, 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `raw_item`
+--
+
+CREATE TABLE IF NOT EXISTS `raw_item` (
+  `stock_item_id` int(11) NOT NULL,
+  `stock_item_name` varchar(255) NOT NULL,
+  `stock_item_grp_id` varchar(100) NOT NULL,
+  `stock_item_unit_id` varchar(20) NOT NULL,
+  `stock_alt_unit` varchar(30) NOT NULL,
+  `unit_relation1` int(11) NOT NULL,
+  `unit_relation2` int(11) NOT NULL,
+  `length` varchar(30) NOT NULL,
+  `date` varchar(20) NOT NULL,
+  `lc` varchar(30) NOT NULL,
+  `supplier` varchar(255) NOT NULL,
+  `lot` varchar(30) NOT NULL,
+  `issue_location` varchar(50) NOT NULL,
+  `location` varchar(50) NOT NULL,
+  `qa` varchar(5) NOT NULL,
+  `stock_code_m_id` varchar(50) NOT NULL,
+  `stock_item_desc` varchar(255) NOT NULL,
+  `stock_minimum_stock` varchar(10) NOT NULL,
+  `stock_reorder_qty` varchar(10) NOT NULL DEFAULT '',
+  `last_purchase_rate` int(11) NOT NULL,
+  `stock_item_op_balance` int(11) NOT NULL,
+  `stock_item_op_rate` float(10,2) NOT NULL,
+  `stock_item_op_value` float(10,2) NOT NULL,
+  `stock_item_cl_balance` int(11) NOT NULL,
+  `stock_received_qty` int(11) NOT NULL,
+  `stock_issue_qty` int(11) NOT NULL,
+  `stock_rejected_qty` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `raw_item`
+--
+
+INSERT INTO `raw_item` (`stock_item_id`, `stock_item_name`, `stock_item_grp_id`, `stock_item_unit_id`, `stock_alt_unit`, `unit_relation1`, `unit_relation2`, `length`, `date`, `lc`, `supplier`, `lot`, `issue_location`, `location`, `qa`, `stock_code_m_id`, `stock_item_desc`, `stock_minimum_stock`, `stock_reorder_qty`, `last_purchase_rate`, `stock_item_op_balance`, `stock_item_op_rate`, `stock_item_op_value`, `stock_item_cl_balance`, `stock_received_qty`, `stock_issue_qty`, `stock_rejected_qty`) VALUES
+(1, 'raw-1', '1', 'Primary', '0', 0, 0, '2323', '12-5-09', 'LC-1', 'Rajib', 'lot1', 'Unit-I', 'AA-88', 'p', '232322', 'sds', '', '', 0, 100, 200.00, 20000.00, 75, 10, 30, 0),
+(2, 'raw-10', 'Spare Parts-Machanical ', 'pcs', 'mtr', 0, 0, 'sdsds', '12-5-09', 'LC-1', 'Rajib', 'lot1', 'o', 'AA-88', 'p', '34343', '', '', '', 0, 100, 200.00, 20000.00, 170, 100, 30, 0),
+(3, 'raw-78', 'Spare Parts-Machanical ', 'Bale', 'kg', 1, 50, '1-1/32''''', '19/6/08', 'LC-1', 'Rajib', 'lot1', '', 'BB-10', 'p', '0', '', '', '', 0, 10, 200.00, 2000.00, 10, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requisitions_master`
+--
+
+CREATE TABLE IF NOT EXISTS `requisitions_master` (
+  `rm_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `dept_id` int(11) NOT NULL,
+  `office_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `required_within` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `update_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `requisition_number` varchar(15) NOT NULL,
+  PRIMARY KEY (`rm_id`),
+  KEY `requisition_number` (`requisition_number`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `requisitions_master`
+--
+
+INSERT INTO `requisitions_master` (`rm_id`, `user_id`, `dept_id`, `office_id`, `status`, `required_within`, `created_at`, `update_at`, `requisition_number`) VALUES
+(1, 2, 6, 5, 3, '2009-06-25 18:06:57', '2009-06-01 18:06:55', '0000-00-00 00:00:00', 'req#1-2009'),
+(2, 2, 6, 5, 0, '2009-06-26 18:10:11', '2009-06-01 18:10:09', '0000-00-00 00:00:00', 'req#2-2009'),
+(3, 2, 6, 5, 0, '2009-06-25 13:23:20', '2009-06-09 13:23:18', '0000-00-00 00:00:00', 'req#3-2009'),
+(4, 2, 6, 5, 3, '2009-06-24 23:35:11', '2009-06-13 23:35:09', '0000-00-00 00:00:00', 'req#4-2009');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requisition_details`
+--
+
+CREATE TABLE IF NOT EXISTS `requisition_details` (
+  `rd_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `requisition_master_id` int(10) unsigned NOT NULL,
+  `stock_item_id` int(11) NOT NULL,
+  `required_stock_item_qty` int(11) NOT NULL,
+  `approx_value` decimal(11,2) NOT NULL DEFAULT '0.00',
+  `description` mediumtext NOT NULL,
+  PRIMARY KEY (`rd_id`),
+  KEY `requisition_master_id` (`requisition_master_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `requisition_details`
+--
+
+INSERT INTO `requisition_details` (`rd_id`, `requisition_master_id`, `stock_item_id`, `required_stock_item_qty`, `approx_value`, `description`) VALUES
+(1, 1, 2, 10, 660.00, 'This is Fan Weel For Rotor'),
+(2, 1, 106, 60, 733.00, 'This is Change By Rajib'),
+(3, 2, 52, 12, 240.00, 'This is Fan Weel For Rotor'),
+(4, 2, 135, 60, 1380.00, 'THis dfsd d'),
+(5, 2, 143, 20, 406.00, 'gsgds'),
+(6, 3, 29, 20, 200.00, ''),
+(7, 4, 130, 20, 2000.00, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staple_length`
+--
+
+CREATE TABLE IF NOT EXISTS `staple_length` (
+  `sta_len_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sta_len_name` varchar(25) NOT NULL,
+  PRIMARY KEY (`sta_len_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `staple_length`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_catagory`
+--
+
+CREATE TABLE IF NOT EXISTS `stock_catagory` (
+  `stock_cat_id` int(11) NOT NULL,
+  `stock_cat_name` varchar(30) NOT NULL,
+  `stock_cat_parent_id` int(11) NOT NULL,
+  `stock_cat_alias_id` int(11) NOT NULL,
+  PRIMARY KEY (`stock_cat_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `stock_catagory`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_code_details`
+--
+
+CREATE TABLE IF NOT EXISTS `stock_code_details` (
+  `stock_code_id` int(11) NOT NULL AUTO_INCREMENT,
+  `stock_code` varchar(30) NOT NULL,
+  `stock_code_m_id` int(11) NOT NULL COMMENT 'this id from stock table ''s stock code',
+  PRIMARY KEY (`stock_code_id`),
+  KEY `stock_code_m_id` (`stock_code_m_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=174 ;
+
+--
+-- Dumping data for table `stock_code_details`
+--
+
+INSERT INTO `stock_code_details` (`stock_code_id`, `stock_code`, `stock_code_m_id`) VALUES
+(1, '1701001', 1),
+(2, '1701002', 2),
+(3, '1701003', 3),
+(4, '1701004', 4),
+(5, '1701005', 5),
+(6, '1701006', 6),
+(7, '1701007', 7),
+(8, '1701009', 8),
+(9, '1701010', 9),
+(10, '1701011', 10),
+(11, '1701011', 11),
+(12, '1701012', 12),
+(13, '1701013', 13),
+(14, '1701014', 14),
+(15, '1701015', 15),
+(16, '1701008', 16),
+(17, '1701016', 17),
+(18, '1701017', 18),
+(19, '1714001', 19),
+(20, '1714002', 20),
+(21, '1701018', 20),
+(22, '1726001', 21),
+(23, '1714002', 22),
+(24, '1726002', 23),
+(25, '1726003', 24),
+(26, '1714003', 25),
+(27, '1726004', 26),
+(28, '1714004', 27),
+(29, '1726005', 28),
+(30, '1701019', 29),
+(31, '1714005', 30),
+(32, '1714006', 31),
+(33, '1714007', 32),
+(34, '1701020', 33),
+(35, '1714008', 34),
+(36, '1726006', 35),
+(37, '1714009', 36),
+(38, '1714010', 37),
+(39, '1726007', 38),
+(40, '1701021', 39),
+(41, '1718001', 40),
+(42, '1714011', 41),
+(43, '1726008', 42),
+(44, '1714012', 43),
+(45, '1726009', 44),
+(46, '1714013', 45),
+(47, '1726010', 46),
+(48, '1714014', 47),
+(49, '1726011', 48),
+(50, '1714015', 49),
+(51, '1726012', 50),
+(52, '1714016', 51),
+(53, '1726013', 52),
+(54, '1701022', 53),
+(55, '1726014', 54),
+(56, '1726015', 55),
+(57, '1714017', 56),
+(58, '1726016', 57),
+(59, '1718002', 58),
+(60, '17001022', 58),
+(61, '1718002', 59),
+(62, '1701023', 60),
+(63, '1701023', 61),
+(64, '1718003', 62),
+(65, '1701024', 63),
+(66, '1726017', 64),
+(67, '1714018', 65),
+(68, '1726018', 66),
+(69, '1718004', 67),
+(70, '1726019', 68),
+(71, '1714019', 69),
+(72, '1726020', 70),
+(73, '1714020', 71),
+(74, '1718004', 72),
+(75, '1726021', 73),
+(76, '1714021', 74),
+(77, '1726022', 75),
+(78, '1726023', 76),
+(79, '1718006', 77),
+(80, '1726024', 78),
+(81, '1726025', 79),
+(82, '1714022', 80),
+(83, '1726026', 81),
+(84, '1718007', 82),
+(85, '1726027', 83),
+(86, '1726028', 84),
+(87, '1714023', 85),
+(88, '1718008', 86),
+(89, '1726029', 87),
+(90, '1714024', 88),
+(91, '1718009', 89),
+(92, '1714025', 90),
+(93, '1718010', 91),
+(94, '1714026', 92),
+(95, '1714027', 93),
+(96, '1714027', 93),
+(97, '1714028', 94),
+(98, '1714029', 95),
+(99, '1718011', 96),
+(100, '1701025', 97),
+(101, '1726030', 98),
+(102, '1726031', 99),
+(103, '1714030', 100),
+(104, '1726032', 101),
+(105, '1726033', 102),
+(106, '1714031', 103),
+(107, '1718012', 104),
+(108, '1726034', 105),
+(109, '1701026', 106),
+(110, '1714032', 107),
+(111, '1726035', 108),
+(112, '1714033', 109),
+(113, '1726036', 110),
+(114, '1718013', 111),
+(115, '1726037', 112),
+(116, '1726038', 113),
+(117, '1714034', 114),
+(118, '1718014', 115),
+(119, '1726039', 116),
+(120, '1714035', 117),
+(121, '1726040', 118),
+(122, '1714036', 119),
+(123, '1718015', 120),
+(124, '1726041', 121),
+(125, '1714037', 122),
+(126, '1701027', 123),
+(127, '1726042', 124),
+(128, '1718016', 125),
+(129, '1726043', 126),
+(130, '1714038', 127),
+(131, '1701028', 128),
+(132, '1726044', 129),
+(133, '1726045', 130),
+(134, '1718017', 131),
+(135, '1714039', 132),
+(136, '1726046', 133),
+(137, '1718018', 134),
+(138, '1726047', 135),
+(139, '1714040', 136),
+(140, '1701029', 137),
+(141, '1726048', 138),
+(142, '1718019', 139),
+(143, '1726049', 140),
+(144, '1726050', 141),
+(145, '1701030', 142),
+(146, '1718020', 143),
+(147, '1714041', 144),
+(148, '1718021', 145),
+(149, '1714042', 146),
+(150, '1718022', 147),
+(151, '1714043', 148),
+(152, '1718023', 149),
+(153, '1718024', 150),
+(154, '1714044', 151),
+(155, '1718025', 152),
+(156, '1718026', 153),
+(157, '1714045', 154),
+(158, '1701031', 155),
+(159, '1701032', 156),
+(160, '1701033', 157),
+(161, '1701034', 158),
+(162, '1701035', 159),
+(163, '1701036', 160),
+(164, '1701037', 161),
+(165, '1701038', 162),
+(166, '1701039', 163),
+(167, '1701040', 164),
+(168, '1701041', 165),
+(169, '1701042', 166),
+(170, '1714046', 167),
+(171, '1701043', 168),
+(172, '1111', 169),
+(173, '9', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_department`
+--
+
+CREATE TABLE IF NOT EXISTS `stock_department` (
+  `stock_dept_id` int(11) NOT NULL,
+  `stock_dept_name` varchar(255) NOT NULL,
+  `stock_dept_p_id` int(11) NOT NULL,
+  PRIMARY KEY (`stock_dept_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `stock_department`
+--
+
+INSERT INTO `stock_department` (`stock_dept_id`, `stock_dept_name`, `stock_dept_p_id`) VALUES
+(1, 'Maintanence', 0),
+(2, 'Utility', 0),
+(3, 'Generator Waukasha', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_department_section`
+--
+
+CREATE TABLE IF NOT EXISTS `stock_department_section` (
+  `sec_id` int(30) NOT NULL,
+  `sec_name` varchar(255) NOT NULL,
+  `Section_p_id` int(15) NOT NULL,
+  `stock_dept_id` varchar(255) NOT NULL,
+  PRIMARY KEY (`sec_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `stock_department_section`
+--
+
+INSERT INTO `stock_department_section` (`sec_id`, `sec_name`, `Section_p_id`, `stock_dept_id`) VALUES
+(1, 'Blow Room', 0, '1'),
+(4, 'Drawing/Combing/Unilap', 0, '1'),
+(3, 'Blow Room Carding', 0, '2'),
+(5, 'Simplex', 0, '1'),
+(6, 'Power House', 0, '2'),
+(7, 'AA-71', 0, 'Primary');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_group`
+--
+
+CREATE TABLE IF NOT EXISTS `stock_group` (
+  `stock_group_id` int(11) NOT NULL,
+  `stock_group_name` varchar(30) NOT NULL,
+  `stock_group_parent_id` int(11) NOT NULL,
+  PRIMARY KEY (`stock_group_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `stock_group`
+--
+
+INSERT INTO `stock_group` (`stock_group_id`, `stock_group_name`, `stock_group_parent_id`) VALUES
+(1, 'Spare Parts-Machanical ', 0),
+(2, 'Spare Parts-Electrical', 0),
+(3, 'USA', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_item`
+--
+
+CREATE TABLE IF NOT EXISTS `stock_item` (
+  `stock_item_id` int(11) NOT NULL,
+  `stock_item_name` varchar(255) NOT NULL,
+  `stock_p_id` int(11) NOT NULL,
+  `stock_code_m_id` int(11) NOT NULL,
+  `stock_catalog_no` varchar(20) NOT NULL,
+  `stock_item_grp_id` int(11) NOT NULL,
+  `stock_dept_id` int(11) NOT NULL,
+  `stock_section_id` int(11) NOT NULL,
+  `stock_machine_id` int(11) NOT NULL,
+  `stock_machine_model_id` int(11) NOT NULL,
+  `stock_manufacturer_id` int(11) NOT NULL,
+  `stock_item_unit_id` int(11) NOT NULL,
+  `stock_alt_unit` int(11) NOT NULL,
+  `unit_relation1` int(11) NOT NULL,
+  `unit_relation2` int(11) NOT NULL,
+  `length` varchar(30) NOT NULL,
+  `stock_part_m_id` int(11) NOT NULL,
+  `stock_item_desc` varchar(255) NOT NULL,
+  `stock_count` varchar(30) NOT NULL,
+  `stock_minimum_stock` varchar(10) NOT NULL,
+  `stock_reorder_qty` int(10) NOT NULL DEFAULT '0',
+  `last_purchase_rate` int(11) NOT NULL,
+  `stock_item_op_balance` int(11) NOT NULL,
+  `stock_item_op_rate` float(10,2) NOT NULL,
+  `stock_item_op_value` float(10,2) NOT NULL,
+  `stock_item_cl_balance` int(11) NOT NULL,
+  `stock_received_qty` int(11) NOT NULL,
+  `stock_issue_qty` int(11) NOT NULL,
+  `stock_rejected_qty` int(11) NOT NULL,
+  KEY `stock_item_name` (`stock_item_name`,`stock_code_m_id`,`stock_part_m_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `stock_item`
+--
+
+INSERT INTO `stock_item` (`stock_item_id`, `stock_item_name`, `stock_p_id`, `stock_code_m_id`, `stock_catalog_no`, `stock_item_grp_id`, `stock_dept_id`, `stock_section_id`, `stock_machine_id`, `stock_machine_model_id`, `stock_manufacturer_id`, `stock_item_unit_id`, `stock_alt_unit`, `unit_relation1`, `unit_relation2`, `length`, `stock_part_m_id`, `stock_item_desc`, `stock_count`, `stock_minimum_stock`, `stock_reorder_qty`, `last_purchase_rate`, `stock_item_op_balance`, `stock_item_op_rate`, `stock_item_op_value`, `stock_item_cl_balance`, `stock_received_qty`, `stock_issue_qty`, `stock_rejected_qty`) VALUES
+(1, 'Taper lock bush-2012', 0, 1, '0', 1, 1, 1, 1, 1, 1, 2, 0, 0, 0, '', 1, '', '', '', 15, 0, 2, 980.00, 1960.00, 2, 0, 0, 0),
+(2, 'Fan wheel', 0, 2, '0', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 2, '', '', '', 0, 0, 4, 57849.00, 231396.00, 94, 10, 0, 0),
+(3, 'Fan wheel', 0, 3, '0', 1, 1, 1, 1, 1, 1, 2, 0, 0, 0, '', 3, '', '', '', 0, 0, 1, 7860.00, 7860.00, 1, 0, 0, 0),
+(4, 'Tongue size:47mm', 0, 4, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 4, '', '', '', 0, 0, 4, 227.00, 908.00, 4, 0, 0, 0),
+(5, 'Intermediate plate L side', 0, 5, '', 1, 1, 1, 1, 1, 1, 2, 0, 0, 0, '', 5, '', '', '', 0, 0, 1, 6548.00, 6548.00, 1, 0, 0, 0),
+(6, 'Intermediate Plate R Side', 0, 6, '', 1, 1, 1, 1, 1, 1, 2, 0, 0, 0, '', 6, '', '', '', 0, 0, 1, 6548.00, 6548.00, 1, 0, 0, 0),
+(7, 'Chain Cable Conveyor 1 Link', 0, 7, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 7, '', '', '', 0, 0, 11, 402.00, 4422.00, 11, 0, 0, 0),
+(8, 'Motor Plate  ', 0, 8, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 8, '', '', '', 0, 0, 1, 1890.00, 1890.00, 1, 0, 0, 0),
+(9, 'Cover', 0, 9, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 9, '', '', '', 0, 0, 1, 2354.00, 2354.00, 1, 0, 0, 0),
+(11, 'Flange ', 0, 10, '', 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, '', 10, '', '', '', 0, 0, 1, 2458.00, 2458.00, 1, 0, 0, 0),
+(16, 'Motor Bracket', 0, 16, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 16, '', '', '', 0, 0, 1, 40.00, 40.00, 1, 0, 0, 0),
+(12, 'Stud', 0, 12, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 12, '', '', '', 0, 0, 1, 320.00, 320.00, 1, 0, 0, 0),
+(13, 'Ring', 0, 13, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 13, '', '', '', 0, 0, 1, 350.00, 350.00, 1, 0, 0, 0),
+(14, 'Bearing Stud ', 0, 14, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 14, '', '', '', 0, 0, 2, 400.00, 800.00, 2, 0, 0, 0),
+(15, 'Shaft Wheel', 0, 15, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 15, '', '', '', 0, 0, 2, 8779.00, 17558.00, 2, 0, 0, 0),
+(17, 'Pnewmatic Cylinder dw ISO', 0, 17, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 17, '', '', '', 0, 0, 2, 6936.00, 13872.00, 2, 0, 0, 0),
+(18, 'Shock Absober N-200', 0, 18, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 18, '', '', '', 0, 0, 4, 7860.00, 31440.00, 4, 0, 0, 0),
+(19, 'V-Belt Pulley D-135', 0, 19, '0', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 19, '', '', '2', 0, 0, 2, 1200.00, 2400.00, 2, 0, 0, 0),
+(20, 'Shaft Wheel', 0, 20, '', 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, '', 20, '', '', '', 0, 0, 2, 5256.00, 10512.00, 2, 0, 0, 0),
+(21, 'Module Detonation Sensing', 0, 21, '', 2, 3, 6, 6, 5, 4, 2, 0, 0, 0, '', 21, '', '', '', 0, 0, 1, 698281.00, 698281.00, 1, 0, 0, 0),
+(22, 'V-Belt Pulley Dia-145', 0, 22, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 22, '', '', '', 0, 0, 1, 14581.00, 14581.00, 1, 0, 0, 0),
+(23, 'Basic Gasket Set', 0, 23, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 23, '', '', '', 0, 0, 1, 125473.00, 125473.00, 1, 0, 0, 0),
+(24, 'Valve Int 30 Deg.', 0, 24, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 24, '', '', '', 0, 0, 60, 12922.00, 775320.00, 60, 0, 0, 0),
+(25, 'Holder LH Obeawaize D-40', 0, 25, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 25, '', '', '', 0, 0, 4, 19887.00, 79548.00, 4, 0, 0, 0),
+(26, 'Valve Exhaust 30 Deg', 0, 26, '', 2, 2, 6, 6, 5, 4, 1, 0, 0, 0, '', 26, '', '', '', 0, 0, 60, 21796.00, 1307760.00, 60, 0, 0, 0),
+(27, 'Guiding Roller (Local)', 0, 27, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 27, '', '', '', 0, 0, 31, 500.00, 15500.00, 31, 0, 0, 0),
+(28, 'Air Valve Assy VF111', 0, 28, '', 2, 2, 6, 6, 5, 4, 1, 0, 0, 0, '', 28, '', '', '', 0, 0, 16, 300.00, 4800.00, 10, 0, 6, 0),
+(29, 'Timing Belt Pulley', 0, 29, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 29, '', '', '', 0, 0, 2, 6760.00, 13520.00, 2, 0, 0, 0),
+(30, 'Flange Sleeve 16x18x17x24x1G', 0, 30, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 30, '', '', '', 0, 0, 20, 135.00, 2700.00, 20, 0, 0, 0),
+(31, 'Off Center Bolt D25/L74mm(Local)', 0, 31, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 31, '', '', '', 0, 0, 2, 300.00, 600.00, 2, 0, 0, 0),
+(32, 'Bearing Housing', 0, 32, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 32, '', '', '', 0, 0, 12, 20070.00, 240840.00, 12, 0, 0, 0),
+(33, 'Chain Single 3/4''''', 0, 33, '', 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, '', 33, '', '', '', 0, 0, 20, 3009.00, 60180.00, 20, 0, 0, 0),
+(34, 'Bearing Housing', 0, 34, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 34, '', '', '', 0, 0, 8, 11520.00, 92160.00, 8, 0, 0, 0),
+(35, 'Module Ingnition', 0, 35, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 35, '', '', '', 0, 0, 2, 250000.00, 500000.00, 2, 0, 0, 0),
+(36, 'Bearing Housing', 0, 36, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 36, '', '', '', 0, 0, 8, 22681.00, 181448.00, 28, 0, 0, 20),
+(37, 'Bearing Housing', 0, 37, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 37, '', '', '', 0, 0, 8, 17970.00, 143760.00, 8, 0, 0, 0),
+(38, 'Exhjaust Flexible Conn.', 0, 38, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 38, '', '', '', 0, 0, 1, 40600.00, 40600.00, 1, 0, 0, 0),
+(39, 'Chain wheel T27', 0, 39, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 39, '', '', '', 0, 0, 6, 6431.00, 38586.00, 6, 0, 0, 0),
+(40, 'Pressure complete', 0, 40, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 40, '', '', '', 0, 0, 50, 3108.00, 155400.00, 50, 0, 0, 0),
+(41, 'Shaft', 0, 41, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 41, '', '', '', 0, 0, 1, 4192.00, 4192.00, 1, 0, 0, 0),
+(42, 'Top Oh Gasket Set', 0, 42, '', 2, 3, 6, 6, 5, 4, 8, 0, 0, 0, '', 42, '', '', '', 0, 0, 4, 146520.00, 586080.00, 4, 0, 0, 0),
+(43, 'Dowel Pin', 0, 43, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 43, '', '', '', 0, 0, 20, 8.00, 160.00, 20, 0, 0, 0),
+(44, 'Regulation By Pass Wastgate', 0, 44, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 44, '', '', '', 0, 0, 2, 2.00, 4.00, 2, 0, 0, 0),
+(45, 'Dowel Pin 3x18 Din 1481', 0, 45, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 45, '', '', '', 0, 0, 20, 6.00, 120.00, 20, 0, 0, 0),
+(46, 'Water Temp.Control Switch', 0, 46, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 46, '', '', '', 0, 0, 3, 51156.00, 153468.00, 3, 0, 0, 0),
+(47, 'Off Center Bolt 74x25x30x41mm', 0, 47, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 47, '', '', '', 0, 0, 6, 400.00, 2400.00, 6, 0, 0, 0),
+(48, 'Guide Valve Exhust', 0, 48, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 48, '', '', '', 0, 0, 62, 2465.00, 152830.00, 62, 0, 0, 0),
+(49, 'Bolt', 0, 49, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 49, '', '', '', 0, 0, 2, 1298.00, 2596.00, 2, 0, 0, 0),
+(50, 'Guide Valve Intack', 0, 50, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 50, '', '', '', 0, 0, 68, 2638.00, 179384.00, 68, 0, 0, 0),
+(51, 'Adjusting Washer Size:-50x62x2.0', 0, 51, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 51, '', '', '', 0, 0, 15, 340.00, 5100.00, 5, 0, 20, 0),
+(52, 'Bearing Main Front', 0, 52, '', 2, 3, 6, 6, 5, 4, 7, 0, 0, 0, '', 52, '', '', '', 0, 0, 3, 200.00, 600.00, 3, 0, 0, 0),
+(55, 'Lube Oil Temp.Control Switch', 0, 55, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 55, '', '', '', 0, 0, 2, 88500.00, 177000.00, 2, 0, 0, 0),
+(54, 'Bearing Main Intermidiate', 0, 54, '', 2, 3, 6, 6, 5, 4, 7, 0, 0, 0, '', 54, '', '', '', 0, 0, 4, 500.00, 2000.00, 94, 0, 0, 90),
+(56, 'Shaft', 0, 56, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 56, '', '', '', 0, 0, 5, 12433.00, 62165.00, 5, 0, 0, 0),
+(57, 'Gauge Imt MFLD Temp', 0, 57, '', 2, 0, 6, 6, 5, 4, 1, 0, 0, 0, '', 57, '', '', '', 0, 0, 6, 13148.00, 78888.00, 6, 0, 0, 0),
+(58, 'Triplex roller chain 1/2''''', 0, 58, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 58, '', '', '', 0, 0, 3, 31919.00, 95757.00, 3, 0, 0, 0),
+(59, 'Rod complete pressure', 0, 59, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 59, '', '', '', 0, 0, 54, 531.00, 28674.00, 54, 0, 0, 0),
+(60, 'Chain 3/4 218GL', 0, 60, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 60, '', '', '', 0, 0, 2, 12213.00, 24426.00, 2, 0, 0, 0),
+(63, 'Sprocket T-23', 0, 63, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 63, '', '', '', 0, 0, 1, 8000.00, 8000.00, 1, 0, 0, 0),
+(62, 'Cradle', 0, 62, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 62, '', '', '', 0, 0, 29, 1090.00, 31610.00, 29, 0, 0, 0),
+(64, 'Rasin Bed Filter H-10"W-12",80 Mess (new)', 0, 64, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 64, '', '', '', 0, 0, 4, 15000.00, 60000.00, 4, 0, 0, 0),
+(65, 'Tube 4x0.75 Din 16982-PA6', 0, 65, '', 1, 1, 4, 4, 3, 1, 4, 0, 0, 0, '', 65, '', '', '', 0, 0, 23, 53.00, 1219.00, 23, 0, 0, 0),
+(66, 'Gasket Oil Pan', 0, 66, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 66, '', '', '', 0, 0, 71, 1591.00, 112961.00, 71, 0, 0, 0),
+(67, 'Roller fluted bottomge front', 0, 67, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 67, '', '', '', 0, 0, 1, 1260.00, 1260.00, 1, 0, 0, 0),
+(68, 'Gasket', 0, 68, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 68, '', '', '', 0, 0, 10, 9890.00, 98900.00, 10, 0, 0, 0),
+(69, 'Motor Hub D-38', 0, 69, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 69, '', '', '', 0, 0, 4, 9400.00, 37600.00, 4, 0, 0, 0),
+(70, 'Filter DSM', 0, 70, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 70, '', '', '', 0, 0, 1, 421490.00, 421490.00, 1, 0, 0, 0),
+(71, 'Coupling Sheet', 0, 71, '', 1, 1, 4, 4, 3, 1, 8, 0, 0, 0, '', 71, '', '', '', 0, 0, 5, 600.00, 3000.00, 5, 0, 0, 0),
+(72, 'Roller fluted bottomge 3RD', 0, 72, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 72, '', '', '', 0, 0, 1, 1260.00, 1260.00, 1, 0, 0, 0),
+(73, 'Rubber Pad Size 12"x14"x1.4 Ply', 0, 73, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 73, '', '', '', 0, 0, 10, 0.00, 0.00, 10, 0, 0, 0),
+(74, 'Tension Plate', 0, 74, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 74, '', '', '', 0, 0, 6, 2125.00, 12750.00, 6, 0, 0, 0),
+(75, 'Machanical Seal 24mm', 0, 75, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 75, '', '', '', 0, 0, 5, 150.00, 750.00, 5, 0, 0, 0),
+(76, 'Machanical Seal 38mm', 0, 76, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 76, '', '', '', 0, 0, 5, 950.00, 4750.00, 5, 0, 0, 0),
+(77, 'Rooler fluted bottomge 2ND', 0, 77, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 77, '', '', '', 0, 0, 1, 1260.00, 1260.00, 1, 0, 0, 0),
+(78, 'Gasket Shellac', 0, 78, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 78, '', '', '', 0, 0, 12, 70.00, 840.00, 12, 0, 0, 0),
+(79, 'Cylinder Head Gasket', 0, 79, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 79, '', '', '', 0, 0, 33, 100.00, 3300.00, 33, 0, 0, 0),
+(80, 'Shaft L-248', 0, 80, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 80, '', '', '', 0, 0, 3, 8550.00, 25650.00, 3, 0, 0, 0),
+(81, 'Spring Case (Gas Regulator)', 0, 81, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 81, '', '', '', 0, 0, 3, 1713.00, 5139.00, 3, 0, 0, 0),
+(82, 'Roller fluted bottom GE back', 0, 82, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 82, '', '', '', 0, 0, 1, 1260.00, 1260.00, 1, 0, 0, 0),
+(83, 'Ring Gear', 0, 83, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 83, '', '', '', 0, 0, 1, 76773.00, 76773.00, 1, 0, 0, 0),
+(84, 'Sleeve Fan Pulley', 0, 84, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 84, '', '', '', 0, 0, 1, 43754.00, 43754.00, 1, 0, 0, 0),
+(85, 'Flat Steel Piece 12x4x216/13xM3', 0, 85, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 85, '', '', '', 0, 0, 4, 1120.00, 4480.00, 4, 0, 0, 0),
+(86, 'Chain roller (35x131-F) FL-100', 0, 86, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 86, '', '', '', 0, 0, 7, 355.00, 2485.00, 7, 0, 0, 0),
+(87, 'Seal Thermoster', 0, 87, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 87, '', '', '', 0, 0, 32, 600.00, 19200.00, 32, 0, 0, 0),
+(88, 'Angle', 0, 88, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 88, '', '', '', 0, 0, 4, 1862.00, 7448.00, 2, 0, 2, 0),
+(89, 'Chain roller (37x96-A)', 0, 89, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 89, '', '', '', 0, 0, 4, 526.00, 2104.00, 4, 0, 0, 0),
+(90, 'Holder', 0, 90, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 90, '', '', '', 0, 0, 117, 141.00, 16497.00, 117, 0, 0, 0),
+(91, 'Spacer (Blue)', 0, 91, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 91, '', '', '', 0, 0, 1071, 29.00, 31059.00, 1071, 0, 0, 0),
+(92, 'Bearing Housing', 0, 92, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 92, '', '', '', 0, 0, 2, 13770.00, 27540.00, 82, 0, 0, 80),
+(93, 'Bearing Housing', 0, 93, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 93, '', '', '', 0, 0, 7, 11610.00, 81270.00, 7, 0, 0, 0),
+(94, 'Threaded Pin M6x8 Din 913-45H/2N', 0, 94, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 94, '', '', '', 0, 0, 15, 169.00, 2535.00, 15, 0, 0, 0),
+(95, 'Draw Off Pulley D55x5.8ST', 0, 95, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 95, '', '', '', 0, 0, 2, 7318.00, 14636.00, 2, 0, 0, 0),
+(96, 'Spacer LC26(Green)', 0, 96, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 96, '', '', '', 0, 0, 224, 18.00, 4032.00, 224, 0, 0, 0),
+(97, 'Radial ball bearing', 0, 97, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 97, '', '', '', 0, 0, 8, 363.00, 2904.00, 8, 0, 0, 0),
+(98, 'Temparature Gauge Switch', 0, 98, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 98, '', '', '', 0, 0, 4, 25960.00, 103840.00, 4, 0, 0, 0),
+(99, 'Ring Upr & Lowr Thrust', 0, 99, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 99, '', '', '', 0, 0, 2, 60.00, 120.00, 2, 0, 0, 0),
+(100, 'Spring Bolt 101.5Kpl', 0, 100, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 100, '', '', '', 0, 0, 30, 200.00, 6000.00, 30, 0, 0, 0),
+(101, 'Venturi Upper', 0, 101, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 101, '', '', '', 0, 0, 2, 300.00, 600.00, 2, 0, 0, 0),
+(102, 'Venturi Lower', 0, 102, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 102, '', '', '', 0, 0, 2, 300.00, 600.00, 2, 0, 0, 0),
+(103, 'Spring Bolt L=108 (Local)', 0, 103, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 103, '', '', '', 0, 0, 22, 200.00, 4400.00, 22, 0, 0, 0),
+(104, 'Spacer OL C 24 (Black)', 0, 104, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 104, '', '', '', 0, 0, 240, 18.00, 4320.00, 240, 0, 0, 0),
+(105, 'Body Asm Venturi', 0, 105, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 105, '', '', '', 0, 0, 2, 500.00, 1000.00, 2, 0, 0, 0),
+(106, 'Chain wheel 25T', 0, 106, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 106, '', '', '', 0, 0, 2, 12744.00, 25488.00, 542, 60, 0, 0),
+(107, 'Top Roller Bearing', 0, 107, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 107, '', '', '', 0, 0, 3, 750.00, 2250.00, 3, 0, 0, 0),
+(108, 'Coupling V-Band', 0, 108, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 108, '', '', '', 0, 0, 6, 2018.00, 12108.00, 6, 0, 0, 0),
+(109, 'Spring Flat Form', 0, 109, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 109, '', '', '', 0, 0, 17, 927.00, 15759.00, 17, 0, 0, 0),
+(110, 'Spacer Shaft Pulley', 0, 110, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 110, '', '', '', 0, 0, 1, 41494.00, 41494.00, 1, 0, 0, 0),
+(111, 'Spring for worm shsft', 0, 111, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 111, '', '', '', 0, 0, 16, 309.00, 4944.00, 16, 0, 0, 0),
+(112, 'Flang Exhust By Pass', 0, 112, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 112, '', '', '', 0, 0, 2, 17652.00, 35304.00, 2, 0, 0, 0),
+(113, 'Sleeve Exhust By Pass', 0, 113, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 113, '', '', '', 0, 0, 1, 26274.00, 26274.00, 1, 0, 0, 0),
+(114, 'Gas Spring Type 16-2016 12222 180N 11/07', 0, 114, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 114, '', '', '', 0, 0, 10, 1457.00, 14570.00, 10, 0, 0, 0),
+(115, 'Flange complete feed roller', 0, 115, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 115, '', '', '', 0, 0, 27, 544.00, 14688.00, 27, 0, 0, 0),
+(116, 'Elbow Pipe 2"', 0, 116, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 116, '', '', '', 0, 0, 2, 3202.00, 6404.00, 2, 0, 0, 0),
+(117, 'Cleaning Roller D-65/L-270', 0, 117, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 117, '', '', '', 0, 0, 14, 7067.00, 98938.00, 14, 0, 0, 0),
+(118, 'Switch Emegency Stop ASM', 0, 118, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 118, '', '', '', 0, 0, 2, 21980.00, 43960.00, 2, 0, 0, 0),
+(119, 'Clamping Ring', 0, 119, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 119, '', '', '', 0, 0, 2, 40.00, 80.00, 2, 0, 0, 0),
+(120, 'Bracket double auchor bar', 0, 120, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 120, '', '', '', 0, 0, 2, 3660.00, 7320.00, 2, 0, 0, 0),
+(121, 'Switch Magnetic', 0, 121, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 121, '', '', '', 0, 0, 2, 12919.00, 25838.00, 2, 0, 0, 0),
+(122, 'Flat Spring', 0, 122, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 122, '', '', '', 0, 0, 9, 698.00, 6282.00, 9, 0, 0, 0),
+(123, 'Washer 6.4x12.5', 0, 123, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 123, '', '', '', 0, 0, 51, 7.00, 357.00, 51, 0, 0, 0),
+(124, 'Bracker Circuit-24V', 0, 124, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 124, '', '', '', 0, 0, 2, 5553.00, 11106.00, 2, 0, 0, 0),
+(125, 'Sliver guide', 0, 125, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 125, '', '', '', 0, 0, 91, 54.00, 4914.00, 91, 0, 0, 0),
+(126, 'Pipe 375x100TBE', 0, 126, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 126, '', '', '', 0, 0, 10, 361.00, 3610.00, 10, 0, 0, 0),
+(127, 'Dowel Pin 4x24 D/N-1481', 0, 127, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 127, '', '', '', 0, 0, 25, 12.00, 300.00, 25, 0, 0, 0),
+(128, 'Brush', 0, 128, '', 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, '', 128, '', '', '', 0, 0, 4, 2236.00, 8944.00, 4, 0, 0, 0),
+(129, 'Voltage Adjust Rheostat Kit', 0, 129, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 129, '', '', '', 0, 0, 1, 10191.00, 10191.00, 1, 0, 0, 0),
+(130, 'Bearing Conn Rod', 0, 130, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 130, '', '', '', 0, 0, 5, 10000.00, 50000.00, 5, 0, 0, 0),
+(131, 'Condenser assy', 0, 131, '', 1, 1, 5, 5, 0, 0, 1, 0, 0, 0, '', 131, '', '', '', 0, 0, 141, 382.00, 53862.00, 141, 0, 0, 0),
+(132, 'Set Screw M4x10 Din-427-14H', 0, 132, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 132, '', '', '', 0, 0, 20, 102.00, 2040.00, 20, 0, 0, 0),
+(133, 'Switch Sel 3Pos', 0, 133, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 133, '', '', '', 0, 0, 3, 26083.00, 78249.00, 3, 0, 0, 0),
+(134, 'Collector assy', 0, 134, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 134, '', '', '', 0, 0, 27, 65.00, 1755.00, 27, 0, 0, 0),
+(135, 'Cage (Gas Regulator)', 0, 135, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 135, '', '', '', 0, 0, 7, 6654.00, 46578.00, 7, 0, 0, 0),
+(136, 'Pressure Spring', 0, 136, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 136, '', '', '', 0, 0, 16, 170.00, 2720.00, 16, 0, 0, 0),
+(137, 'Timing belt pulley 24T', 0, 137, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 137, '', '', '', 0, 0, 1, 6240.00, 6240.00, 1, 0, 0, 0),
+(138, 'Tappet Asm Valve (Roller)', 0, 138, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 138, '', '', '', 0, 0, 8, 14616.00, 116928.00, 8, 0, 0, 0),
+(139, 'Clutch for long rack back', 0, 139, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 139, '', '', '', 0, 0, 4, 3198.00, 12792.00, 4, 0, 0, 0),
+(140, 'Valve Relay', 0, 140, '', 2, 3, 6, 6, 5, 4, 1, 0, 0, 0, '', 140, '', '', '', 0, 0, 2, 26005.00, 52010.00, 2, 0, 0, 0),
+(141, 'Thermostat', 0, 141, '', 2, 3, 6, 6, 5, 4, 6, 0, 0, 0, '', 141, '', '', '', 0, 0, 3, 6270.00, 18810.00, 3, 0, 0, 0),
+(142, 'Triplex chain', 0, 142, '', 1, 1, 1, 1, 1, 1, 4, 0, 0, 0, '', 142, '', '', '', 0, 0, 5, 3514.00, 17570.00, 5, 0, 0, 0),
+(143, 'Bracket double anchor bar', 0, 143, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 143, '', '', '', 0, 0, 4, 800.00, 3200.00, 4, 0, 0, 0),
+(144, 'Jaw Clutch D1-18/D2-18', 0, 144, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 144, '', '', '', 0, 0, 4, 9500.00, 38000.00, 4, 0, 0, 0),
+(145, 'Bracket feed roller', 0, 145, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 145, '', '', '', 0, 0, 4, 369.00, 1476.00, 4, 0, 0, 0),
+(146, 'Leg Spring', 0, 146, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 146, '', '', '', 0, 0, 9, 820.00, 7380.00, 9, 0, 0, 0),
+(147, 'Pinion differential(2.5M-17T)', 0, 147, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 147, '', '', '', 0, 0, 5, 5535.00, 27675.00, 5, 0, 0, 0),
+(148, 'Pressure Bar 12x8', 0, 148, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 148, '', '', '', 0, 0, 18, 1260.00, 22680.00, 18, 0, 0, 0),
+(149, 'Gear short cone shaft (3M-14T)', 0, 149, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 149, '', '', '', 0, 0, 1, 3000.00, 3000.00, 1, 0, 0, 0),
+(150, 'Long socket gear(2.5M-45T)', 0, 150, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 150, '', '', '', 0, 0, 3, 15255.00, 45765.00, 3, 0, 0, 0),
+(151, 'Inside Ring 1R 17x20x16', 0, 151, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 151, '', '', '', 0, 0, 6, 690.00, 4140.00, 6, 0, 0, 0),
+(152, 'Socket grease(08x1/8)', 0, 152, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 152, '', '', '', 0, 0, 2, 243.00, 486.00, 2, 0, 0, 0),
+(153, 'Bracket for lifter slide', 0, 153, '', 1, 1, 5, 5, 4, 3, 1, 0, 0, 0, '', 153, '', '', '', 0, 0, 6, 2878.00, 17268.00, 6, 0, 0, 0),
+(154, 'Clearer Roller', 0, 154, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 154, '', '', '', 0, 0, 1, 5690.00, 5690.00, 1, 0, 0, 0),
+(155, 'Bolt', 0, 155, '', 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, '', 155, '', '', '', 0, 0, 4, 370.00, 1480.00, 4, 0, 0, 0),
+(156, 'Locking washer 6.4-10', 0, 156, '', 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, '', 156, '', '', '', 0, 0, 28, 8.00, 224.00, 28, 0, 0, 0),
+(157, 'Running roller', 0, 157, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 157, '', '', '', 0, 0, 4, 11162.00, 44648.00, 4, 0, 0, 0),
+(158, 'Washer 6.7/14x1.5', 0, 158, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 158, '', '', '', 0, 0, 4, 8.00, 32.00, 4, 0, 0, 0),
+(159, 'Laminated spring', 0, 159, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 159, '', '', '', 0, 0, 18, 855.00, 15390.00, 18, 0, 0, 0),
+(160, 'Chain lock', 0, 160, '', 1, 1, 1, 1, 1, 1, 8, 0, 0, 0, '', 160, '', '', '', 0, 0, 8, 257.00, 2056.00, 8, 0, 0, 0),
+(161, 'Connection link triplex 1/2', 0, 161, '', 1, 1, 1, 1, 1, 1, 8, 0, 0, 0, '', 161, '', '', '', 0, 0, 3, 495.00, 1485.00, 3, 0, 0, 0),
+(162, 'Chain link 3/4''''', 0, 162, '', 1, 1, 1, 1, 1, 1, 8, 0, 0, 0, '', 162, '', '', '', 0, 0, 4, 1178.00, 4712.00, 4, 0, 0, 0),
+(163, 'Shaft', 0, 163, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 163, '', '', '', 0, 0, 2, 8217.00, 16434.00, 2, 0, 0, 0),
+(164, 'Chain wheel T-17', 0, 164, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 164, '', '', '', 0, 0, 3, 27317.00, 81951.00, 3, 0, 0, 0),
+(165, 'Sprocket T-17', 0, 165, '', 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, '', 165, '', '', '', 0, 0, 9, 8584.00, 77256.00, 9, 0, 0, 0),
+(166, 'Running roller', 0, 166, '', 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, '', 166, '', '', '', 0, 0, 11, 900.00, 9900.00, 11, 0, 0, 0),
+(167, 'Top Roller', 0, 167, '', 1, 1, 4, 4, 3, 1, 1, 0, 0, 0, '', 167, '', '', '', 0, 0, 15, 1280.00, 19200.00, 15, 0, 0, 0),
+(168, 'Running roller', 0, 168, '', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, '', 168, '', '', '', 0, 0, 4, 600.00, 2400.00, 4, 0, 0, 0),
+(169, 'Wasif Mujib part number', 2, 169, '333', 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, '', 169, 'sdfsdfsd', '', '', 0, 0, 0, 0.00, 0.00, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_item_units`
+--
+
+CREATE TABLE IF NOT EXISTS `stock_item_units` (
+  `stock_item_unit_id` int(11) NOT NULL,
+  `stock_item_unit_name` varchar(15) NOT NULL,
+  `stock_item_unit_formal_name` varchar(15) NOT NULL,
+  `stock_item_unit_decimal_place` int(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `stock_item_units`
+--
+
+INSERT INTO `stock_item_units` (`stock_item_unit_id`, `stock_item_unit_name`, `stock_item_unit_formal_name`, `stock_item_unit_decimal_place`) VALUES
+(1, 'pcs', 'PCS', 0),
+(2, 'Pcs', 'PCS', 2),
+(3, 'kg', 'Kilogram', 2),
+(4, 'mtr', 'meter', 2),
+(5, 'lbs', 'LBS', 2),
+(6, 'Pcs', '', 0),
+(7, 'Pair', '', 0),
+(8, 'Set', '', 0),
+(9, 'Ltr.', '', 0),
+(10, 'Lbs', '', 0),
+(11, 'PCS', 'pcs', 2),
+(12, 'Bale', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_locations`
+--
+
+CREATE TABLE IF NOT EXISTS `stock_locations` (
+  `stock_location_id` int(11) NOT NULL,
+  `stock_location_name` varchar(50) NOT NULL,
+  `stock_location_p_id` int(11) NOT NULL,
+  `stock_location_address` varchar(255) NOT NULL,
+  `stock_location_city` varchar(100) NOT NULL,
+  `stock_location_phone_no` varchar(50) NOT NULL,
+  `stock_location_fax` varchar(50) NOT NULL,
+  PRIMARY KEY (`stock_location_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `stock_locations`
+--
+
+INSERT INTO `stock_locations` (`stock_location_id`, `stock_location_name`, `stock_location_p_id`, `stock_location_address`, `stock_location_city`, `stock_location_phone_no`, `stock_location_fax`) VALUES
+(1, 'AA-88', 0, '', '', '', ''),
+(2, 'AA- 87', 0, '', '', '', ''),
+(3, 'AA-86', 0, '', '', '', ''),
+(4, 'AA-78', 0, '', '', '', ''),
+(5, 'AA-85', 0, '', '', '', ''),
+(6, 'AA-79', 0, '', '', '', ''),
+(7, 'AA-22', 0, '', '', '', ''),
+(8, 'BB-1', 0, '', '', '', ''),
+(9, 'BB-2', 0, '', '', '', ''),
+(10, 'BB-3', 0, '', '', '', ''),
+(11, 'BB-4', 0, '', '', '', ''),
+(12, 'BB-5', 0, '', '', '', ''),
+(13, 'BB-6', 0, '', '', '', ''),
+(14, 'BB-7', 0, '', '', '', ''),
+(15, 'BB-8', 0, '', '', '', ''),
+(16, 'BB-9', 0, '', '', '', ''),
+(17, 'BB-10', 0, '', '', '', ''),
+(18, 'BB-10', 0, '', '', '', ''),
+(19, 'BB-11', 0, '', '', '', ''),
+(20, 'BB-12', 0, '', '', '', ''),
+(21, 'BB-13', 0, '', '', '', ''),
+(22, 'BB-14', 0, '', '', '', ''),
+(23, 'BB-15', 0, '', '', '', ''),
+(24, 'BB-16', 0, '', '', '', ''),
+(25, 'BB-29', 0, '', '', '', ''),
+(26, 'BB-30', 0, '', '', '', ''),
+(27, 'BB-31', 0, '', '', '', ''),
+(28, 'BB-56', 0, '', '', '', ''),
+(29, 'BB-57', 0, '', '', '', ''),
+(30, 'BB-59', 0, '', '', '', ''),
+(31, 'BB-69', 0, '', '', '', ''),
+(32, 'BB-64', 0, '', '', '', ''),
+(33, 'kk-1', 0, '', '', '', ''),
+(34, 'kk-2', 0, '', '', '', ''),
+(35, 'kk-3', 0, '', '', '', ''),
+(36, 'kk-4', 0, '', '', '', ''),
+(37, 'kk-5', 0, '', '', '', ''),
+(38, 'kk-6', 0, '', '', '', ''),
+(39, 'kk-7', 0, '', '', '', ''),
+(40, 'kk-8', 0, '', '', '', ''),
+(41, 'kk-9', 0, '', '', '', ''),
+(42, 'kk-10', 0, '', '', '', ''),
+(119, 'DD-1', 0, 'TFO 2nd Floor', '', '', ''),
+(44, 'kk-11', 0, '', '', '', ''),
+(45, 'kk-12', 0, '', '', '', ''),
+(46, 'kk-13', 0, '', '', '', ''),
+(47, 'kk-14', 0, '', '', '', ''),
+(48, 'kk-15', 0, '', '', '', ''),
+(49, 'kk-16', 0, '', '', '', ''),
+(50, 'kk-17', 0, '', '', '', ''),
+(51, 'kk-18', 0, '', '', '', ''),
+(52, 'kk-19', 0, '', '', '', ''),
+(53, 'kk-20', 0, '', '', '', ''),
+(54, 'kk-21', 0, '', '', '', ''),
+(55, 'kk-22', 0, '', '', '', ''),
+(56, 'kk-23', 0, '', '', '', ''),
+(57, 'kk-24', 0, '', '', '', ''),
+(58, 'kk-25', 0, '', '', '', ''),
+(59, 'kk-26', 0, '', '', '', ''),
+(60, 'kk-27', 0, '', '', '', ''),
+(61, 'kk-28', 0, '', '', '', ''),
+(62, 'kk-29', 0, '', '', '', ''),
+(63, 'kk-30', 0, '', '', '', ''),
+(64, 'kk-31', 0, '', '', '', ''),
+(65, 'kk-32', 0, '', '', '', ''),
+(66, 'kk-33', 0, '', '', '', ''),
+(67, 'kk-34', 0, '', '', '', ''),
+(68, 'kk-35', 0, '', '', '', ''),
+(69, 'kk-36', 0, '', '', '', ''),
+(70, 'kk-37', 0, '', '', '', ''),
+(71, 'kk-38', 0, '', '', '', ''),
+(72, 'kk-39', 0, '', '', '', ''),
+(73, 'kk-40', 0, '', '', '', ''),
+(74, 'kk-41', 0, '', '', '', ''),
+(75, 'kk-42', 0, '', '', '', ''),
+(76, 'kk-43', 0, '', '', '', ''),
+(77, 'kk-44', 0, '', '', '', ''),
+(78, 'kk-45', 0, '', '', '', ''),
+(79, 'kk-46', 0, '', '', '', ''),
+(80, 'kk-47', 0, '', '', '', ''),
+(81, 'kk-48', 0, '', '', '', ''),
+(82, 'kk-49', 0, '', '', '', ''),
+(83, 'kk-50', 0, '', '', '', ''),
+(84, 'kk-51', 0, '', '', '', ''),
+(85, 'kk-52', 0, '', '', '', ''),
+(86, 'kk-53', 0, '', '', '', ''),
+(87, 'kk-54', 0, '', '', '', ''),
+(88, 'kk-55', 0, '', '', '', ''),
+(89, 'kk-56', 0, '', '', '', ''),
+(90, 'kk-57', 0, '', '', '', ''),
+(91, 'kk-58', 0, '', '', '', ''),
+(92, 'kk-59', 0, '', '', '', ''),
+(93, 'kk-60', 0, '', '', '', ''),
+(94, 'kk-61', 0, '', '', '', ''),
+(95, 'kk-62', 0, '', '', '', ''),
+(96, 'kk-63', 0, '', '', '', ''),
+(97, 'kk-64', 0, '', '', '', ''),
+(98, 'kk-65', 0, '', '', '', ''),
+(99, 'kk-66', 0, '', '', '', ''),
+(100, 'kk-67', 0, '', '', '', ''),
+(101, 'kk-68', 0, '', '', '', ''),
+(102, 'kk-69', 0, '', '', '', ''),
+(103, 'kk-70', 0, '', '', '', ''),
+(104, 'kk-71', 0, '', '', '', ''),
+(105, 'kk-72', 0, '', '', '', ''),
+(106, 'kk-73', 0, '', '', '', ''),
+(107, 'kk-74', 0, '', '', '', ''),
+(108, 'kk-75', 0, '', '', '', ''),
+(109, 'kk-76', 0, '', '', '', ''),
+(110, 'kk-77', 0, '', '', '', ''),
+(111, 'kk-78', 0, '', '', '', ''),
+(112, 'kk-79', 0, '', '', '', ''),
+(113, 'kk-80', 0, '', '', '', ''),
+(114, 'kk-81', 0, '', '', '', ''),
+(115, 'kk-82', 0, '', '', '', ''),
+(116, 'kk-83', 0, '', '', '', ''),
+(117, 'kk-84', 0, '', '', '', ''),
+(202, 'Unit-II', 0, '', '', '', ''),
+(120, 'DD-2', 0, '', '', '', ''),
+(121, 'DD-3', 0, '', '', '', ''),
+(122, 'DD-3,4', 0, '', '', '', ''),
+(123, 'DD-4', 0, '', '', '', ''),
+(124, 'DD-5', 0, '', '', '', ''),
+(125, 'DD-6', 0, '', '', '', ''),
+(126, 'DD-8', 0, '', '', '', ''),
+(127, 'DD-9', 0, '', '', '', ''),
+(128, 'DD-10', 0, '', '', '', ''),
+(129, 'DD-11', 0, '', '', '', ''),
+(130, 'DD-12', 0, '', '', '', ''),
+(131, 'DD-13', 0, '', '', '', ''),
+(132, 'DD-14', 0, '', '', '', ''),
+(133, 'DD-15', 0, '', '', '', ''),
+(134, 'DD-16', 0, '', '', '', ''),
+(135, 'DD-21', 0, '', '', '', ''),
+(136, 'DD-22', 0, '', '', '', ''),
+(137, 'DD-23', 0, '', '', '', ''),
+(138, 'DD-37', 0, '', '', '', ''),
+(139, 'DD-24', 0, '', '', '', ''),
+(140, 'DD-25', 0, '', '', '', ''),
+(141, 'DD-26', 0, '', '', '', ''),
+(142, 'DD-36', 0, '', '', '', ''),
+(143, 'DD-35', 0, '', '', '', ''),
+(144, 'DD-38', 0, '', '', '', ''),
+(145, 'DD-45', 0, '', '', '', ''),
+(146, 'DD-46', 0, '', '', '', ''),
+(147, 'DD-47', 0, '', '', '', ''),
+(148, 'DD-48', 0, '', '', '', ''),
+(149, 'DD-49', 0, '', '', '', ''),
+(150, 'DD-57', 0, '', '', '', ''),
+(151, 'DD-58', 0, '', '', '', ''),
+(152, 'DD-59', 0, '', '', '', ''),
+(153, 'DD-60', 0, '', '', '', ''),
+(154, 'DD-62', 0, '', '', '', ''),
+(155, 'DD-63', 0, '', '', '', ''),
+(156, 'DD-69', 0, '', '', '', ''),
+(157, 'DD-70', 0, '', '', '', ''),
+(158, 'DD-71', 0, '', '', '', ''),
+(159, 'DD-72', 0, '', '', '', ''),
+(160, 'DD-73', 0, '', '', '', ''),
+(161, 'DD-74', 0, '', '', '', ''),
+(162, 'DD-75', 0, '', '', '', ''),
+(163, 'DD-82', 0, '', '', '', ''),
+(164, 'DD-84', 0, '', '', '', ''),
+(165, 'DD-34', 0, '', '', '', ''),
+(201, 'Unit-I', 0, '', '', '', ''),
+(167, 'kk-T1', 0, '', '', '', ''),
+(168, 'kk-T4', 0, '', '', '', ''),
+(169, 'BB-63', 0, '', '', '', ''),
+(170, 'BB-60', 0, '', '', '', ''),
+(171, 'BB-62', 0, '', '', '', ''),
+(172, 'BB-61', 0, '', '', '', ''),
+(173, 'BB-65', 0, '', '', '', ''),
+(174, 'BB-74', 0, '', '', '', ''),
+(175, 'BB-75', 0, '', '', '', ''),
+(176, 'BB-68', 0, '', '', '', ''),
+(177, 'BB-67', 0, '', '', '', ''),
+(178, 'BB-72', 0, '', '', '', ''),
+(179, 'kk-Under', 0, '', '', '', ''),
+(180, 'AA-71', 0, '', '', '', ''),
+(181, 'AA-25', 0, '', '', '', ''),
+(182, 'AA-26', 0, '', '', '', ''),
+(183, 'AA-80', 0, '', '', '', ''),
+(184, 'AA-83', 0, '', '', '', ''),
+(185, 'AA-84', 0, '', '', '', ''),
+(186, 'BB-42', 0, '', '', '', ''),
+(187, 'BB-52', 0, '', '', '', ''),
+(188, 'BB-76', 0, '', '', '', ''),
+(189, 'CC-76', 0, '', '', '', ''),
+(190, 'CC-15', 0, '', '', '', ''),
+(191, 'CC-7', 0, '', '', '', ''),
+(192, 'CC-6', 0, '', '', '', ''),
+(193, 'CC-13', 0, '', '', '', ''),
+(194, 'CC-12', 0, '', '', '', ''),
+(195, 'CC-1', 0, '', '', '', ''),
+(196, 'CC-4', 0, '', '', '', ''),
+(197, 'CC-5', 0, '', '', '', ''),
+(198, 'CC-Top', 0, '', '', '', ''),
+(199, 'cc-35', 0, '', '', '', ''),
+(200, 'AA-70', 0, '', '', '', ''),
+(203, 'Rotor', 0, '', '', '', ''),
+(204, 'Unit-III', 0, '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_machine`
+--
+
+CREATE TABLE IF NOT EXISTS `stock_machine` (
+  `m_id` int(15) NOT NULL,
+  `m_name` varchar(255) NOT NULL,
+  `section_id` int(20) NOT NULL,
+  `Department_id` int(30) NOT NULL,
+  PRIMARY KEY (`m_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `stock_machine`
+--
+
+INSERT INTO `stock_machine` (`m_id`, `m_name`, `section_id`, `Department_id`) VALUES
+(1, 'Unifloc', 1, 1),
+(2, 'Uniclean', 1, 1),
+(3, 'Unimix Rieter', 1, 1),
+(4, 'Breaker Drawing', 4, 1),
+(5, 'Simplex', 5, 1),
+(6, 'Waukesha Generator', 6, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_machine_model`
+--
+
+CREATE TABLE IF NOT EXISTS `stock_machine_model` (
+  `machine_model_id` int(11) NOT NULL,
+  `manufacturer_id` int(11) NOT NULL,
+  `machine_model_name` varchar(1000) NOT NULL,
+  `machine_id` int(30) NOT NULL,
+  `Section_p_id` int(30) NOT NULL,
+  `stock_dept_id` int(35) NOT NULL,
+  PRIMARY KEY (`machine_model_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `stock_machine_model`
+--
+
+INSERT INTO `stock_machine_model` (`machine_model_id`, `manufacturer_id`, `machine_model_name`, `machine_id`, `Section_p_id`, `stock_dept_id`) VALUES
+(1, 1, 'A 10', 1, 1, 1),
+(2, 1, 'unifloc', 1, 1, 1),
+(3, 1, 'SB-951', 3, 4, 1),
+(4, 3, 'FL-16/FL-100', 5, 5, 1),
+(5, 0, '7100GFI', 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_manufacturer`
+--
+
+CREATE TABLE IF NOT EXISTS `stock_manufacturer` (
+  `manu_id` int(30) NOT NULL,
+  `manu_name` varchar(255) NOT NULL,
+  `manu_year` varchar(15) NOT NULL,
+  `machine_id` int(35) NOT NULL,
+  `section_id` int(35) NOT NULL,
+  `dept_id` int(25) NOT NULL,
+  PRIMARY KEY (`manu_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `stock_manufacturer`
+--
+
+INSERT INTO `stock_manufacturer` (`manu_id`, `manu_name`, `manu_year`, `machine_id`, `section_id`, `dept_id`) VALUES
+(1, 'Rieter', '1996', 1, 1, 1),
+(2, 'Breaker Drawing', '1996', 4, 4, 1),
+(3, 'Toyota', '1995', 5, 5, 1),
+(4, '7100GFI', '', 6, 6, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_part_details`
+--
+
+CREATE TABLE IF NOT EXISTS `stock_part_details` (
+  `stock_part_id` int(11) NOT NULL AUTO_INCREMENT,
+  `stock_part` varchar(30) NOT NULL,
+  `stock_part_m_id` int(11) NOT NULL COMMENT 'this id from stock table ''s stock code',
+  PRIMARY KEY (`stock_part_id`),
+  KEY `stock_part_m_id` (`stock_part_m_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=173 ;
+
+--
+-- Dumping data for table `stock_part_details`
+--
+
+INSERT INTO `stock_part_details` (`stock_part_id`, `stock_part`, `stock_part_m_id`) VALUES
+(1, '09088602', 1),
+(2, '00191260', 2),
+(3, '00171280', 3),
+(4, '09056783', 4),
+(5, '09934150', 5),
+(6, '09934150', 6),
+(7, '11206092', 7),
+(8, '00192692', 8),
+(9, '00101060', 9),
+(10, '00141955', 10),
+(11, '00141955', 11),
+(12, '00141957', 12),
+(13, '00102255', 13),
+(14, '09001127', 14),
+(15, '00448890', 15),
+(16, '00191161', 16),
+(17, '643132125', 17),
+(18, '09056811', 18),
+(19, '1066085', 19),
+(20, '1066083', 20),
+(21, '00141553', 20),
+(22, 'E740401', 21),
+(23, '1066083', 22),
+(24, 'G9001025', 23),
+(25, '204236K', 24),
+(26, '1086824', 25),
+(27, '204436D', 26),
+(28, '0159287', 27),
+(29, '59023L', 28),
+(30, '00141012', 29),
+(31, '8504925', 30),
+(32, '1072900', 31),
+(33, '1086830', 32),
+(34, '09011550', 33),
+(35, '1086831', 34),
+(36, '740609', 35),
+(37, '1086828', 36),
+(38, '1086829', 37),
+(39, '19951G', 38),
+(40, '09001217', 39),
+(41, 'F3416010100A', 40),
+(42, '1071157', 41),
+(43, 'G979266', 42),
+(44, '8500960', 43),
+(45, '295645G', 44),
+(46, '8500952', 45),
+(47, 'P310031', 46),
+(48, '', 47),
+(49, '204109T', 48),
+(50, '1085449', 49),
+(51, '204209N', 50),
+(52, '8500880', 51),
+(53, 'A200122G', 52),
+(54, '00102634', 53),
+(55, 'A200125F', 54),
+(56, 'P811559', 55),
+(57, '1082877', 56),
+(58, '209806K', 57),
+(59, 'F34160104010A', 58),
+(60, '00102634', 58),
+(61, 'F34160104010A', 59),
+(62, '09121331', 60),
+(63, '09121331', 61),
+(64, 'F41140101000', 62),
+(65, '09100901', 63),
+(66, '', 64),
+(67, '8905170', 65),
+(68, '166192', 66),
+(69, 'F41060101000', 67),
+(70, '207269A', 68),
+(71, '1038039', 69),
+(72, 'A740512E', 70),
+(73, '1077954', 71),
+(74, 'F41060701000', 72),
+(75, '', 73),
+(76, '0145411', 74),
+(77, '', 75),
+(78, '', 76),
+(79, 'F41060401000', 77),
+(80, '', 78),
+(81, '205000L', 79),
+(82, '1085483', 80),
+(83, '4L142308032', 81),
+(84, 'F41061001000', 82),
+(85, '153381B', 83),
+(86, '153161B', 84),
+(87, '1074653', 85),
+(88, '7225135002', 86),
+(89, '153610', 87),
+(90, '1074654', 88),
+(91, '7225137002', 89),
+(92, '1075450', 90),
+(93, '709641191', 91),
+(94, '1086825', 92),
+(95, '1086827', 93),
+(96, '1086827', 93),
+(97, '8500580', 94),
+(98, '1082890', 95),
+(99, 'F41250104000', 96),
+(100, '09084881', 97),
+(101, '209808A', 98),
+(102, '153031B', 99),
+(103, '0147812', 100),
+(104, '166415', 101),
+(105, '166416', 102),
+(106, '0147813', 103),
+(107, 'F41250102000', 104),
+(108, 'A166417', 105),
+(109, '00143172', 106),
+(110, '1085188', 107),
+(111, '168335E', 108),
+(112, '0163079', 109),
+(113, '153160E', 110),
+(114, 'F22205901000', 111),
+(115, '207828', 112),
+(116, '207829', 113),
+(117, '10163463/0141482', 114),
+(118, 'F44121201000', 115),
+(119, '78204H', 116),
+(120, '167573', 117),
+(121, 'A69828A', 118),
+(122, '153489', 119),
+(123, 'F23030501000', 120),
+(124, '60874', 121),
+(125, '1071150', 122),
+(126, '09047290', 123),
+(127, '952296B', 124),
+(128, 'F41340209000', 125),
+(129, '118566X', 126),
+(130, '8500958', 127),
+(131, '00141211', 128),
+(132, 'P122247', 129),
+(133, 'A205210', 130),
+(134, 'F41310104000', 131),
+(135, '8500337', 132),
+(136, '958012', 133),
+(137, 'F41280103000', 134),
+(138, '20A3048X012', 135),
+(139, '1030402', 136),
+(140, '00141615', 137),
+(141, 'A214311', 138),
+(142, 'F23051101000', 139),
+(143, '208570A', 140),
+(144, '211887A', 141),
+(145, '09011570', 142),
+(146, 'F2303101000', 143),
+(147, '0139699', 144),
+(148, 'F44131301000', 145),
+(149, '1088764', 146),
+(150, 'F021223020', 147),
+(151, '1089018', 148),
+(152, 'F02262501000', 149),
+(153, 'F02121701000', 150),
+(154, '1089765', 151),
+(155, '7532608001', 152),
+(156, 'F36013501000', 153),
+(157, '0163079', 154),
+(158, '00102592', 155),
+(159, '09067510', 156),
+(160, '00101032', 157),
+(161, '09047300', 158),
+(162, '00101793', 159),
+(163, '09106594', 160),
+(164, '09011580', 161),
+(165, '09000205', 162),
+(166, '00142410', 163),
+(167, '00143050', 164),
+(168, '00142431', 165),
+(169, '00141031', 166),
+(170, '1084481', 167),
+(171, '00141056', 168),
+(172, '2222', 169);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_return_details`
+--
+
+CREATE TABLE IF NOT EXISTS `stock_return_details` (
+  `stk_return_d_id` int(11) NOT NULL AUTO_INCREMENT,
+  `stk_return_m_id` int(11) NOT NULL,
+  `stock_item_id` int(11) NOT NULL,
+  `qunty` varchar(11) NOT NULL,
+  `rate` double(10,2) NOT NULL,
+  `rate_per` varchar(11) NOT NULL,
+  `amount` double(10,2) NOT NULL,
+  PRIMARY KEY (`stk_return_d_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `stock_return_details`
+--
+
+INSERT INTO `stock_return_details` (`stk_return_d_id`, `stk_return_m_id`, `stock_item_id`, `qunty`, `rate`, `rate_per`, `amount`) VALUES
+(1, 1, 36, '20', 22.00, '', 440.00),
+(2, 1, 92, '80', 12.00, '', 960.00),
+(3, 2, 54, '90', 10.00, '', 900.00);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_return_master`
+--
+
+CREATE TABLE IF NOT EXISTS `stock_return_master` (
+  `stock_retun_m_id` int(11) NOT NULL AUTO_INCREMENT,
+  `stock_return_no` varchar(30) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `location_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`stock_retun_m_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `stock_return_master`
+--
+
+INSERT INTO `stock_return_master` (`stock_retun_m_id`, `stock_return_no`, `create_date`, `location_id`, `user_id`) VALUES
+(1, 'Return#1-2008', '2008-06-17 12:17:40', 0, 4),
+(2, 'Return#2-2008', '2008-06-16 12:18:55', 0, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supplier`
+--
+
+CREATE TABLE IF NOT EXISTS `supplier` (
+  `sup_id` int(11) NOT NULL,
+  `sup_name` varchar(100) NOT NULL,
+  `sup_cat_id` int(11) NOT NULL,
+  `sup_email` varchar(100) NOT NULL,
+  `sup_address` text NOT NULL,
+  `sup_phone` varchar(100) NOT NULL,
+  `sup_fax` varchar(255) NOT NULL,
+  `sup_tin` varchar(100) NOT NULL,
+  `sup_vat` varchar(100) NOT NULL,
+  `sup_trade` varchar(100) NOT NULL,
+  `sup_tax_validity` varchar(100) NOT NULL,
+  PRIMARY KEY (`sup_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `supplier`
+--
+
+INSERT INTO `supplier` (`sup_id`, `sup_name`, `sup_cat_id`, `sup_email`, `sup_address`, `sup_phone`, `sup_fax`, `sup_tin`, `sup_vat`, `sup_trade`, `sup_tax_validity`) VALUES
+(1, 'Rajib', 1, 'l.rajib@hotmail.com', 'fdsafsdafas', '', '', '', '', '', ''),
+(2, 'Farhad', 0, '', 'House# 39/a, Road# 11/a, Dhanmondi.', '', '', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_supplier_cat`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_supplier_cat` (
+  `supp_cat_id` int(11) NOT NULL AUTO_INCREMENT,
+  `supp_cat_name` varchar(35) NOT NULL,
+  `supp_cat_p_id` int(11) NOT NULL,
+  PRIMARY KEY (`supp_cat_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `tbl_supplier_cat`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_login` varchar(100) NOT NULL,
+  `user_pass_digest` varchar(32) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `user_email` varchar(100) NOT NULL,
+  `user_address` varchar(500) NOT NULL,
+  `user_contact` varchar(255) NOT NULL,
+  `user_sec` int(9) NOT NULL,
+  `user_dept` int(5) NOT NULL,
+  `user_office` int(10) unsigned NOT NULL,
+  `user_designation` varchar(100) NOT NULL DEFAULT 'employee',
+  `user_role_id` tinyint(2) NOT NULL DEFAULT '1',
+  `user_visible` tinyint(1) NOT NULL DEFAULT '1',
+  `user_level` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `user_login`, `user_pass_digest`, `user_name`, `user_email`, `user_address`, `user_contact`, `user_sec`, `user_dept`, `user_office`, `user_designation`, `user_role_id`, `user_visible`, `user_level`, `created_at`, `updated_at`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin', '', '', '', 0, 6, 5, '', 0, 0, 5, '2009-04-22 21:09:00', '2009-04-22 21:09:00'),
+(2, 'user', '202cb962ac59075b964b07152d234b70', 'user', '', '', '', 0, 6, 5, '', 0, 0, 0, '2009-04-22 21:09:30', '2009-04-22 21:09:30'),
+(3, 'head', '202cb962ac59075b964b07152d234b70', 'Head', '', '', '', 0, 6, 5, '', 0, 0, 1, '2009-04-23 03:05:02', '2009-04-23 03:05:02'),
+(4, 'sojib', '202cb962ac59075b964b07152d234b70', 'sojib', '', '', '', 0, 6, 5, '', 0, 0, 2, '2009-04-23 04:20:19', '2009-04-23 04:20:19'),
+(5, 'planing', '202cb962ac59075b964b07152d234b70', 'planing', '', '', '', 0, 6, 5, '', 0, 0, 4, '2009-04-23 04:51:38', '2009-04-23 04:51:38'),
+(6, 'karim', '202cb962ac59075b964b07152d234b70', 'karim-uttara-admin', 'karim@hotmail.com', 'mohammadpur', '98787987', 0, 18, 11, 'manager', 0, 0, 5, '2009-05-12 17:30:58', '2009-05-12 17:30:58'),
+(7, 'hasan', '202cb962ac59075b964b07152d234b70', 'hasan', 'hasan@hotmail.com', 'uttara', '787827982', 0, 18, 11, 'user', 0, 0, 0, '2009-05-12 17:32:20', '2009-05-12 17:32:20'),
+(8, 'rajib', '202cb962ac59075b964b07152d234b70', 'Rajib', 'rajib@hotmail.com', 'Dhamondi,Dhaka', '123', 0, 6, 5, 'fasdfasd', 0, 0, 0, '2009-05-13 00:15:00', '2009-05-13 00:15:00'),
+(11, 'lucky_cis', '81dc9bdb52d04dc20036dbd8313ed055', 'Jamil Hossian', 'lucky_cis@yahoo.com', 'Dhaka', ' 8801818122161', 0, 6, 6, '', 0, 0, 1, '2009-05-21 17:48:15', '2009-05-21 17:48:15'),
+(12, 'adas', '7815696ecbf1c96e6894b779456d330e', 'asd', 'asdasd', 'asd', 'asd', 2, 5, 5, 'asd', 0, 0, 1, '2009-05-21 17:52:42', '2009-05-21 17:52:42'),
+(13, 'wer', '22c276a05aa7c90566ae2175bcc2a9b0', 'wew', 'wr', 'wer', 'wr', 1, 12, 6, 'werwer', 0, 0, 2, '2009-05-21 19:51:36', '2009-05-21 19:51:36'),
+(14, 'adas', '202cb962ac59075b964b07152d234b70', 'Jamil Hossian', '1sdsdf@sdf.com', 'sdfsd', '123455', 3, 14, 6, '1234', 0, 0, 4, '2009-05-21 19:57:49', '2009-05-21 19:57:49'),
+(15, '123', '202cb962ac59075b964b07152d234b70', 'farhad', 'farhadrajib@hotmail.com', 'sdsd', '', 3, 2, 1, 'sdsd', 0, 0, 0, '2009-05-25 03:58:51', '2009-05-25 03:58:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_assets`
+--
+
+CREATE TABLE IF NOT EXISTS `user_assets` (
+  `asset_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
+  `asset_url` varchar(300) NOT NULL,
+  `asset_type` varchar(30) NOT NULL,
+  PRIMARY KEY (`asset_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `user_assets`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_privilages`
+--
+
+CREATE TABLE IF NOT EXISTS `user_privilages` (
+  `role_id` int(11) NOT NULL,
+  `create` tinyint(1) NOT NULL,
+  `update` tinyint(1) NOT NULL,
+  `delete` tinyint(1) NOT NULL,
+  `read` tinyint(1) NOT NULL,
+  `on_table` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_privilages`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_roles`
+--
+
+CREATE TABLE IF NOT EXISTS `user_roles` (
+  `role_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`role_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED;
+
+--
+-- Dumping data for table `user_roles`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_section`
+--
+
+CREATE TABLE IF NOT EXISTS `user_section` (
+  `sec_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sec_name` varchar(25) NOT NULL,
+  `dep_id` int(11) NOT NULL,
+  `office_id` int(11) NOT NULL,
+  PRIMARY KEY (`sec_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `user_section`
+--
+
+INSERT INTO `user_section` (`sec_id`, `sec_name`, `dep_id`, `office_id`) VALUES
+(1, '1''st section', 2, 1),
+(2, '2nd Section', 1, 1),
+(3, '3rd section', 1, 2),
+(4, 'abc', 0, 0),
+(5, 'Finisher Drawing', 8, 1),
+(6, 'Ring Section', 8, 1),
+(7, 'Winding Section', 8, 1),
+(8, 'Blow Room-Carding', 8, 1);

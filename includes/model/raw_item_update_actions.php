@@ -22,7 +22,7 @@ $objStockItemInfo = new Stock();
 									);
 		
 		echo "<b>Data Save Successsfull</b>";
-		require_once("../contents/list_all/list_all_raw_item.php");
+		//require_once("../contents/list_all/list_all_raw_item.php");
 		
 	
 ?>	

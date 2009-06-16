@@ -2,7 +2,7 @@
 session_start();
 
 require_once('../../lib/mrr.class.php');
-require_once('../../lib/stock.class.php');
+require_once('../../lib/finish_item.class.php');
 
 
 
@@ -11,12 +11,12 @@ require_once('../../lib/stock.class.php');
 	$userId=$_SESSION[userid];
 	
 	$MRR=new MRR;
-	$stock= new Stock;
+	$stock= new finishItem;
 	
-	$num=$MRR->getNewId();
+	$num=$MRR->getMRRFinishId();
 	$getData="'$num','$mrr_num','$date_of_submit','$userId','$PurchaseorderId','$selSupplier','$indentNo','','',1";
 	
-	extract($MRR->CreateMRRMaster($getData));
+	extract($MRR->CreateMRRFinishMaster($getData));
 	
 	$getData='';
 	$counter=$id;
@@ -33,7 +33,7 @@ require_once('../../lib/stock.class.php');
 									'',
 									'$item_amount[$i]'";
 		
-			$MRR->CreateMRRDetails($getData);
+			$MRR->CreateMRRFinishDetails($getData);
 			
 		}
 	}
@@ -50,12 +50,12 @@ require_once('../../lib/stock.class.php');
 									'',
 									'$item_amount[$i]'";
 		
-			$MRR->CreateMRRDetails($getData);
+			$MRR->CreateMRRFinishDetails($getData);
 			$item_cl_balance_data=$stock->retriveStockItemByid($item_code[$i]);
 			$item_cl_balance=$item_cl_balance_data[0]["stock_item_cl_balance"];
 			$stock->updateAddClBalance($item_code[$i],$item_cl_balance,$item_qty[$i]);
-			$prev_item_recieved_qty=$item_cl_balance_data[0]["stock_rejected_qty"];
-			$current_recieved_qty=$prev_item_recieved_qty+$item_qty[$i];
+			 $prev_item_recieved_qty=$item_cl_balance_data[0]["stock_rejected_qty"];
+			 $current_recieved_qty=$prev_item_recieved_qty+$item_qty[$i];
 			$stock->updateReceivedQty($item_code[$i],	$current_recieved_qty);  
 		}
 	

@@ -30,7 +30,7 @@
     <li><a class="thickbox" href="includes/contents/create_lot.php?width=500&height=230" title="Lot" >Lot</a></li> 
 	<li><a class="thickbox" href="includes/contents/create_count.php?width=500&height=230" title="Count" >Count</a></li>   
 	<li><a class="thickbox" href="includes/contents/create_lc.php?width=500&height=230" title="LC" >L/C</a></li> 
-	<li><a class="thickbox" href="includes/contents/create_staple_length.php?width=500&height=230" title="Staple Length" >Staple Length</a></li>   
+	<!--<li><a class="thickbox" href="includes/contents/create_staple_length.php?width=500&height=230" title="Staple Length" >Staple Length</a></li> -->  
      
 	
     

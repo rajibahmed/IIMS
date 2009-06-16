@@ -100,9 +100,6 @@ require_once("dbutils.class.php");
 	|--------------------------------------------------------*/
 	function getStockItemById($id){
 		
-		/*$sql='SELECT * FROM stock_item si
-			WHERE si.stock_item_id ='.$id;*/
-			
 		$sql="	SELECT st.*,pt.*,cd.* 
 				FROM `stock_item` st,stock_part_details pt,stock_code_details cd 
 				WHERE st.`stock_part_m_id`=pt.stock_part_m_id 
