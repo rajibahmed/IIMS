@@ -282,27 +282,27 @@
 	// 
 	
 	
-	$(".stock_item").live("keypress",function(){
-		console.log($(this));
-		$(this)
-			.autocomplete("includes/pages/stock_item_autocomplete.php",{
-				width:150,
-				max:5,
-				multiple: true,
-		}).result(function(){
-				
-			var name= $(this).val();
-			
-			if(name.match("#")){
-				var stock_id= parseInt( name.split("#")[0]);
-		
-				$(this).val(name.split("#")[1]);
-				
-				$(this).next("input[name=stock_item[]]").val(stock_id);
-			}
-		});
-		
-	});
+	// $(".stock_item").live("keypress",function(){
+	// 	console.log($(this));
+	// 	$(this)
+	// 		.autocomplete("includes/pages/stock_item_autocomplete.php",{
+	// 			width:150,
+	// 			max:5,
+	// 			multiple: true,
+	// 	}).result(function(){
+	// 			
+	// 		var name= $(this).val();
+	// 		
+	// 		if(name.match("#")){
+	// 			var stock_id= parseInt( name.split("#")[0]);
+	// 	
+	// 			$(this).val(name.split("#")[1]);
+	// 			
+	// 			$(this).next("input[name=stock_item[]]").val(stock_id);
+	// 		}
+	// 	});
+	// 	
+	// });
 	
 	
 

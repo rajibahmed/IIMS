@@ -299,6 +299,13 @@ require_once("dbutils.class.php");
 		
 	 }
 	 
+	 function retriveStockItemName(){
+ 		$sql = "SELECT stock_item_id,stock_item_name FROM stock_item 
+ 				ORDER BY stock_item_name";
+		return parent::SELECTQuery($sql);
+		
+	 }
+	 
 	 
 	  function retriveStockItemByPartByCode(){
  		$sql = "SELECT st.*,pt.*,cd.* 

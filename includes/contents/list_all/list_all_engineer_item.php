@@ -1,12 +1,27 @@
-    <?php
-require_once ("../../../lib/stock.class.php");
-$objStockEngineerInfo = new Stock();
-$EngineerListAll=$objStockEngineerInfo->retriveStockItem();
-$rowEngListAll=count($EngineerListAll);
+<?php
+	require_once ("../../../lib/stock.class.php");
+	
+	$objStockEngineerInfo = new Stock();
+	$EngineerListAll=$objStockEngineerInfo->retriveStockItem();
+	$rowEngListAll=count($EngineerListAll);
+
 ?>
 
 
-<table width="100%" border="0">
+
+<div id="search">
+	<h1>Search</h1>	
+	<p>
+		<form autocomplete="off" action='' method='get'>
+			<label for="stock_item">Stock Item Name</label>
+			<input type="text" id="rajib" style='width:200px' />
+			<a id='edit_stock_item' class='button thickbox' href='#'>Edit</a>
+			<a id='' class='button delete' href='#'>Delete</a>
+		</form>		
+	 </p>
+</div>
+
+<table width="100%" border="0" id='stock_items'>
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -58,11 +73,11 @@ if($i%2==0)
   		if(confirm("you are deleting a Engineering Item")){
   			
 			$('#stk_'+id).remove();
-			console.log(id);
+			//console.log(id);
 			$.ajax({
-			   type: "POST",
+			   type: "GET",
 			   url: "includes/model/delete/delete_engi_item.php",
-			   data: "delete=true&id="+id,
+			   data: "delete=true&stc_itm_id="+id,
 			   success: function(){
 			     //alert("you have deleted a requisition");
 			      $(".list:odd").addClass("gray");
@@ -72,13 +87,41 @@ if($i%2==0)
 		}//end of if 
 		return false;		
     }); 
-    
+  
+      
     $(".list:odd").addClass("gray");
+    
     
   	$(".edit").live("click", function(){
   		var id =$(this).attr('id');
 		return false;		
     });   
+
     
-      
+    /**
+    * JQuery AutoComplete Plugin Impelentation
+    *
+    *
+    */
+    
+    $('#rajib').autocomplete('includes/pages/stock_item_autocomplete.php',{
+    	width: 320,
+		max: 8
+    }).result(function (evt, data, formatted) {
+    	
+    	var stock_id = parseInt(data[1]);
+    	url = 'stc_itm_id='+stock_id;
+    	
+    	$('#search ').find('a:second').attr('id',stock_id);
+
+	    $('#search')
+			.find('a:first')
+			.attr('href','includes/contents/update/edit_engi_item.php?height=400&width=600&'+url);
+			
+		
+	});
+	
+	$('#stock_items tr:even').addClass('gray');	
+	
+    
 </script>

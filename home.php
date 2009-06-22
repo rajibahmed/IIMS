@@ -138,6 +138,10 @@
 				$('#ajax_content').load('includes/contents/indent_home.php');		
 		});
 		
+		$('select[name=search_by]').change(function(){
+			console.log('(test)');
+		});
+		
 	})
 	
 </script> 
@@ -169,9 +173,27 @@
             </div>
             <div class="rightcontent">
 				<div id="ajax_content">
-				
-		 				<?php   ?>
-		 				
+					<div id="search">
+						<h1> Search The Database</h1>
+						<p>
+							<select name='search_tables'>
+								<option > Stock Item </option>
+								<option> Indent </option>
+								<option> Requisition </option>
+								<option> Puschase </option>
+								<option> Quotation </option>
+								<option> MRR </option>
+							</select>
+							
+							<select name='search_by'>
+								<option> Name</option>
+								<option> Code Number</option>
+								<option> Part Numer </option>
+								<option> Creation Date</option>
+								<option> Date Range</option>
+							</select>						
+						</p>							
+					</div>
 	 			</div>
                 <!-- <div class="centerbody"> </div> -->
                	<div class='clear'> </div>	 	

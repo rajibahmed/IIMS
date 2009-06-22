@@ -4,17 +4,18 @@ require_once ("../../../lib/stock.class.php");
 $objStockInfo = new Stock();
 
 
-if(isset($_POST['delete']))
+if(isset($_GET['delete']))
 {
 	
-	echo $id=(int) $_POST['id'];
+	$id=(int) $_GET['stc_itm_id'];
 	if($objStockInfo->deleteStockEngineerItem($id)>0){
-		echo "U have Deleted Succesfully";
+		echo "You have Deleted Succesfully";
 		
 	}
 	else{
 		echo "sorry record does not exists";
 	}
+	
 }
 
 
